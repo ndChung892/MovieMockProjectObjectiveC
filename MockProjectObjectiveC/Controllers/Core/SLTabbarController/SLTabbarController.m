@@ -11,7 +11,9 @@
 #import "SLFavoritesViewController.h"
 #import "SLMoviesViewController.h"
 #import "SLLeftMenuViewController.h"
+#import <SWRevealViewController.h>
 
+#pragma mark - SLTabbarController
 
 @interface SLTabbarController ()
 
@@ -21,28 +23,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setupTabbarController];
-    
+    self.tabBar.tintColor = [UIColor whiteColor];
+    self.tabBar.barTintColor = [UIColor grayColor];
+    self.tabBar.backgroundColor = [UIColor blueColor];
+    [self configTabbarController];
 }
 
-- (void)setupTabbarController {
-    
+#pragma mark - configTabbarController
+- (void) configTabbarController {
     SLMoviesViewController *movieVC = [[SLMoviesViewController alloc] init];
-    UINavigationController *navMovie = [[UINavigationController alloc] initWithRootViewController:movieVC];
-    [self configViewController: navMovie hasTitle:@"Movies" withIcon:@"house.fill"];
-    
     SLFavoritesViewController *favoritesVC = [[SLFavoritesViewController alloc]init];
-    UINavigationController *navFavorites = [[UINavigationController alloc] initWithRootViewController:favoritesVC];
-    [self configViewController: navFavorites hasTitle:@"Favorites" withIcon: @"heart.fill"];
-    
-    
     SLSettingsViewController *settingVC = [[SLSettingsViewController alloc]init];
-    UINavigationController *navSetting = [[UINavigationController alloc] initWithRootViewController:settingVC];
-    [self configViewController:navSetting hasTitle:@"Settings" withIcon:@"gearshape.fill"];
-    
     SLAboutViewController *aboutVC = [[SLAboutViewController alloc]init];
+    
+    UINavigationController *navMovie = [[UINavigationController alloc] initWithRootViewController:movieVC];
+    UINavigationController *navFavorites = [[UINavigationController alloc] initWithRootViewController:favoritesVC];
+    UINavigationController *navSetting = [[UINavigationController alloc] initWithRootViewController:settingVC];
     UINavigationController *navAbout = [[UINavigationController alloc] initWithRootViewController:aboutVC];
+    
+    [self configViewController:navMovie hasTitle:@"Movies" withIcon:@"house.fill"];
+    [self configViewController:navFavorites hasTitle:@"Favorites" withIcon: @"heart.fill"];
+    [self configViewController:navSetting hasTitle:@"Settings" withIcon:@"gearshape.fill"];
     [self configViewController:navAbout hasTitle:@"About" withIcon:@"exclamationmark.circle.fill"];
     
     NSArray *controllers = @[navMovie, navFavorites, navSetting, navAbout];
@@ -50,14 +51,10 @@
     for (id nav in controllers) {
         [[nav navigationBar] setBackgroundColor:[UIColor blueColor]];
         [[nav navigationBar] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        [[nav navigationBar] setTintColor:[UIColor whiteColor]];
     }
     
-    [self setViewControllers: controllers];
-    
-    self.tabBar.tintColor = [UIColor whiteColor];
-    self.tabBar.barTintColor = [UIColor grayColor];
-    self.tabBar.backgroundColor = [UIColor blueColor];
-    
+    [self setViewControllers: @[navMovie, navFavorites, navSetting, navAbout]];
 }
 
 - (void) configViewController:(UIViewController *)vc hasTitle:(NSString *)title withIcon:(NSString *) imageName {
@@ -66,5 +63,7 @@
     [tabbarItem setImage:[UIImage systemImageNamed: imageName]];
     
 }
+
+
 
 @end

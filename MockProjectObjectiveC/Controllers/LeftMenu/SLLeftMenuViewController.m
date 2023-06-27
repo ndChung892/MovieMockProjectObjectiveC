@@ -7,6 +7,7 @@
 
 #import "SLLeftMenuViewController.h"
 
+#pragma mark - SLLeftMenuViewController
 @interface SLLeftMenuViewController ()
 
 @end
@@ -15,9 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor cyanColor]];
 }
-
-
 
 @end

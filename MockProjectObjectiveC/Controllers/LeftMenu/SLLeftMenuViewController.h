@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLLeftMenuViewController : UIViewController
+@interface SLLeftMenuViewController : SLBaseViewController
 
 @end
 

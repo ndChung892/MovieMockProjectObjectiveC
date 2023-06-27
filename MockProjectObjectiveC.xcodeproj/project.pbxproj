@@ -23,6 +23,8 @@
 		497439A52A49372C0036B76C /* SLTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497439A42A49372C0036B76C /* SLTabbarController.m */; };
 		49C646812A49DE0C00DE53FB /* SLLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */; };
 		49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */; };
+		49D5A6F52A4ABF5B0029A12F /* SLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D5A6F32A4ABF5B0029A12F /* SLBaseViewController.m */; };
+		49D5A6F62A4ABF5B0029A12F /* SLBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D5A6F42A4ABF5B0029A12F /* SLBaseViewController.xib */; };
 		ECC194060B3B47087120AD63 /* Pods_MockProjectObjectiveC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 108583669C0CB40AB7113039 /* Pods_MockProjectObjectiveC.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,9 @@
 		49C6467E2A49DE0C00DE53FB /* SLLeftMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLeftMenuViewController.h; sourceTree = "<group>"; };
 		49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLeftMenuViewController.m; sourceTree = "<group>"; };
 		49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLLeftMenuViewController.xib; sourceTree = "<group>"; };
+		49D5A6F22A4ABF5B0029A12F /* SLBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBaseViewController.h; sourceTree = "<group>"; };
+		49D5A6F32A4ABF5B0029A12F /* SLBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBaseViewController.m; sourceTree = "<group>"; };
+		49D5A6F42A4ABF5B0029A12F /* SLBaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLBaseViewController.xib; sourceTree = "<group>"; };
 		96A57E4E8101C04CB3CC9B90 /* Pods-MockProjectObjectiveC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockProjectObjectiveC.release.xcconfig"; path = "Target Support Files/Pods-MockProjectObjectiveC/Pods-MockProjectObjectiveC.release.xcconfig"; sourceTree = "<group>"; };
 		E80FB5E19580F86512AE98A7 /* Pods-MockProjectObjectiveC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MockProjectObjectiveC.debug.xcconfig"; path = "Target Support Files/Pods-MockProjectObjectiveC/Pods-MockProjectObjectiveC.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +130,7 @@
 		495177A22A429EF10008345B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				49D5A6F12A4ABF410029A12F /* BaseViewController */,
 				490CDB6C2A4970230048C15B /* LeftMenu */,
 				495177A32A429EFE0008345B /* Core */,
 			);
@@ -190,6 +196,16 @@
 				495177BD2A42A0550008345B /* SLAboutViewController.xib */,
 			);
 			path = SLAboutViewController;
+			sourceTree = "<group>";
+		};
+		49D5A6F12A4ABF410029A12F /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49D5A6F22A4ABF5B0029A12F /* SLBaseViewController.h */,
+				49D5A6F32A4ABF5B0029A12F /* SLBaseViewController.m */,
+				49D5A6F42A4ABF5B0029A12F /* SLBaseViewController.xib */,
+			);
+			path = BaseViewController;
 			sourceTree = "<group>";
 		};
 		6862668B4FE8C4C915E5340C /* Pods */ = {
@@ -270,6 +286,7 @@
 			files = (
 				495177982A429D780008345B /* LaunchScreen.storyboard in Resources */,
 				495177B02A42A01A0008345B /* SLSettingsViewController.xib in Resources */,
+				49D5A6F62A4ABF5B0029A12F /* SLBaseViewController.xib in Resources */,
 				495177952A429D780008345B /* Assets.xcassets in Resources */,
 				49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */,
 				495177B52A42A02D0008345B /* SLFavoritesViewController.xib in Resources */,
@@ -329,6 +346,7 @@
 			files = (
 				495177AF2A42A01A0008345B /* SLSettingsViewController.m in Sources */,
 				495177B42A42A02D0008345B /* SLFavoritesViewController.m in Sources */,
+				49D5A6F52A4ABF5B0029A12F /* SLBaseViewController.m in Sources */,
 				4951778A2A429D760008345B /* AppDelegate.m in Sources */,
 				495177BE2A42A0550008345B /* SLAboutViewController.m in Sources */,
 				4951779B2A429D780008345B /* main.m in Sources */,

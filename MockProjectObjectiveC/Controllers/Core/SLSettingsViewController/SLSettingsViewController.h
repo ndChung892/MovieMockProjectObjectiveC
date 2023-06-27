@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLSettingsViewController : UIViewController
+@interface SLSettingsViewController : SLBaseViewController
 
 @end
 

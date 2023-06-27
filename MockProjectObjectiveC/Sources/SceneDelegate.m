@@ -8,6 +8,10 @@
 #import "SceneDelegate.h"
 #import "SLTabbarController.h"
 #import "SLLeftMenuViewController.h"
+#import "SLAboutViewController.h"
+#import "SLSettingsViewController.h"
+#import "SLFavoritesViewController.h"
+#import "SLMoviesViewController.h"
 #import <SWRevealViewController/SWRevealViewController.h>
 
 @interface SceneDelegate ()
@@ -25,8 +29,11 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     
-    SLTabbarController *rootViewController = [[SLTabbarController alloc] init];
-    self.window.rootViewController = rootViewController;
+    SLTabbarController *tabbar = [[SLTabbarController alloc] init];
+    SLLeftMenuViewController *leftMenuVC = [[SLLeftMenuViewController alloc]init];
+    
+    SWRevealViewController *reveal = [[SWRevealViewController alloc]initWithRearViewController: leftMenuVC frontViewController:tabbar];
+    self.window.rootViewController = reveal;
     [self.window makeKeyAndVisible];
 }
 
