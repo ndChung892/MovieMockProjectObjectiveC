@@ -8,5 +8,7 @@ target 'MockProjectObjectiveC' do
   # Pods for MockProjectObjectiveC
 
 pod 'SWRevealViewController'
+pod 'AFNetworking'
+pod 'SDWebImage'
 
 end

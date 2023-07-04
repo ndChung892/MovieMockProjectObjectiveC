@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellMovieTableView" rowHeight="202" id="KGk-i7-Jjw" customClass="SLMoviesTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="460" height="202"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="460" height="202"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Movie" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bec-PK-KTd">
+                        <rect key="frame" x="10" y="10" width="395" height="52"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dxf-sL-hWp">
+                        <rect key="frame" x="10" y="72" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="dWe-X0-u4T"/>
+                            <constraint firstAttribute="height" constant="120" id="rQQ-u2-YBp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6l-gh-B0Q">
+                        <rect key="frame" x="140" y="72" width="310" height="15.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFb-YR-Twg">
+                        <rect key="frame" x="140" y="92.666666666666671" width="290" height="15.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjw-im-LCe" userLabel="Overview">
+                        <rect key="frame" x="140" y="113.33333333333333" width="290" height="15.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" systemColor="systemPinkColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Parapsychologist Elise Rainier and her team tr" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avu-R8-CNL">
+                        <rect key="frame" x="140" y="129" width="310" height="63"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="textColor" systemColor="labelColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2Th-qo-9Ox">
+                        <rect key="frame" x="415" y="14.666666666666668" width="30" height="29.666666666666647"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="IaG-sP-tax"/>
+                            <constraint firstAttribute="height" constant="30" id="Nvo-LA-9Fj"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="avu-R8-CNL" secondAttribute="trailing" constant="10" id="3IY-d9-HL5"/>
+                    <constraint firstItem="bec-PK-KTd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="HOn-s0-OPS"/>
+                    <constraint firstItem="b6l-gh-B0Q" firstAttribute="leading" secondItem="Dxf-sL-hWp" secondAttribute="trailing" constant="10" id="JyI-5A-hdm"/>
+                    <constraint firstItem="avu-R8-CNL" firstAttribute="top" secondItem="Vjw-im-LCe" secondAttribute="bottom" id="LaX-Sz-phe"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Vjw-im-LCe" secondAttribute="trailing" constant="10" id="UYQ-zZ-kqA"/>
+                    <constraint firstAttribute="trailing" secondItem="2Th-qo-9Ox" secondAttribute="trailing" constant="15" id="ZGr-1E-1xA"/>
+                    <constraint firstItem="Dxf-sL-hWp" firstAttribute="top" secondItem="bec-PK-KTd" secondAttribute="bottom" constant="10" id="ZWX-XN-wI7"/>
+                    <constraint firstItem="Vjw-im-LCe" firstAttribute="top" secondItem="dFb-YR-Twg" secondAttribute="bottom" constant="5" id="ZfP-IU-lww"/>
+                    <constraint firstItem="avu-R8-CNL" firstAttribute="leading" secondItem="Dxf-sL-hWp" secondAttribute="trailing" constant="10" id="dbv-me-2Ej"/>
+                    <constraint firstItem="Vjw-im-LCe" firstAttribute="leading" secondItem="Dxf-sL-hWp" secondAttribute="trailing" constant="10" id="dvA-f1-jqH"/>
+                    <constraint firstAttribute="bottom" secondItem="avu-R8-CNL" secondAttribute="bottom" constant="10" id="hqy-ch-Kr0"/>
+                    <constraint firstItem="2Th-qo-9Ox" firstAttribute="leading" secondItem="bec-PK-KTd" secondAttribute="trailing" constant="10" id="laH-8V-wQN"/>
+                    <constraint firstItem="bec-PK-KTd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="lby-Fd-TFD"/>
+                    <constraint firstAttribute="trailing" secondItem="b6l-gh-B0Q" secondAttribute="trailing" constant="10" id="lh0-PW-ZiF"/>
+                    <constraint firstItem="dFb-YR-Twg" firstAttribute="top" secondItem="b6l-gh-B0Q" secondAttribute="bottom" constant="5" id="m3T-4V-36d"/>
+                    <constraint firstItem="b6l-gh-B0Q" firstAttribute="top" secondItem="bec-PK-KTd" secondAttribute="bottom" constant="10" id="n4J-qB-7LX"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dFb-YR-Twg" secondAttribute="trailing" constant="10" id="o9A-kd-mxA"/>
+                    <constraint firstAttribute="bottom" secondItem="Dxf-sL-hWp" secondAttribute="bottom" constant="10" id="qj8-2i-iN7"/>
+                    <constraint firstItem="Dxf-sL-hWp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="rJq-Q8-9iF"/>
+                    <constraint firstItem="dFb-YR-Twg" firstAttribute="leading" secondItem="Dxf-sL-hWp" secondAttribute="trailing" constant="10" id="sLy-KN-AxK"/>
+                    <constraint firstItem="2Th-qo-9Ox" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="vGD-ls-JyE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="imgMovie" destination="Dxf-sL-hWp" id="kdJ-Ua-tsi"/>
+                <outlet property="overviewTextView" destination="avu-R8-CNL" id="vbM-fr-Psn"/>
+                <outlet property="ratinglbl" destination="dFb-YR-Twg" id="N4m-Hl-DQv"/>
+                <outlet property="releaseDatelbl" destination="b6l-gh-B0Q" id="cVa-6C-D6Y"/>
+                <outlet property="titleMovielbl" destination="bec-PK-KTd" id="Uda-BN-h2M"/>
+            </connections>
+            <point key="canvasLocation" x="-1.5267175572519083" y="-250"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
