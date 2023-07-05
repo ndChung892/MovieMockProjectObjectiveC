@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		490D3A7F2A4C3982007AF5F1 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 490D3A7E2A4C3982007AF5F1 /* Model.m */; };
 		490D3A822A4C3F17007AF5F1 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 490D3A812A4C3F17007AF5F1 /* Configuration.m */; };
+		490E49C22A53C7550003FB87 /* SLMoviesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49C02A53C7550003FB87 /* SLMoviesCollectionViewCell.m */; };
+		490E49C32A53C7550003FB87 /* SLMoviesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490E49C12A53C7550003FB87 /* SLMoviesCollectionViewCell.xib */; };
+		490E49C82A5403030003FB87 /* SLDetailMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49C62A5403030003FB87 /* SLDetailMoviesViewController.m */; };
+		490E49C92A5403030003FB87 /* SLDetailMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490E49C72A5403030003FB87 /* SLDetailMoviesViewController.xib */; };
+		490E49CD2A5415440003FB87 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49CC2A5415440003FB87 /* Result.m */; };
 		4951778A2A429D760008345B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177892A429D760008345B /* AppDelegate.m */; };
 		4951778D2A429D760008345B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951778C2A429D760008345B /* SceneDelegate.m */; };
 		495177952A429D780008345B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495177942A429D780008345B /* Assets.xcassets */; };
@@ -25,7 +30,6 @@
 		49C646812A49DE0C00DE53FB /* SLLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */; };
 		49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */; };
 		49D5A6F52A4ABF5B0029A12F /* SLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D5A6F32A4ABF5B0029A12F /* SLBaseViewController.m */; };
-		49D5A6F62A4ABF5B0029A12F /* SLBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D5A6F42A4ABF5B0029A12F /* SLBaseViewController.xib */; };
 		49D5A70A2A4B361E0029A12F /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D5A7092A4B361E0029A12F /* NetworkManager.m */; };
 		49D5A7162A4BEE930029A12F /* SLMoviesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D5A7152A4BEE930029A12F /* SLMoviesTableView.m */; };
 		49D5A71C2A4C13070029A12F /* SLMoviesCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D5A71B2A4C13070029A12F /* SLMoviesCollectionView.m */; };
@@ -40,6 +44,14 @@
 		490D3A7E2A4C3982007AF5F1 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		490D3A802A4C3F07007AF5F1 /* Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		490D3A812A4C3F17007AF5F1 /* Configuration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
+		490E49BF2A53C7550003FB87 /* SLMoviesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMoviesCollectionViewCell.h; sourceTree = "<group>"; };
+		490E49C02A53C7550003FB87 /* SLMoviesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMoviesCollectionViewCell.m; sourceTree = "<group>"; };
+		490E49C12A53C7550003FB87 /* SLMoviesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLMoviesCollectionViewCell.xib; sourceTree = "<group>"; };
+		490E49C52A5403030003FB87 /* SLDetailMoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLDetailMoviesViewController.h; sourceTree = "<group>"; };
+		490E49C62A5403030003FB87 /* SLDetailMoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLDetailMoviesViewController.m; sourceTree = "<group>"; };
+		490E49C72A5403030003FB87 /* SLDetailMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLDetailMoviesViewController.xib; sourceTree = "<group>"; };
+		490E49CB2A5415360003FB87 /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
+		490E49CC2A5415440003FB87 /* Result.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
 		495177852A429D760008345B /* MockProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495177882A429D760008345B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		495177892A429D760008345B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,7 +79,6 @@
 		49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLLeftMenuViewController.xib; sourceTree = "<group>"; };
 		49D5A6F22A4ABF5B0029A12F /* SLBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLBaseViewController.h; sourceTree = "<group>"; };
 		49D5A6F32A4ABF5B0029A12F /* SLBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLBaseViewController.m; sourceTree = "<group>"; };
-		49D5A6F42A4ABF5B0029A12F /* SLBaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLBaseViewController.xib; sourceTree = "<group>"; };
 		49D5A7082A4B360D0029A12F /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		49D5A7092A4B361E0029A12F /* NetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		49D5A7142A4BEE930029A12F /* SLMoviesTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMoviesTableView.h; sourceTree = "<group>"; };
@@ -112,6 +123,25 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		490E49C42A5402B10003FB87 /* SLDetailMoviesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				490E49C52A5403030003FB87 /* SLDetailMoviesViewController.h */,
+				490E49C62A5403030003FB87 /* SLDetailMoviesViewController.m */,
+				490E49C72A5403030003FB87 /* SLDetailMoviesViewController.xib */,
+			);
+			path = SLDetailMoviesViewController;
+			sourceTree = "<group>";
+		};
+		490E49CA2A5415270003FB87 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				490E49CB2A5415360003FB87 /* Result.h */,
+				490E49CC2A5415440003FB87 /* Result.m */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
 		4951777C2A429D760008345B = {
 			isa = PBXGroup;
 			children = (
@@ -136,7 +166,6 @@
 				497E294F2A4E746B0013913D /* Model */,
 				490D3A7A2A4C3808007AF5F1 /* Configuration */,
 				49D5A7072A4B35F30029A12F /* NetworkManager */,
-				49D5A6F12A4ABF410029A12F /* BaseViewController */,
 				490CDB6C2A4970230048C15B /* LeftMenu */,
 				495177A32A429EFE0008345B /* Core */,
 				495177A12A429E490008345B /* Sources */,
@@ -162,6 +191,7 @@
 		495177A32A429EFE0008345B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				49D5A6F12A4ABF410029A12F /* BaseViewController */,
 				495177AB2A429FEB0008345B /* SLAboutViewController */,
 				495177AA2A429FD60008345B /* SLSettingsViewController */,
 				495177A92A429FAD0008345B /* SLFavoritesViewController */,
@@ -183,6 +213,7 @@
 		495177A82A429F940008345B /* SLMoviesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				490E49C42A5402B10003FB87 /* SLDetailMoviesViewController */,
 				49D5A7012A4AEA8F0029A12F /* SLMoviesCollectionView */,
 				49D5A7002A4AEA870029A12F /* SLMoviesTableView */,
 				495177B62A42A0400008345B /* SLMoviesViewController.h */,
@@ -224,6 +255,7 @@
 		497E294F2A4E746B0013913D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				490E49CA2A5415270003FB87 /* Result */,
 				490D3A7D2A4C3982007AF5F1 /* Model.h */,
 				490D3A7E2A4C3982007AF5F1 /* Model.m */,
 			);
@@ -235,7 +267,6 @@
 			children = (
 				49D5A6F22A4ABF5B0029A12F /* SLBaseViewController.h */,
 				49D5A6F32A4ABF5B0029A12F /* SLBaseViewController.m */,
-				49D5A6F42A4ABF5B0029A12F /* SLBaseViewController.xib */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -253,7 +284,7 @@
 		49D5A7012A4AEA8F0029A12F /* SLMoviesCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				49D5A71E2A4C1DEC0029A12F /* SLMoviesCollectionView */,
+				49D5A71E2A4C1DEC0029A12F /* SLMoviesCollectionViewCell */,
 				49D5A71A2A4C13070029A12F /* SLMoviesCollectionView.h */,
 				49D5A71B2A4C13070029A12F /* SLMoviesCollectionView.m */,
 			);
@@ -287,11 +318,14 @@
 			path = SLMoviesTableViewCell;
 			sourceTree = "<group>";
 		};
-		49D5A71E2A4C1DEC0029A12F /* SLMoviesCollectionView */ = {
+		49D5A71E2A4C1DEC0029A12F /* SLMoviesCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				490E49BF2A53C7550003FB87 /* SLMoviesCollectionViewCell.h */,
+				490E49C02A53C7550003FB87 /* SLMoviesCollectionViewCell.m */,
+				490E49C12A53C7550003FB87 /* SLMoviesCollectionViewCell.xib */,
 			);
-			path = SLMoviesCollectionView;
+			path = SLMoviesCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		6862668B4FE8C4C915E5340C /* Pods */ = {
@@ -371,10 +405,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				495177982A429D780008345B /* LaunchScreen.storyboard in Resources */,
+				490E49C92A5403030003FB87 /* SLDetailMoviesViewController.xib in Resources */,
 				495177B02A42A01A0008345B /* SLSettingsViewController.xib in Resources */,
-				49D5A6F62A4ABF5B0029A12F /* SLBaseViewController.xib in Resources */,
 				495177952A429D780008345B /* Assets.xcassets in Resources */,
 				49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */,
+				490E49C32A53C7550003FB87 /* SLMoviesCollectionViewCell.xib in Resources */,
 				495177B52A42A02D0008345B /* SLFavoritesViewController.xib in Resources */,
 				495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */,
 				49D5A7232A4C1E1E0029A12F /* SLMoviesTableViewCell.xib in Resources */,
@@ -443,9 +478,12 @@
 				490D3A7F2A4C3982007AF5F1 /* Model.m in Sources */,
 				4951779B2A429D780008345B /* main.m in Sources */,
 				4951778D2A429D760008345B /* SceneDelegate.m in Sources */,
+				490E49C82A5403030003FB87 /* SLDetailMoviesViewController.m in Sources */,
 				497439A52A49372C0036B76C /* SLTabbarController.m in Sources */,
 				49C646812A49DE0C00DE53FB /* SLLeftMenuViewController.m in Sources */,
 				495177B92A42A0400008345B /* SLMoviesViewController.m in Sources */,
+				490E49C22A53C7550003FB87 /* SLMoviesCollectionViewCell.m in Sources */,
+				490E49CD2A5415440003FB87 /* Result.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

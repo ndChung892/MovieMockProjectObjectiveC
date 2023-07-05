@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Result.h"
 
 #ifndef Model_h
 #define Model_h
@@ -21,8 +22,9 @@
 
 @interface Model: NSObject
 
-@property NSArray *results;
-@property id <SLMoviesDelegate> delegate;
+@property (nonatomic, strong) NSNumber *page;
+@property (nonatomic, strong) NSArray<Result *> *results;
+@property (nonatomic, weak) id <SLMoviesDelegate> delegate;
 
 -(void) handleData;
 

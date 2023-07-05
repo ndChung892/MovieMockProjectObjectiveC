@@ -26,9 +26,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-//    self.model = [[Model alloc]init];
     self.overviewTextView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -44,18 +42,31 @@
     [self.imgMovie setImage:[UIImage imageNamed:@""]];
 }
 
--(void)configCell:(NSString *) title
-     withOverview:(NSString *) overView
-  withReleaseDate:(NSString *) releaseDate
-       withRating:(NSNumber *) rating
-     withImageURL:(NSString *) imgURL
-{
-    self.titleMovielbl.text = title;
-    self.overviewTextView.text = overView;
-    self.releaseDatelbl.text = [NSString stringWithFormat:@"%@%@",@"Release Date: ", releaseDate];
-    self.ratinglbl.text = [NSString stringWithFormat:@"%@%@", @"Rating: ", [rating stringValue]];
-    NSString *fullImageUrl = [NSString stringWithFormat:@"%@%@", imageURL, imgURL];
-    [self.imgMovie sd_setImageWithURL:[NSURL URLWithString:fullImageUrl]];
+//-(void)configCell:(NSString *) title
+//     withOverview:(NSString *) overView
+//  withReleaseDate:(NSString *) releaseDate
+//       withRating:(NSNumber *) rating
+//     withImageURL:(NSString *) imgURL
+//{
+//    self.titleMovielbl.text = title;
+//    self.overviewTextView.text = overView;
+//    self.releaseDatelbl.text = [NSString stringWithFormat:@"%@%@",@"Release Date: ", releaseDate];
+//    self.ratinglbl.text = [NSString stringWithFormat:@"%@%@", @"Rating: ", [rating stringValue]];
+//    NSString *fullImageUrl = [NSString stringWithFormat:@"%@%@", imageURL, imgURL];
+//    [self.imgMovie sd_setImageWithURL:[NSURL URLWithString:fullImageUrl]];
+//
+//}
+
+-(void)configCell:(Result *) result {
+    
+    self.titleMovielbl.text = result.title;
+    self.overviewTextView.text = result.overView;
+    self.releaseDatelbl.text = [NSString stringWithFormat:@"%@%@",@"Release Date: ", result.releaseDate];
+    self.ratinglbl.text = [NSString stringWithFormat:@"%@%@", @"Rating: ", [result.rating stringValue]];
+    [self.imgMovie
+     sd_setImageWithURL:[NSURL
+                         URLWithString:[NSString
+                                        stringWithFormat:@"%@%@", imageURL,result.imgURL]]];
     
 }
 

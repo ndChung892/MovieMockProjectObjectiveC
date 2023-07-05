@@ -12,9 +12,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLMoviesTableView : UIView <UITableViewDelegate, UITableViewDataSource, SLMoviesDelegate >
+@protocol SLMoviesTableViewViewDelegate <NSObject>
+- (void)didSelectCellWithData:(NSString *)data;
+@end
 
+@interface SLMoviesTableView : UIView <UITableViewDelegate, UITableViewDataSource, SLMoviesDelegate>
 
+@property (nonatomic, weak) id<SLMoviesTableViewViewDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

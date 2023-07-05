@@ -10,9 +10,12 @@
 #import "NetworkManager.h"
 #import "Model.h"
 #import "SLMoviesViewController.h"
+#import "SLDetailMoviesViewController.h"
+#import "Result.h"
 
 @interface SLMoviesTableView()
 @property Model *model;
+//@property Result *result;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UITableView *tableView;
 @end
@@ -27,11 +30,9 @@
         self.model.delegate = self;
         [self.model handleData];
         
-        
         // Setup tableView
         [self setupTableView];
         [self addSubview:self.tableView];
-        
         
         // Setup spinner
         [self setupSpinner];
@@ -66,9 +67,7 @@
     // Register UITableViewCell class if needed
     [self.tableView registerNib:[UINib
                                  nibWithNibName:@"SLMoviesTableViewCell"
-                                 bundle:nil] forCellReuseIdentifier:@"cellMovieTableView"];
-    
-    
+                                 bundle:nil] forCellReuseIdentifier:@"cellMoviesTableView"];
     
 }
 
@@ -77,10 +76,10 @@
         // Add constraints to position and size the UITableView
         [self.tableView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.tableView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.tableView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.tableView.topAnchor constraintEqualToAnchor:self.topAnchor ],
         [self.tableView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
         
-        // Add constraints to position and size the UITableView
+        // Add constraints to position and size the UISpinner
         [self.spinner.widthAnchor constraintEqualToConstant:100],
         [self.spinner.heightAnchor constraintEqualToConstant:100],
         [self.spinner.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
@@ -97,15 +96,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SLMoviesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellMovieTableView" forIndexPath:indexPath];
+    SLMoviesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellMoviesTableView" forIndexPath:indexPath];
     
     // Configure the cell with your data
-    [cell configCell:[self.model.results[indexPath.row] valueForKey:@"title"]
-        withOverview:[self.model.results[indexPath.row] valueForKey:@"overview"]
-     withReleaseDate:[self.model.results[indexPath.row] valueForKey:@"release_date"]
-          withRating:[self.model.results[indexPath.row] valueForKey:@"vote_average"]
-        withImageURL:[self.model.results[indexPath.row] valueForKey:@"poster_path"]
-    ];
+//    [cell configCell:[self.model.results[indexPath.row] valueForKey:@"title"]
+//        withOverview:[self.model.results[indexPath.row] valueForKey:@"overview"]
+//     withReleaseDate:[self.model.results[indexPath.row] valueForKey:@"release_date"]
+//          withRating:[self.model.results[indexPath.row] valueForKey:@"vote_average"]
+//        withImageURL:[self.model.results[indexPath.row] valueForKey:@"poster_path"]
+//    ];
+//    Result *result = self.model.results[indexPath.row];
+    Result *result = self.model.results[indexPath.row];
+    [cell configCell:result];
     return cell;
 }
 
@@ -114,9 +116,13 @@
     return UITableViewAutomaticDimension;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *title = [self.model.results[indexPath.row] valueForKey:@"title"];
+    [self.delegate didSelectCellWithData:title];
+}
+
 #pragma mark - SLMoviesDelegate
 -(void) didLoadInitialMovies {
-    NSLog(@"%@",self.model.results);
     [self.spinner stopAnimating];
     [self.tableView setHidden:false];
     [self.tableView reloadData];

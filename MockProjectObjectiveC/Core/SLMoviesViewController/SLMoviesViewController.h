@@ -7,10 +7,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SLBaseViewController.h"
+#import "SLMoviesTableView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLMoviesViewController : SLBaseViewController
+
 
 @end
 
