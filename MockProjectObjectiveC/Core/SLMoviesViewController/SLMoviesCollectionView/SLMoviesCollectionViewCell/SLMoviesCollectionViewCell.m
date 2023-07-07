@@ -13,6 +13,9 @@
 @interface SLMoviesCollectionViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *imgCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *nameMovieslbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
+
+
 @end
 
 @implementation SLMoviesCollectionViewCell
@@ -20,7 +23,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [self.imgCollectionView.heightAnchor constraintEqualToAnchor:self.imgCollectionView.widthAnchor].active = YES;
+//    [self.imgCollectionView.heightAnchor constraintEqualToAnchor:self.imgCollectionView.widthAnchor].active = YES;
+    CGRect bounds = [UIScreen.mainScreen bounds];
+    CGFloat width = (bounds.size.width)/2;
+    
+    self.imageHeight.constant = width;
+    [self.nameMovieslbl sizeToFit];
+    
 
 }
 
@@ -30,8 +39,8 @@
     [self.imgCollectionView setImage:[UIImage imageNamed:@""]];
     [self.nameMovieslbl setText:@""];
 }
-
--(void) configCollectionView:(Result *)result {
+#pragma mark - Config cell
+-(void) configCollectionViewCell:(Result *)result {
     [self.imgCollectionView
      sd_setImageWithURL:[NSURL URLWithString:[NSString
                                         stringWithFormat:@"%@%@", imageURL, result.imgURL]]];

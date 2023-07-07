@@ -10,8 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SLMoviesCollectionView : UIView <UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, SLMoviesDelegate>
+@protocol SLMoviesCollectionViewDelegate <NSObject>
+- (void)didSelectCellWithId:(NSNumber *)iD;
+@end
 
+@interface SLMoviesCollectionView : UIView <UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+
+@property (nonatomic, weak) id<SLMoviesCollectionViewDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

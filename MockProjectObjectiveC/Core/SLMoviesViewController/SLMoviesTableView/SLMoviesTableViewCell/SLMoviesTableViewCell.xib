@@ -48,7 +48,7 @@
                         <color key="textColor" systemColor="systemPinkColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Parapsychologist Elise Rainier and her team tr" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avu-R8-CNL">
+                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" text="Parapsychologist Elise Rainier and her team tr" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avu-R8-CNL">
                         <rect key="frame" x="140" y="129" width="310" height="63"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="textColor" systemColor="labelColor"/>
@@ -89,6 +89,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="imgFavorite" destination="2Th-qo-9Ox" id="Q78-lW-PDs"/>
                 <outlet property="imgMovie" destination="Dxf-sL-hWp" id="kdJ-Ua-tsi"/>
                 <outlet property="overviewTextView" destination="avu-R8-CNL" id="vbM-fr-Psn"/>
                 <outlet property="ratinglbl" destination="dFb-YR-Twg" id="N4m-Hl-DQv"/>

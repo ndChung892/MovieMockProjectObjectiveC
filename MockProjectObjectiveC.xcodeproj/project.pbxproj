@@ -14,6 +14,11 @@
 		490E49C82A5403030003FB87 /* SLDetailMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49C62A5403030003FB87 /* SLDetailMoviesViewController.m */; };
 		490E49C92A5403030003FB87 /* SLDetailMoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490E49C72A5403030003FB87 /* SLDetailMoviesViewController.xib */; };
 		490E49CD2A5415440003FB87 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49CC2A5415440003FB87 /* Result.m */; };
+		490E49D12A565D3E0003FB87 /* CastAndCrew.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49D02A565D3E0003FB87 /* CastAndCrew.m */; };
+		490E49D82A565DE00003FB87 /* Cast.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49D72A565DE00003FB87 /* Cast.m */; };
+		490E49DB2A565DF10003FB87 /* Crew.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49DA2A565DF10003FB87 /* Crew.m */; };
+		490E49E02A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49DE2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m */; };
+		490E49E12A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490E49DF2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib */; };
 		4951778A2A429D760008345B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177892A429D760008345B /* AppDelegate.m */; };
 		4951778D2A429D760008345B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951778C2A429D760008345B /* SceneDelegate.m */; };
 		495177952A429D780008345B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495177942A429D780008345B /* Assets.xcassets */; };
@@ -52,6 +57,16 @@
 		490E49C72A5403030003FB87 /* SLDetailMoviesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLDetailMoviesViewController.xib; sourceTree = "<group>"; };
 		490E49CB2A5415360003FB87 /* Result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
 		490E49CC2A5415440003FB87 /* Result.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
+		490E49CF2A565D2F0003FB87 /* CastAndCrew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CastAndCrew.h; sourceTree = "<group>"; };
+		490E49D02A565D3E0003FB87 /* CastAndCrew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CastAndCrew.m; sourceTree = "<group>"; };
+		490E49D42A565DC50003FB87 /* Cast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cast.h; sourceTree = "<group>"; };
+		490E49D72A565DE00003FB87 /* Cast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cast.m; sourceTree = "<group>"; };
+		490E49D92A565DE80003FB87 /* Crew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crew.h; sourceTree = "<group>"; };
+		490E49DA2A565DF10003FB87 /* Crew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Crew.m; sourceTree = "<group>"; };
+		490E49DD2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLCastAndCrewCollectionViewCell.h; sourceTree = "<group>"; };
+		490E49DE2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCastAndCrewCollectionViewCell.m; sourceTree = "<group>"; };
+		490E49DF2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLCastAndCrewCollectionViewCell.xib; sourceTree = "<group>"; };
+		4910307D2A57F4A400D764F1 /* MockProjectObjectiveC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockProjectObjectiveC-Bridging-Header.h"; sourceTree = "<group>"; };
 		495177852A429D760008345B /* MockProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495177882A429D760008345B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		495177892A429D760008345B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -126,6 +141,7 @@
 		490E49C42A5402B10003FB87 /* SLDetailMoviesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				490E49DC2A5663B80003FB87 /* SLCastAndCrewCollectionViewCell */,
 				490E49C52A5403030003FB87 /* SLDetailMoviesViewController.h */,
 				490E49C62A5403030003FB87 /* SLDetailMoviesViewController.m */,
 				490E49C72A5403030003FB87 /* SLDetailMoviesViewController.xib */,
@@ -142,6 +158,45 @@
 			path = Result;
 			sourceTree = "<group>";
 		};
+		490E49CE2A565D1A0003FB87 /* CastAndCrew */ = {
+			isa = PBXGroup;
+			children = (
+				490E49D32A565DB30003FB87 /* Cast */,
+				490E49D22A565DB00003FB87 /* Crew */,
+				490E49CF2A565D2F0003FB87 /* CastAndCrew.h */,
+				490E49D02A565D3E0003FB87 /* CastAndCrew.m */,
+			);
+			path = CastAndCrew;
+			sourceTree = "<group>";
+		};
+		490E49D22A565DB00003FB87 /* Crew */ = {
+			isa = PBXGroup;
+			children = (
+				490E49D92A565DE80003FB87 /* Crew.h */,
+				490E49DA2A565DF10003FB87 /* Crew.m */,
+			);
+			path = Crew;
+			sourceTree = "<group>";
+		};
+		490E49D32A565DB30003FB87 /* Cast */ = {
+			isa = PBXGroup;
+			children = (
+				490E49D42A565DC50003FB87 /* Cast.h */,
+				490E49D72A565DE00003FB87 /* Cast.m */,
+			);
+			path = Cast;
+			sourceTree = "<group>";
+		};
+		490E49DC2A5663B80003FB87 /* SLCastAndCrewCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				490E49DD2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.h */,
+				490E49DE2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m */,
+				490E49DF2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib */,
+			);
+			path = SLCastAndCrewCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		4951777C2A429D760008345B = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +204,7 @@
 				495177862A429D760008345B /* Products */,
 				6862668B4FE8C4C915E5340C /* Pods */,
 				7788E2EA933A68C8C914D909 /* Frameworks */,
+				4910307D2A57F4A400D764F1 /* MockProjectObjectiveC-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -255,6 +311,7 @@
 		497E294F2A4E746B0013913D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				490E49CE2A565D1A0003FB87 /* CastAndCrew */,
 				490E49CA2A5415270003FB87 /* Result */,
 				490D3A7D2A4C3982007AF5F1 /* Model.h */,
 				490D3A7E2A4C3982007AF5F1 /* Model.m */,
@@ -294,18 +351,10 @@
 		49D5A7072A4B35F30029A12F /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				49D5A70B2A4BD0BC0029A12F /* MoviesModel */,
 				49D5A7082A4B360D0029A12F /* NetworkManager.h */,
 				49D5A7092A4B361E0029A12F /* NetworkManager.m */,
 			);
 			path = NetworkManager;
-			sourceTree = "<group>";
-		};
-		49D5A70B2A4BD0BC0029A12F /* MoviesModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MoviesModel;
 			sourceTree = "<group>";
 		};
 		49D5A71D2A4C1DB40029A12F /* SLMoviesTableViewCell */ = {
@@ -378,6 +427,7 @@
 				TargetAttributes = {
 					495177842A429D760008345B = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -409,6 +459,7 @@
 				495177B02A42A01A0008345B /* SLSettingsViewController.xib in Resources */,
 				495177952A429D780008345B /* Assets.xcassets in Resources */,
 				49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */,
+				490E49E12A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib in Resources */,
 				490E49C32A53C7550003FB87 /* SLMoviesCollectionViewCell.xib in Resources */,
 				495177B52A42A02D0008345B /* SLFavoritesViewController.xib in Resources */,
 				495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */,
@@ -466,10 +517,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				495177AF2A42A01A0008345B /* SLSettingsViewController.m in Sources */,
+				490E49E02A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m in Sources */,
 				495177B42A42A02D0008345B /* SLFavoritesViewController.m in Sources */,
+				490E49DB2A565DF10003FB87 /* Crew.m in Sources */,
 				490D3A822A4C3F17007AF5F1 /* Configuration.m in Sources */,
 				49D5A6F52A4ABF5B0029A12F /* SLBaseViewController.m in Sources */,
 				49D5A7162A4BEE930029A12F /* SLMoviesTableView.m in Sources */,
+				490E49D82A565DE00003FB87 /* Cast.m in Sources */,
 				4951778A2A429D760008345B /* AppDelegate.m in Sources */,
 				49D5A7222A4C1E1E0029A12F /* SLMoviesTableViewCell.m in Sources */,
 				49D5A70A2A4B361E0029A12F /* NetworkManager.m in Sources */,
@@ -484,6 +538,7 @@
 				495177B92A42A0400008345B /* SLMoviesViewController.m in Sources */,
 				490E49C22A53C7550003FB87 /* SLMoviesCollectionViewCell.m in Sources */,
 				490E49CD2A5415440003FB87 /* Result.m in Sources */,
+				490E49D12A565D3E0003FB87 /* CastAndCrew.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +672,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				EXCLUDED_ARCHS = "";
@@ -635,6 +691,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-1.MockProjectObjectiveC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MockProjectObjectiveC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -645,6 +704,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -662,6 +722,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-1.MockProjectObjectiveC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MockProjectObjectiveC-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

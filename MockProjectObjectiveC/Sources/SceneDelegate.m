@@ -29,11 +29,18 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     
-    SLTabbarController *tabbar = [[SLTabbarController alloc] init];
-    SLLeftMenuViewController *leftMenuVC = [[SLLeftMenuViewController alloc]init];
+    UIViewController *launchScreenVC = [[UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil] instantiateInitialViewController];
     
-    SWRevealViewController *reveal = [[SWRevealViewController alloc]initWithRearViewController: leftMenuVC frontViewController:tabbar];
-    self.window.rootViewController = reveal;
+    self.window.rootViewController = launchScreenVC;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           // Chuyển sang giao diện chính của ứng dụng
+        SLTabbarController *tabbar = [[SLTabbarController alloc] init];
+        SLLeftMenuViewController *leftMenuVC = [[SLLeftMenuViewController alloc]init];
+        
+        SWRevealViewController *reveal = [[SWRevealViewController alloc]initWithRearViewController: leftMenuVC frontViewController:tabbar];
+        self.window.rootViewController = reveal;
+    });
     [self.window makeKeyAndVisible];
 }
 

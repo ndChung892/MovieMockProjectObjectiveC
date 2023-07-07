@@ -10,5 +10,7 @@ target 'MockProjectObjectiveC' do
 pod 'SWRevealViewController'
 pod 'AFNetworking'
 pod 'SDWebImage'
+pod 'SVPullToRefresh'
+pod 'WKWebView'
 
 end

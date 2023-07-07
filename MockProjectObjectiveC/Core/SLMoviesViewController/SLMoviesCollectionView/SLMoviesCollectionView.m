@@ -9,14 +9,18 @@
 #import "SLMoviesCollectionViewCell.h"
 #import "Model.h"
 #import "Result.h"
+#import "NetworkManager.h"
+#import <SVPullToRefresh/SVPullToRefresh.h>
+#import <SVPullToRefresh/SVPullToRefresh.h>
 
 
 @interface SLMoviesCollectionView()
 
 @property Model *model;
+@property Result *result;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UICollectionView *collectionView;
-
+@property (nonatomic) int pageNumber;
 @end
 
 @implementation SLMoviesCollectionView
@@ -25,17 +29,45 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.model = [[Model alloc]init];
-        self.model.delegate = self;
-        [self.model handleData];
-        [self setupSpinner];
+        self.result = [[Result alloc]init];
+        self.backgroundColor = [UIColor systemBackgroundColor];
+        self.pageNumber = 1;
         
+        [self fetchMovie:self.pageNumber];
+       
+        // Setup Spinner
+        [self setupSpinner];
         [self.spinner startAnimating];
-        [self setupCollectionView];
         [self addSubview:self.spinner];
+        
+        // Setup CollectionView
+        [self setupCollectionView];
         [self addSubview:self.collectionView];
         [self setupConstraint];
+        
+        [self setupPullToRefresh];
+        
     }
     return self;
+}
+
+#pragma mark - Pull to refresh
+-(void)setupPullToRefresh {
+    __weak typeof(self) weakSelf = self;
+    [self.collectionView addPullToRefreshWithActionHandler:^{
+        // Call API when pull down
+        [weakSelf fetchMovie:1];
+    }];
+    
+    [self.collectionView addInfiniteScrollingWithActionHandler:^{
+        // Call API when pull up
+        weakSelf.pageNumber = weakSelf.pageNumber + 1;
+        [weakSelf.spinner startAnimating];
+        [weakSelf.collectionView setHidden:true];
+        [weakSelf.collectionView setAlpha:0];
+        [weakSelf fetchMovie:weakSelf.pageNumber];
+        
+    }];
 }
 
 #pragma mark - spinner
@@ -66,7 +98,6 @@
           forCellWithReuseIdentifier:@"cellMoviesCollectionView"];
     
     // Add the UICollectionView to the CustomTableView
-    
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
@@ -84,21 +115,46 @@
         [self.spinner.centerYAnchor constraintEqualToAnchor:self.centerYAnchor],
     ]];
 }
+
+#pragma mark - Call api
+-(void) fetchMovie:(int)pageNumber {
+    [[NetworkManager sharedInstance] fetchMovieAPI:pageNumber
+                                    withCompletion:^(NSDictionary *response) {
+        NSArray *resultsArray = response[@"results"];
+        NSMutableArray *moviesArray = [[NSMutableArray alloc] init];
+        for(NSDictionary *resultDict in resultsArray) {
+            Result *result = [[Result alloc]init];
+            result.title = resultDict[@"title"];
+            result.iD = resultDict[@"id"];
+            result.imgURL = resultDict[@"poster_path"];
+            [moviesArray addObject:result];
+        }
+        self.model.results = moviesArray;
+        dispatch_async(dispatch_get_main_queue(), ^{;
+            [self.spinner stopAnimating];
+            [self.collectionView setHidden:false];
+            [self.collectionView reloadData];
+            [UIView animateWithDuration:0.4 animations:^{
+                self.collectionView.alpha = 1;
+            }];
+            [self.collectionView.pullToRefreshView stopAnimating];
+            [self.collectionView.infiniteScrollingView stopAnimating];
+        });
+    }];
+}
+
 #pragma mark - UICollectionViewDataSource Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    // Return the number of items in your collection
+    // Return the number of items in collection
     return self.model.results.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // DequeReusable and config item
     SLMoviesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellMoviesCollectionView" forIndexPath:indexPath];
-    
-//    [cell configCollectionView:[self.model.results[indexPath.row] valueForKey:@"title"]
-//                    withImgURL:[self.model.results[indexPath.row] valueForKey:@"poster_path"]];
     Result *result = self.model.results[indexPath.row];
-    
-    [cell configCollectionView:result];
+    [cell configCollectionViewCell:result];
     
     return cell;
 }
@@ -108,24 +164,20 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // Handle item selection
     NSLog(@"Selected item: %ld", (long)indexPath.item);
+    self.result = self.model.results[indexPath.row];
+    [self.delegate didSelectCellWithId:self.result.iD];
 }
 
 #pragma mark - UICollectionViewDelegateFLowLayout Methods
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    // Config Size of item
     CGRect bounds = [UIScreen.mainScreen bounds];
-    CGFloat width = (bounds.size.width - 30)/2;
-    return CGSizeMake(width, width*1.5);
+    CGFloat width = (bounds.size.width-10)/2;
+    return CGSizeMake(width, width * 1.25);
 }
 
-#pragma mark - SLMoviesDelegate
--(void) didLoadInitialMovies {
-    [self.spinner stopAnimating];
-    [self.collectionView setHidden:false];
-    [self.collectionView reloadData];
-    [UIView animateWithDuration:0.4 animations:^{
-        self.collectionView.alpha = 1;
-    }];
-    
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 20;
 }
+
 @end

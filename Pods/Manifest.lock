@@ -17,24 +17,28 @@ PODS:
   - SDWebImage (5.15.2):
     - SDWebImage/Core (= 5.15.2)
   - SDWebImage/Core (5.15.2)
+  - SVPullToRefresh (0.4.1)
   - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - AFNetworking
   - SDWebImage
+  - SVPullToRefresh
   - SWRevealViewController
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - SDWebImage
+    - SVPullToRefresh
     - SWRevealViewController
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   SDWebImage: 8ab87d4b3e5cc4927bd47f78db6ceb0b94442577
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: d662e553cb2a02b01f9ab84eb4103636844a7023
+PODFILE CHECKSUM: ee08b19cca1ac2f5e0c85e463b1615dfbfb01ea4
 
 COCOAPODS: 1.11.3

@@ -16,30 +16,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="134" height="186"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pg4-7A-2mQ">
-                        <rect key="frame" x="0.0" y="0.0" width="134" height="142"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHY-a4-uA7">
-                        <rect key="frame" x="7" y="145" width="120" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHY-a4-uA7">
+                        <rect key="frame" x="0.0" y="155" width="134" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="5J5-ms-w3C"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pg4-7A-2mQ">
+                        <rect key="frame" x="10" y="10" width="114" height="137"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="137" id="wEE-uP-FKi"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <constraints>
-                <constraint firstItem="pg4-7A-2mQ" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="1dt-Jo-MI2"/>
-                <constraint firstAttribute="bottom" secondItem="SHY-a4-uA7" secondAttribute="bottom" constant="20" id="3sr-i1-hz6"/>
-                <constraint firstItem="SHY-a4-uA7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="7" id="91U-Yh-PjS"/>
-                <constraint firstItem="pg4-7A-2mQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Hsr-eT-OM2"/>
-                <constraint firstItem="SHY-a4-uA7" firstAttribute="top" secondItem="pg4-7A-2mQ" secondAttribute="bottom" constant="3" id="ZHY-Pi-9xz"/>
-                <constraint firstAttribute="trailing" secondItem="pg4-7A-2mQ" secondAttribute="trailing" id="ZJA-FC-KQK"/>
-                <constraint firstItem="pg4-7A-2mQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dlq-MC-LGv"/>
-                <constraint firstAttribute="trailing" secondItem="SHY-a4-uA7" secondAttribute="trailing" constant="7" id="uZ7-zG-GBu"/>
+                <constraint firstItem="pg4-7A-2mQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="9Dv-L5-jn2"/>
+                <constraint firstItem="SHY-a4-uA7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mux-4G-XKa"/>
+                <constraint firstAttribute="trailing" secondItem="SHY-a4-uA7" secondAttribute="trailing" id="brl-rY-a1A"/>
+                <constraint firstItem="pg4-7A-2mQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="kv8-3p-wJ0"/>
+                <constraint firstItem="SHY-a4-uA7" firstAttribute="top" secondItem="pg4-7A-2mQ" secondAttribute="bottom" constant="8" id="mKH-3a-HN3"/>
+                <constraint firstAttribute="trailing" secondItem="pg4-7A-2mQ" secondAttribute="trailing" constant="10" id="pWA-rZ-KA6"/>
             </constraints>
             <size key="customSize" width="134" height="186"/>
             <connections>
+                <outlet property="imageHeight" destination="wEE-uP-FKi" id="6CI-Z4-IVB"/>
                 <outlet property="imgCollectionView" destination="pg4-7A-2mQ" id="3QZ-sG-OeV"/>
                 <outlet property="nameMovieslbl" destination="SHY-a4-uA7" id="5Ht-hj-U5r"/>
             </connections>

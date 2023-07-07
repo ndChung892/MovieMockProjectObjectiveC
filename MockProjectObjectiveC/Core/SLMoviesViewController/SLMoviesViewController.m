@@ -9,6 +9,7 @@
 #import "SLMoviesTableView.h"
 #import "SLMoviesCollectionView.h"
 #import "SLDetailMoviesViewController.h"
+#import "Configuration.h"
 
 #pragma mark - SLMoviesViewController
 
@@ -29,7 +30,11 @@
     [self initView];
     [self setupRightButtonNavigation];
     
-    self.tableViewMovies.delegate = self;
+    [self.tableViewMovies setDelegate:self];
+    [self.collectionViewMovies setDelegate:self];
+    
+    
+
 }
 
 -(void)setupRightButtonNavigation {
@@ -75,20 +80,20 @@
         [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
         [self.tableViewMovies.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
-        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
         
         [self.collectionViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [self.collectionViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
-        [self.collectionViewMovies.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:20],
-        [self.collectionViewMovies.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.collectionViewMovies.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
+        [self.collectionViewMovies.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
     ]];
 }
 
-- (void)didSelectCellWithData:(nonnull NSString *)data {
+- (void)didSelectCellWithId:(nonnull NSNumber *)iD {
     SLDetailMoviesViewController *detailVC = [[SLDetailMoviesViewController alloc]init];
-    detailVC.titleDetail = data;
+    detailVC.idMovie = iD;
+    
     [self.navigationController pushViewController:detailVC animated:YES];
 }
-
 
 @end

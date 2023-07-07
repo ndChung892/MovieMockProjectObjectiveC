@@ -8,10 +8,19 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol SLDetailMoviesViewControllerDelegate <NSObject>
 
-@interface SLDetailMoviesViewController : UIViewController
+- (void)didFetchAPIResponse:(NSDictionary *) response;
 
-@property (nonatomic, strong) NSString *titleDetail;
+
+@end
+
+
+@interface SLDetailMoviesViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SLDetailMoviesViewControllerDelegate>
+
+@property (nonatomic, strong) NSNumber *idMovie;
+@property (nonatomic) BOOL isFavorite;
+@property (nonatomic, weak) id <SLDetailMoviesViewControllerDelegate> delegate;
 
 @end
 

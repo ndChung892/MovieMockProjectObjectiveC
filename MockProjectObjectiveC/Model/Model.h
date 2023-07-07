@@ -14,18 +14,10 @@
 
 #endif /* Model_h */
 
-@protocol SLMoviesDelegate <NSObject>
-
-- (void)didLoadInitialMovies;
-
-@end
 
 @interface Model: NSObject
 
 @property (nonatomic, strong) NSNumber *page;
 @property (nonatomic, strong) NSArray<Result *> *results;
-@property (nonatomic, weak) id <SLMoviesDelegate> delegate;
-
--(void) handleData;
 
 @end

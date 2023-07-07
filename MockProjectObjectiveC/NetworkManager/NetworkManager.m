@@ -26,13 +26,20 @@
     return sharedInstance;
 }
 
--(void)fetchMovieAPI:(void (^)(NSDictionary *response))completion {
-    NSDictionary *parameters = @{@"api_key": @"e7631ffcb8e766993e5ec0c1f4245f93"};
+#pragma mark - Fetch Popular movie
+-(void)fetchMovieAPI:(int) pageNumber
+      withCompletion:(void (^)(NSDictionary *response))completion {
+    NSString *urlPopular = [NSString stringWithFormat:@"%@%@", baseURL, @"popular"];
+    NSNumber *page = [NSNumber numberWithInt:pageNumber];
     
+    NSMutableDictionary *param = [parameters mutableCopy];
+    [param setObject:page forKey:@"page"];
+
+    NSDictionary *updatedParameters = [param copy];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    [manager GET:baseURL
-      parameters:parameters
+    [manager GET:urlPopular
+      parameters:updatedParameters
          headers:nil
         progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -44,4 +51,37 @@
     }];
 }
 
+#pragma mark - Fetch Detail of movie
+-(void)fetchDetailMovieAPI:(NSNumber *)iD
+            withCompletion:(void (^)(NSDictionary *response))completion {
+    NSString *urlDetail = [NSString stringWithFormat:@"%@%@", baseURL, iD];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:urlDetail
+      parameters:parameters
+         headers:nil
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completion(responseObject);
+    }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+#pragma mark - Fetch cast and crew
+-(void)fetchCastAndCrew:(NSNumber *)iD
+            withCompletion:(void (^)(NSDictionary *response))completion {
+    NSString *urlDetail = [NSString stringWithFormat:@"%@%@/credits", baseURL, iD];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:urlDetail
+      parameters:parameters
+         headers:nil
+        progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completion(responseObject);
+    }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 @end
