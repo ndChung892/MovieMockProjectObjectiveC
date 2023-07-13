@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *overviewTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *imgMovie;
-@property (weak, nonatomic) IBOutlet UIImageView *imgFavorite;
+
 
 @end
 
@@ -28,6 +28,19 @@
     [super awakeFromNib];
     // Initialization code
     self.overviewTextView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(starTapped:)];
+    [self.imgFavorite addGestureRecognizer:tapGesture];
+    self.imgFavorite.userInteractionEnabled = YES;
+    
+}
+
+- (void)starTapped:(UITapGestureRecognizer *)gesture {
+    self.isFavorite = !self.isFavorite;
+    if (self.isFavorite) {
+        self.imgFavorite.image = [UIImage systemImageNamed:@"star.fill"];
+    } else {
+        self.imgFavorite.image = [UIImage systemImageNamed:@"star"];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -36,7 +49,7 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:false animated:animated];
-
+    
 }
 
 - (void)prepareForReuse {
@@ -48,7 +61,7 @@
     [self.imgMovie setImage:[UIImage imageNamed:@""]];
 }
 
--(void)configTableViewCell:(Result *) result withFavorite:(BOOL) isFavorite{
+-(void)configTableViewCell:(Result *) result {
     
     self.titleMovielbl.text = result.title;
     self.overviewTextView.text = result.overView;
@@ -60,6 +73,5 @@
                                         stringWithFormat:@"%@%@", imageURL,result.imgURL]]];
     
 }
-
 
 @end

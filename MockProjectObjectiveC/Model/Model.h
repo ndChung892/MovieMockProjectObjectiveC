@@ -18,6 +18,8 @@
 @interface Model: NSObject
 
 @property (nonatomic, strong) NSNumber *page;
-@property (nonatomic, strong) NSArray<Result *> *results;
+@property (nonatomic, strong) NSMutableArray *results;
+
+- (id)initMoviesData:(NSDictionary *)resultDic;
 
 @end

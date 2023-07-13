@@ -6,6 +6,7 @@
 //
 
 #import "SceneDelegate.h"
+#import "AppDelegate.h"
 #import "SLTabbarController.h"
 #import "SLLeftMenuViewController.h"
 #import "SLAboutViewController.h"
@@ -75,6 +76,7 @@
     // Called as the scene transitions from the foreground to the background.
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
+    [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
 }
 
 

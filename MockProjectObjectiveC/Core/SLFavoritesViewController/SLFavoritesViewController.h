@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLFavoritesViewController : SLBaseViewController
 
+@property (nonatomic) NSManagedObjectContext *context;
+
 @end
 
 NS_ASSUME_NONNULL_END

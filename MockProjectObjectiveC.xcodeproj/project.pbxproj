@@ -32,6 +32,7 @@
 		495177BE2A42A0550008345B /* SLAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177BC2A42A0550008345B /* SLAboutViewController.m */; };
 		495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495177BD2A42A0550008345B /* SLAboutViewController.xib */; };
 		497439A52A49372C0036B76C /* SLTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497439A42A49372C0036B76C /* SLTabbarController.m */; };
+		49BCE7E02A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49BCE7DE2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld */; };
 		49C646812A49DE0C00DE53FB /* SLLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */; };
 		49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */; };
 		49D5A6F52A4ABF5B0029A12F /* SLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D5A6F32A4ABF5B0029A12F /* SLBaseViewController.m */; };
@@ -89,6 +90,11 @@
 		495177BD2A42A0550008345B /* SLAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLAboutViewController.xib; sourceTree = "<group>"; };
 		497439A32A49372C0036B76C /* SLTabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTabbarController.h; sourceTree = "<group>"; };
 		497439A42A49372C0036B76C /* SLTabbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTabbarController.m; sourceTree = "<group>"; };
+		49BCE7DF2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLFavoritesData.xcdatamodel; sourceTree = "<group>"; };
+		49BCE7E82A5EA923008DFBCF /* Favorites+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Favorites+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		49BCE7E92A5EA923008DFBCF /* Favorites+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Favorites+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		49BCE7EA2A5EA923008DFBCF /* Favorites+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Favorites+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		49BCE7EB2A5EA923008DFBCF /* Favorites+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Favorites+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
 		49C6467E2A49DE0C00DE53FB /* SLLeftMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLeftMenuViewController.h; sourceTree = "<group>"; };
 		49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLeftMenuViewController.m; sourceTree = "<group>"; };
 		49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLLeftMenuViewController.xib; sourceTree = "<group>"; };
@@ -197,6 +203,17 @@
 			path = SLCastAndCrewCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		4929F9112A5E8F3F0026686D /* SLFavoriteData */ = {
+			isa = PBXGroup;
+			children = (
+				49BCE7E82A5EA923008DFBCF /* Favorites+CoreDataProperties.h */,
+				49BCE7E92A5EA923008DFBCF /* Favorites+CoreDataClass.h */,
+				49BCE7EA2A5EA923008DFBCF /* Favorites+CoreDataClass.m */,
+				49BCE7EB2A5EA923008DFBCF /* Favorites+CoreDataProperties.m */,
+			);
+			path = SLFavoriteData;
+			sourceTree = "<group>";
+		};
 		4951777C2A429D760008345B = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +243,7 @@
 				495177A32A429EFE0008345B /* Core */,
 				495177A12A429E490008345B /* Sources */,
 				495177992A429D780008345B /* Info.plist */,
+				49BCE7DE2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld */,
 			);
 			path = MockProjectObjectiveC;
 			sourceTree = "<group>";
@@ -281,6 +299,7 @@
 		495177A92A429FAD0008345B /* SLFavoritesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4929F9112A5E8F3F0026686D /* SLFavoriteData */,
 				495177B12A42A02D0008345B /* SLFavoritesViewController.h */,
 				495177B22A42A02D0008345B /* SLFavoritesViewController.m */,
 				495177B32A42A02D0008345B /* SLFavoritesViewController.xib */,
@@ -516,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49BCE7E02A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld in Sources */,
 				495177AF2A42A01A0008345B /* SLSettingsViewController.m in Sources */,
 				490E49E02A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m in Sources */,
 				495177B42A42A02D0008345B /* SLFavoritesViewController.m in Sources */,
@@ -750,6 +770,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		49BCE7DE2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				49BCE7DF2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodel */,
+			);
+			currentVersion = 49BCE7DF2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodel */;
+			path = SLFavoritesData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4951777D2A429D760008345B /* Project object */;
 }

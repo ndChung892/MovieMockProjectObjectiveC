@@ -13,12 +13,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SLMoviesTableViewViewDelegate <NSObject>
-- (void)didSelectCellWithId:(NSNumber *)iD;
+- (void)didSelectCellWithId:(Result *)result;
+- (void)didPullToRefresh:(int) pageNumber;
 @end
 
 @interface SLMoviesTableView : UIView <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) id<SLMoviesTableViewViewDelegate> delegate;
+@property (nonatomic, strong) UITableView *tableView;
+@property Model *model;
+@property Result *result;
+
+- (void)reloadview;
 @end
 
 NS_ASSUME_NONNULL_END

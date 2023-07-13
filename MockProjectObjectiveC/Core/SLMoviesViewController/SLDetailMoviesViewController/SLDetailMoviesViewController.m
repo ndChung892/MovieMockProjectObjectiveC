@@ -13,6 +13,8 @@
 #import "Cast.h"
 #import "Crew.h"
 #import "SLCastAndCrewCollectionViewCell.h"
+#import "Favorites+CoreDataClass.h"
+#import "Favorites+CoreDataProperties.h"
 
 
 @interface SLDetailMoviesViewController ()
@@ -69,19 +71,12 @@
 
 #pragma mark - Detail movie
 - (void) initDetailMovie {
-        [[NetworkManager sharedInstance] fetchDetailMovieAPI:self.idMovie withCompletion:^(NSDictionary *response) {
-            self.title = response[@"original_title"];
-            [self.imgMovie sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", imageURL, response[@"poster_path"]]]];
-            self.overviewTextView.text = response[@"overview"];
-            self.releaseDatelbl.text = response[@"release_date"];
-            self.ratinglbl.text = [NSString stringWithFormat:@"%.1f%@",[response[@"vote_average"] floatValue],@"/10"];
-            
-            SLCastAndCrewCollectionViewCell *cell = [[SLCastAndCrewCollectionViewCell alloc]init];
-            [cell.imgCastAndCrew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", imageURL, response[@"poster_path"]]]];
-        }];
+    self.title = self.result.title;
+    [self.imgMovie sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", imageURL, self.result.imgURL]]];
+    self.overviewTextView.text = self.result.overView;
+    self.ratinglbl.text = [self.result.rating stringValue];
+    self.releaseDatelbl.text = self.result.releaseDate;
 }
-
-
 
 - (void)didFetchAPIResponse:(NSDictionary *) response {
 //    [self.view reloadInputViews];
@@ -89,18 +84,14 @@
 
 #pragma mark - Cast and Crew
 - (void) initCastAndCrew {
-    [[NetworkManager sharedInstance]fetchCastAndCrew:self.idMovie withCompletion:^(NSDictionary *response) {
-        
+    [[NetworkManager sharedInstance]fetchCastAndCrew:self.result.iD withCompletion:^(NSDictionary *response) {
         NSArray<Cast *> *Casts= response[@"cast"];
         NSArray<Crew *> *Crews = response[@"crew"];
-        
         NSMutableArray *arr = [[NSMutableArray alloc]init];
         for(NSDictionary *castDict in Casts) {
             if (castDict[@"profile_path"]  != [NSNull null]) {
-                [arr addObject
-                 :castDict[@"profile_path"]];
+                [arr addObject: castDict[@"profile_path"]];
                 }
-            
         }
         
         for(NSDictionary *crewDict in Crews) {
@@ -120,10 +111,6 @@
 #pragma mark - UICollectionViewDatasource
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SLCastAndCrewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"castAndCrewCell" forIndexPath:indexPath];
-//    NSArray *dataCastAndCrew = self.castAndCrewArr[indexPath.row];
-//    if(dataCastAndCrew == nil) {
-//
-//    }
     [cell configCastAndCrewCell:self.castAndCrewArr[indexPath.row]];
     return cell;
 }
@@ -134,7 +121,6 @@
 }
 
 #pragma mark - UICollectionViewDelegate
-
 
 
 #pragma mark - UICollectionViewDelegateFlowlayout
