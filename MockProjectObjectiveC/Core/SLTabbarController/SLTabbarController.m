@@ -26,6 +26,7 @@
     self.tabBar.tintColor = [UIColor whiteColor];
     self.tabBar.barTintColor = [UIColor grayColor];
     self.tabBar.backgroundColor = [UIColor blueColor];
+//    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self configTabbarController];
 }
 

@@ -2,7 +2,7 @@
 //  Favorites+CoreDataProperties.m
 //  MockProjectObjectiveC
 //
-//  Created by Chung on 12/07/2023.
+//  Created by Chung on 13/07/2023.
 //
 //
 
@@ -14,11 +14,11 @@
 	return [NSFetchRequest fetchRequestWithEntityName:@"Favorites"];
 }
 
-@dynamic id;
-@dynamic title;
-@dynamic releaseDate;
-@dynamic rating;
-@dynamic overview;
+@dynamic iD;
 @dynamic imgUrl;
+@dynamic overview;
+@dynamic rating;
+@dynamic releaseDate;
+@dynamic title;
 
 @end

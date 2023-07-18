@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property Model *model;
 @property Result *result;
 @property (nonatomic, weak) id<SLMoviesCollectionViewDelegate> delegate;
--(void)reloadView;
+- (void)reloadView;
 @end
 
 NS_ASSUME_NONNULL_END

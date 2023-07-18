@@ -28,7 +28,7 @@
     self.imgCastAndCrew.image = [UIImage imageNamed:@""];
 }
 
--(void) configCastAndCrewCell:(NSString *) imageName {
+- (void)configCastAndCrewCell:(NSString *) imageName {
     [self.imgCastAndCrew sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", imageURL, imageName]]];
 }
 

@@ -20,6 +20,6 @@
 @property (nonatomic, strong) NSString *releaseDate;
 @property (nonatomic, strong) NSNumber *rating;
 @property (nonatomic, strong) NSString *imgURL;
-
+@property (nonatomic, assign) BOOL isFavorite;
 
 @end

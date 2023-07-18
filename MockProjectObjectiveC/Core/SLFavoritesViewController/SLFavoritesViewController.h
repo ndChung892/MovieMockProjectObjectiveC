@@ -7,12 +7,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SLBaseViewController.h"
+#import "Result.h"
+#import "Model.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLFavoritesViewController : SLBaseViewController
-
-@property (nonatomic) NSManagedObjectContext *context;
 
 @end
 

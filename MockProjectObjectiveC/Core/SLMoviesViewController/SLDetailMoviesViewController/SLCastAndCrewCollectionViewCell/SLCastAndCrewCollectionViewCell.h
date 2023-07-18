@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLCastAndCrewCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgCastAndCrew;
-//-(void) configCastAndCrewCell:(NSString *) imageName;
--(void) configCastAndCrewCell:(CastAndCrew *) castAndCrew;
+- (void)configCastAndCrewCell:(CastAndCrew *) castAndCrew;
 
 @end
 

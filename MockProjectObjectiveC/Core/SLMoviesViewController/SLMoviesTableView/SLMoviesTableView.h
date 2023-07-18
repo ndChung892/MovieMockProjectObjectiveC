@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UITableView *tableView;
 @property Model *model;
 @property Result *result;
-
+@property (nonatomic, strong) NSManagedObjectContext *context;
 - (void)reloadview;
 @end
 

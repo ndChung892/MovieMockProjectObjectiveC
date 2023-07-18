@@ -19,6 +19,9 @@
 		490E49DB2A565DF10003FB87 /* Crew.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49DA2A565DF10003FB87 /* Crew.m */; };
 		490E49E02A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49DE2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m */; };
 		490E49E12A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490E49DF2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib */; };
+		491FC0D82A5FEA5A00832B77 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491FC0D72A5FEA5A00832B77 /* CoreDataManager.m */; };
+		493953EF2A60EA1800ADED5F /* SLFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493953ED2A60EA1800ADED5F /* SLFavoritesTableViewCell.m */; };
+		493953F22A60EE7300ADED5F /* SLFavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493953EE2A60EA1800ADED5F /* SLFavoritesTableViewCell.xib */; };
 		4951778A2A429D760008345B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177892A429D760008345B /* AppDelegate.m */; };
 		4951778D2A429D760008345B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951778C2A429D760008345B /* SceneDelegate.m */; };
 		495177952A429D780008345B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495177942A429D780008345B /* Assets.xcassets */; };
@@ -27,7 +30,6 @@
 		495177AF2A42A01A0008345B /* SLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177AD2A42A01A0008345B /* SLSettingsViewController.m */; };
 		495177B02A42A01A0008345B /* SLSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495177AE2A42A01A0008345B /* SLSettingsViewController.xib */; };
 		495177B42A42A02D0008345B /* SLFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177B22A42A02D0008345B /* SLFavoritesViewController.m */; };
-		495177B52A42A02D0008345B /* SLFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495177B32A42A02D0008345B /* SLFavoritesViewController.xib */; };
 		495177B92A42A0400008345B /* SLMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177B72A42A0400008345B /* SLMoviesViewController.m */; };
 		495177BE2A42A0550008345B /* SLAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177BC2A42A0550008345B /* SLAboutViewController.m */; };
 		495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495177BD2A42A0550008345B /* SLAboutViewController.xib */; };
@@ -68,6 +70,15 @@
 		490E49DE2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLCastAndCrewCollectionViewCell.m; sourceTree = "<group>"; };
 		490E49DF2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLCastAndCrewCollectionViewCell.xib; sourceTree = "<group>"; };
 		4910307D2A57F4A400D764F1 /* MockProjectObjectiveC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockProjectObjectiveC-Bridging-Header.h"; sourceTree = "<group>"; };
+		491FC0D02A5FD29B00832B77 /* Favorites+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Favorites+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		491FC0D12A5FD29B00832B77 /* Favorites+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Favorites+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		491FC0D22A5FD29B00832B77 /* Favorites+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Favorites+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		491FC0D32A5FD29B00832B77 /* Favorites+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Favorites+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
+		491FC0D62A5FEA3900832B77 /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		491FC0D72A5FEA5A00832B77 /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		493953EC2A60EA1800ADED5F /* SLFavoritesTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLFavoritesTableViewCell.h; sourceTree = "<group>"; };
+		493953ED2A60EA1800ADED5F /* SLFavoritesTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLFavoritesTableViewCell.m; sourceTree = "<group>"; };
+		493953EE2A60EA1800ADED5F /* SLFavoritesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLFavoritesTableViewCell.xib; sourceTree = "<group>"; };
 		495177852A429D760008345B /* MockProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495177882A429D760008345B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		495177892A429D760008345B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -82,7 +93,6 @@
 		495177AE2A42A01A0008345B /* SLSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLSettingsViewController.xib; sourceTree = "<group>"; };
 		495177B12A42A02D0008345B /* SLFavoritesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLFavoritesViewController.h; sourceTree = "<group>"; };
 		495177B22A42A02D0008345B /* SLFavoritesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLFavoritesViewController.m; sourceTree = "<group>"; };
-		495177B32A42A02D0008345B /* SLFavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLFavoritesViewController.xib; sourceTree = "<group>"; };
 		495177B62A42A0400008345B /* SLMoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLMoviesViewController.h; sourceTree = "<group>"; };
 		495177B72A42A0400008345B /* SLMoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLMoviesViewController.m; sourceTree = "<group>"; };
 		495177BB2A42A0550008345B /* SLAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLAboutViewController.h; sourceTree = "<group>"; };
@@ -91,10 +101,6 @@
 		497439A32A49372C0036B76C /* SLTabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTabbarController.h; sourceTree = "<group>"; };
 		497439A42A49372C0036B76C /* SLTabbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTabbarController.m; sourceTree = "<group>"; };
 		49BCE7DF2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLFavoritesData.xcdatamodel; sourceTree = "<group>"; };
-		49BCE7E82A5EA923008DFBCF /* Favorites+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Favorites+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
-		49BCE7E92A5EA923008DFBCF /* Favorites+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Favorites+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
-		49BCE7EA2A5EA923008DFBCF /* Favorites+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Favorites+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
-		49BCE7EB2A5EA923008DFBCF /* Favorites+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Favorites+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
 		49C6467E2A49DE0C00DE53FB /* SLLeftMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLeftMenuViewController.h; sourceTree = "<group>"; };
 		49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLeftMenuViewController.m; sourceTree = "<group>"; };
 		49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLLeftMenuViewController.xib; sourceTree = "<group>"; };
@@ -203,13 +209,23 @@
 			path = SLCastAndCrewCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		491FC0D92A5FFC0C00832B77 /* SLFavoritesTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				493953EC2A60EA1800ADED5F /* SLFavoritesTableViewCell.h */,
+				493953ED2A60EA1800ADED5F /* SLFavoritesTableViewCell.m */,
+				493953EE2A60EA1800ADED5F /* SLFavoritesTableViewCell.xib */,
+			);
+			path = SLFavoritesTableViewCell;
+			sourceTree = "<group>";
+		};
 		4929F9112A5E8F3F0026686D /* SLFavoriteData */ = {
 			isa = PBXGroup;
 			children = (
-				49BCE7E82A5EA923008DFBCF /* Favorites+CoreDataProperties.h */,
-				49BCE7E92A5EA923008DFBCF /* Favorites+CoreDataClass.h */,
-				49BCE7EA2A5EA923008DFBCF /* Favorites+CoreDataClass.m */,
-				49BCE7EB2A5EA923008DFBCF /* Favorites+CoreDataProperties.m */,
+				491FC0D02A5FD29B00832B77 /* Favorites+CoreDataProperties.h */,
+				491FC0D12A5FD29B00832B77 /* Favorites+CoreDataClass.h */,
+				491FC0D22A5FD29B00832B77 /* Favorites+CoreDataClass.m */,
+				491FC0D32A5FD29B00832B77 /* Favorites+CoreDataProperties.m */,
 			);
 			path = SLFavoriteData;
 			sourceTree = "<group>";
@@ -244,6 +260,8 @@
 				495177A12A429E490008345B /* Sources */,
 				495177992A429D780008345B /* Info.plist */,
 				49BCE7DE2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld */,
+				491FC0D62A5FEA3900832B77 /* CoreDataManager.h */,
+				491FC0D72A5FEA5A00832B77 /* CoreDataManager.m */,
 			);
 			path = MockProjectObjectiveC;
 			sourceTree = "<group>";
@@ -299,10 +317,10 @@
 		495177A92A429FAD0008345B /* SLFavoritesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				491FC0D92A5FFC0C00832B77 /* SLFavoritesTableViewCell */,
 				4929F9112A5E8F3F0026686D /* SLFavoriteData */,
 				495177B12A42A02D0008345B /* SLFavoritesViewController.h */,
 				495177B22A42A02D0008345B /* SLFavoritesViewController.m */,
-				495177B32A42A02D0008345B /* SLFavoritesViewController.xib */,
 			);
 			path = SLFavoritesViewController;
 			sourceTree = "<group>";
@@ -473,6 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493953F22A60EE7300ADED5F /* SLFavoritesTableViewCell.xib in Resources */,
 				495177982A429D780008345B /* LaunchScreen.storyboard in Resources */,
 				490E49C92A5403030003FB87 /* SLDetailMoviesViewController.xib in Resources */,
 				495177B02A42A01A0008345B /* SLSettingsViewController.xib in Resources */,
@@ -480,7 +499,6 @@
 				49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */,
 				490E49E12A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib in Resources */,
 				490E49C32A53C7550003FB87 /* SLMoviesCollectionViewCell.xib in Resources */,
-				495177B52A42A02D0008345B /* SLFavoritesViewController.xib in Resources */,
 				495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */,
 				49D5A7232A4C1E1E0029A12F /* SLMoviesTableViewCell.xib in Resources */,
 			);
@@ -537,9 +555,11 @@
 			files = (
 				49BCE7E02A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld in Sources */,
 				495177AF2A42A01A0008345B /* SLSettingsViewController.m in Sources */,
+				491FC0D82A5FEA5A00832B77 /* CoreDataManager.m in Sources */,
 				490E49E02A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m in Sources */,
 				495177B42A42A02D0008345B /* SLFavoritesViewController.m in Sources */,
 				490E49DB2A565DF10003FB87 /* Crew.m in Sources */,
+				493953EF2A60EA1800ADED5F /* SLFavoritesTableViewCell.m in Sources */,
 				490D3A822A4C3F17007AF5F1 /* Configuration.m in Sources */,
 				49D5A6F52A4ABF5B0029A12F /* SLBaseViewController.m in Sources */,
 				49D5A7162A4BEE930029A12F /* SLMoviesTableView.m in Sources */,

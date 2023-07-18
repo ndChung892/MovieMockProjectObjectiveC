@@ -12,12 +12,12 @@
 
 @interface NetworkManager : NSObject
 
-+(instancetype) sharedInstance;
--(void)fetchMovieAPI:(int) pageNumber
++ (instancetype) sharedInstance;
+- (void)fetchMovieAPI:(int) pageNumber
       withCompletion:(void (^)(NSDictionary *response))completion;
--(void)fetchDetailMovieAPI:(NSNumber *)iD
+- (void)fetchDetailMovieAPI:(NSNumber *)iD
             withCompletion:(void (^)(NSDictionary *response))completion;
--(void)fetchCastAndCrew:(NSNumber *)iD
+- (void)fetchCastAndCrew:(NSNumber *)iD
          withCompletion:(void (^)(NSDictionary *response))completion;
 
 @end

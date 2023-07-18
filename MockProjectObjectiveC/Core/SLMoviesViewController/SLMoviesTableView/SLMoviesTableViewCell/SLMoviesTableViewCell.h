@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLMoviesTableViewCell : UITableViewCell 
 
-
-- (void)configTableViewCell:(Result *) result;
+- (void)configTableViewCell;
 @property (nonatomic) BOOL isFavorite;
 @property (weak, nonatomic) IBOutlet UIImageView *imgFavorite;
 //- (void)starTapped;
+@property (nonatomic) Result *result;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Result.h"
+#import "Favorites+CoreDataClass.h"
+#import "Favorites+CoreDataProperties.h"
 
 #ifndef Model_h
 #define Model_h
@@ -21,5 +23,6 @@
 @property (nonatomic, strong) NSMutableArray *results;
 
 - (id)initMoviesData:(NSDictionary *)resultDic;
+- (id)initFavoritesData:(Favorites *)item;
 
 @end

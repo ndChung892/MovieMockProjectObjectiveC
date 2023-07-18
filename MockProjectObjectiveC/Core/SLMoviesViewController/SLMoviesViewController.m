@@ -29,16 +29,20 @@
     
     [self initView];
     [self fetchMovie:1];
+    
     [self setupRightButtonNavigation];
-    [self.view setBackgroundColor:[UIColor systemBackgroundColor]];
     [self.spinner startAnimating];
     
     [self.tableViewMovies setDelegate:self];
     [self.collectionViewMovies setDelegate:self];
     
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [self fetchMovie:1];
+}
 
--(void)setupRightButtonNavigation {
+- (void)setupRightButtonNavigation {
     self.switchButton = [[UIBarButtonItem alloc]
                          initWithImage:[UIImage systemImageNamed:@"list.bullet"]
                          style:UIBarButtonItemStylePlain
@@ -48,15 +52,15 @@
     self.navigationItem.rightBarButtonItem = self.switchButton;
 }
 
--(void) fetchMovie:(int)pageNumber {
+- (void)fetchMovie:(int)pageNumber {
     [self.tableViewMovies.model.results removeAllObjects];
     [self.collectionViewMovies.model.results removeAllObjects];
     [[NetworkManager sharedInstance] fetchMovieAPI:pageNumber withCompletion:^(NSDictionary *response) {
         
         NSArray *resultsArray = response[@"results"];
         for(NSDictionary *resultDict in resultsArray) {
-            [self.tableViewMovies.model initMoviesData:resultDict];
-            [self.collectionViewMovies.model initMoviesData:resultDict];
+            (void)[self.tableViewMovies.model initMoviesData:resultDict];
+            (void)[self.collectionViewMovies.model initMoviesData:resultDict];
         }
         dispatch_async(dispatch_get_main_queue(), ^{;
             [self.spinner stopAnimating];
@@ -82,7 +86,7 @@
     }
 }
 
--(void)initView {
+- (void)initView {
     //Setup tableView
     self.tableViewMovies = [[SLMoviesTableView alloc]init];
     [self.view addSubview: self.tableViewMovies];

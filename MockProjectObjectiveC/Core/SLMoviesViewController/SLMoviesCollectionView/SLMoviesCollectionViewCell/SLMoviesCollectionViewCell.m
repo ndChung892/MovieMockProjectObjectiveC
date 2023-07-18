@@ -40,7 +40,7 @@
     [self.nameMovieslbl setText:@""];
 }
 #pragma mark - Config cell
--(void) configCollectionViewCell:(Result *)result {
+- (void)configCollectionViewCell:(Result *)result {
     [self.imgCollectionView
      sd_setImageWithURL:[NSURL URLWithString:[NSString
                                         stringWithFormat:@"%@%@", imageURL, result.imgURL]]];

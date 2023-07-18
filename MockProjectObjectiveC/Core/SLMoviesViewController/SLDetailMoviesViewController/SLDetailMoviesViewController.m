@@ -15,6 +15,7 @@
 #import "SLCastAndCrewCollectionViewCell.h"
 #import "Favorites+CoreDataClass.h"
 #import "Favorites+CoreDataProperties.h"
+#import "CoreDataManager.h"
 
 
 @interface SLDetailMoviesViewController ()
@@ -52,8 +53,13 @@
 }
 
 #pragma mark - Tapped favorite
--(void) initTappedFavorite {
-    self.isFavorite = false;
+- (void)initTappedFavorite {
+    self.isFavorite = [[CoreDataManager sharedInstance] interateItem:self.result.iD];
+    if(self.isFavorite) {
+        self.favoriteButton.image = [UIImage systemImageNamed:@"star.fill"];
+    } else {
+        self.favoriteButton.image = [UIImage systemImageNamed:@"star"];
+    }
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
         [self.favoriteButton addGestureRecognizer:tapGestureRecognizer];
         self.favoriteButton.userInteractionEnabled = YES;
@@ -62,15 +68,17 @@
 - (void)imageTapped:(UITapGestureRecognizer *)sender {
         if (!self.isFavorite) {
             self.favoriteButton.image = [UIImage systemImageNamed:@"star.fill"];
+            [[CoreDataManager sharedInstance] createItem:self.result];
             self.isFavorite = true;
         } else {
             self.favoriteButton.image = [UIImage systemImageNamed:@"star"];
             self.isFavorite = false;
+            [[CoreDataManager sharedInstance] removeItem:self.result];
         }
 }
 
 #pragma mark - Detail movie
-- (void) initDetailMovie {
+- (void)initDetailMovie {
     self.title = self.result.title;
     [self.imgMovie sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", imageURL, self.result.imgURL]]];
     self.overviewTextView.text = self.result.overView;
@@ -83,7 +91,7 @@
 }
 
 #pragma mark - Cast and Crew
-- (void) initCastAndCrew {
+- (void)initCastAndCrew {
     [[NetworkManager sharedInstance]fetchCastAndCrew:self.result.iD withCompletion:^(NSDictionary *response) {
         NSArray<Cast *> *Casts= response[@"cast"];
         NSArray<Crew *> *Crews = response[@"crew"];

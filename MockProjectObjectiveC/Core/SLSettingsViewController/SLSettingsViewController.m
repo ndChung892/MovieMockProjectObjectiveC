@@ -10,7 +10,6 @@
 #pragma mark - SLSettingViewController
 
 @interface SLSettingsViewController ()
-
 @end
 
 @implementation SLSettingsViewController

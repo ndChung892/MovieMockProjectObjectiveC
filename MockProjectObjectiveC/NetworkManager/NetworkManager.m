@@ -17,7 +17,7 @@
 
 @implementation NetworkManager
 
-+(instancetype) sharedInstance {
++ (instancetype) sharedInstance {
     static NetworkManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -27,7 +27,7 @@
 }
 
 #pragma mark - Fetch Popular movie
--(void)fetchMovieAPI:(int) pageNumber
+- (void)fetchMovieAPI:(int) pageNumber
       withCompletion:(void (^)(NSDictionary *response))completion {
     NSString *urlPopular = [NSString stringWithFormat:@"%@%@", baseURL, @"popular"];
     NSNumber *page = [NSNumber numberWithInt:pageNumber];
@@ -52,7 +52,7 @@
 }
 
 #pragma mark - Fetch Detail of movie
--(void)fetchDetailMovieAPI:(NSNumber *)iD
+- (void)fetchDetailMovieAPI:(NSNumber *)iD
             withCompletion:(void (^)(NSDictionary *response))completion {
     NSString *urlDetail = [NSString stringWithFormat:@"%@%@", baseURL, iD];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -69,7 +69,7 @@
 }
 
 #pragma mark - Fetch cast and crew
--(void)fetchCastAndCrew:(NSNumber *)iD
+- (void)fetchCastAndCrew:(NSNumber *)iD
             withCompletion:(void (^)(NSDictionary *response))completion {
     NSString *urlDetail = [NSString stringWithFormat:@"%@%@/credits", baseURL, iD];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

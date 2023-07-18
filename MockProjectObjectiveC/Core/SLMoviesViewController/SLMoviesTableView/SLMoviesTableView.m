@@ -12,6 +12,7 @@
 #import "SLMoviesViewController.h"
 #import "SLDetailMoviesViewController.h"
 #import "Result.h"
+#import "CoreDataManager.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 
 @interface SLMoviesTableView()
@@ -20,8 +21,6 @@
 @property (nonatomic) SLMoviesViewController *moviesVC;
 @property (nonatomic) NSMutableArray<Result *> *resultsArr;
 @property (nonatomic) int pageNumber;
-
-@property (nonatomic, strong) NSMutableArray *isFavoriteStates;
 @end
 
 @implementation SLMoviesTableView
@@ -36,34 +35,26 @@
         // Setup tableView
         [self setupTableView];
         [self addSubview:self.tableView];
-        [self.tableView reloadData];
         [self setupConstraints];
         self.pageNumber = 1;
         [self setupPullToRefresh];
-//        [self.tableView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-        self.isFavorite = YES;
-
     }
     return self;
 }
 
 - (void)reloadview {
+    [self.resultsArr removeAllObjects];
     [self.resultsArr addObjectsFromArray:self.model.results];
-    for (SLMoviesTableViewCell *cell in self.tableView.visibleCells) {
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            self.isFavoriteStates[indexPath.row] = @(cell.isFavorite);
-        }
     [self.tableView reloadData];
-    [self.tableView.pullToRefreshView stopAnimating];
     [self.tableView.infiniteScrollingView stopAnimating];
 }
 
 #pragma mark - Pull to refresh
--(void)setupPullToRefresh {
+- (void)setupPullToRefresh {
     __weak typeof(self) weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
         // Call API when pull down
-        [weakSelf.delegate didPullToRefresh:weakSelf.pageNumber];
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
     }];
     
     [self.tableView addInfiniteScrollingWithActionHandler:^{
@@ -75,7 +66,7 @@
 }
 
 #pragma mark - tableView
--(void) setupTableView {
+- (void)setupTableView {
     self.tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     // Add the UITableView to the CustomTableView
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -87,10 +78,9 @@
     [self.tableView registerNib:[UINib
                                  nibWithNibName:@"SLMoviesTableViewCell"
                                  bundle:nil] forCellReuseIdentifier:@"cellMoviesTableView"];
-    
 }
 
--(void) setupConstraints {
+- (void)setupConstraints {
     [NSLayoutConstraint activateConstraints:@[
         // Add constraints to position and size the UITableView
         [self.tableView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
@@ -109,14 +99,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLMoviesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellMoviesTableView" forIndexPath:indexPath];
     // Configure the cell with result
-    [cell configTableViewCell:self.resultsArr[indexPath.row]];
-    if (cell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SLMoviesTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-        }
-        
-    BOOL isFavorite = [self.isFavoriteStates[indexPath.row] boolValue];
-    cell.isFavorite = isFavorite;
+    cell.result = self.resultsArr[indexPath.row];
+    [cell configTableViewCell];
     return cell;
 }
 
@@ -127,15 +111,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Get movie id and pass to viewcontroller
-//    BOOL isFavorite = [self.isFavoriteStates[indexPath.row] boolValue];
-//    self.isFavoriteStates[indexPath.row] = @(!isFavorite);
-//       
-//       // Cập nhật giao diện của cell
-//    SLMoviesTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    cell.isFavorite = !isFavorite;
     [self.delegate didSelectCellWithId:self.resultsArr[indexPath.row]];
 }
-
-
 
 @end

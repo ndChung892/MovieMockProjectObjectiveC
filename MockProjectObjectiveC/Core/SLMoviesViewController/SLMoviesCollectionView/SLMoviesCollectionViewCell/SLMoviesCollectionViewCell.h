@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLMoviesCollectionViewCell : UICollectionViewCell
 
--(void) configCollectionViewCell:(Result *)result;
+- (void)configCollectionViewCell:(Result *)result;
 @end
 
 NS_ASSUME_NONNULL_END
