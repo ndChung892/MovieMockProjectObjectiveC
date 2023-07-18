@@ -17,7 +17,7 @@
 
 @implementation NetworkManager
 
-+ (instancetype) sharedInstance {
++ (instancetype)sharedInstance {
     static NetworkManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -28,8 +28,9 @@
 
 #pragma mark - Fetch Popular movie
 - (void)fetchMovieAPI:(int) pageNumber
+             withPath:(NSString *) path
       withCompletion:(void (^)(NSDictionary *response))completion {
-    NSString *urlPopular = [NSString stringWithFormat:@"%@%@", baseURL, @"popular"];
+    NSString *url = [NSString stringWithFormat:@"%@%@", baseURL, path];
     NSNumber *page = [NSNumber numberWithInt:pageNumber];
     
     NSMutableDictionary *param = [parameters mutableCopy];
@@ -38,7 +39,7 @@
     NSDictionary *updatedParameters = [param copy];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    [manager GET:urlPopular
+    [manager GET:url
       parameters:updatedParameters
          headers:nil
         progress:nil

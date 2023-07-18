@@ -55,7 +55,7 @@
     __weak typeof(self) weakSelf = self;
     [self.collectionView addPullToRefreshWithActionHandler:^{
         // Call API when pull down
-        [weakSelf.delegate didPullToRefresh:weakSelf.pageNumber];
+        [weakSelf.collectionView.pullToRefreshView stopAnimating];
     }];
     
     [self.collectionView addInfiniteScrollingWithActionHandler:^{
@@ -66,7 +66,7 @@
 }
 
 #pragma mark - spinner
-- (void) setupSpinner {
+- (void)setupSpinner {
     self.spinner = [[UIActivityIndicatorView alloc]
                     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     self.spinner.hidesWhenStopped = YES;
@@ -74,7 +74,7 @@
 }
 
 #pragma mark - collectionView
-- (void) setupCollectionView {
+- (void)setupCollectionView {
     // Create the UICollectionViewFlowLayout
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;

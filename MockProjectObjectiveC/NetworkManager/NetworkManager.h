@@ -12,8 +12,9 @@
 
 @interface NetworkManager : NSObject
 
-+ (instancetype) sharedInstance;
++ (instancetype)sharedInstance;
 - (void)fetchMovieAPI:(int) pageNumber
+             withPath:(NSString *) path
       withCompletion:(void (^)(NSDictionary *response))completion;
 - (void)fetchDetailMovieAPI:(NSNumber *)iD
             withCompletion:(void (^)(NSDictionary *response))completion;

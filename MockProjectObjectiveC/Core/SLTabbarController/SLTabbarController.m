@@ -31,7 +31,7 @@
 }
 
 #pragma mark - configTabbarController
-- (void) configTabbarController {
+- (void)configTabbarController {
     SLMoviesViewController *movieVC = [[SLMoviesViewController alloc] init];
     SLFavoritesViewController *favoritesVC = [[SLFavoritesViewController alloc]init];
     SLSettingsViewController *settingVC = [[SLSettingsViewController alloc]init];
@@ -58,13 +58,10 @@
     [self setViewControllers: @[navMovie, navFavorites, navSetting, navAbout]];
 }
 
-- (void) configViewController:(UIViewController *)vc hasTitle:(NSString *)title withIcon:(NSString *) imageName {
+- (void)configViewController:(UIViewController *)vc hasTitle:(NSString *)title withIcon:(NSString *) imageName {
     UITabBarItem *tabbarItem = vc.tabBarItem;
     [tabbarItem setTitle: title];
     [tabbarItem setImage:[UIImage systemImageNamed: imageName]];
-    
 }
-
-
 
 @end

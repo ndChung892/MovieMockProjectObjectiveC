@@ -18,6 +18,7 @@
 @property (nonatomic, strong) SLMoviesCollectionView *collectionViewMovies;
 @property (nonatomic, strong) UIBarButtonItem *switchButton;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) NSString *path;
 
 @end
 
@@ -31,12 +32,33 @@
     [self fetchMovie:1];
     
     [self setupRightButtonNavigation];
+    [self.view setBackgroundColor:[UIColor systemBackgroundColor]];
     [self.spinner startAnimating];
-    
+    self.path = @"popular";
     [self.tableViewMovies setDelegate:self];
     [self.collectionViewMovies setDelegate:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSelectedOptionNotification:) name:@"SelectedOptionNotification" object:nil];
     
 }
+
+- (void)handleSelectedOptionNotification:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *selectedOption = userInfo[@"selectedOption"];
+    
+    // Xử lý dữ liệu theo nhu cầu của bạn
+    if ([selectedOption isEqualToString:@"Popular Movies"]) {
+        self.path = @"popular";
+    } else if ([selectedOption isEqualToString:@"Top Rated Movies"]) {
+        self.path = @"top_rated";
+    } else if ([selectedOption isEqualToString:@"Upcomming Movies"]) {
+        self.path = @"upcoming";
+    } else if ([selectedOption isEqualToString:@"NowPlaying Movies"]) {
+        self.path = @"now_playing";
+    }
+}
+
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self fetchMovie:1];
@@ -55,8 +77,7 @@
 - (void)fetchMovie:(int)pageNumber {
     [self.tableViewMovies.model.results removeAllObjects];
     [self.collectionViewMovies.model.results removeAllObjects];
-    [[NetworkManager sharedInstance] fetchMovieAPI:pageNumber withCompletion:^(NSDictionary *response) {
-        
+    [[NetworkManager sharedInstance] fetchMovieAPI:pageNumber withPath:self.path withCompletion:^(NSDictionary *response) {
         NSArray *resultsArray = response[@"results"];
         for(NSDictionary *resultDict in resultsArray) {
             (void)[self.tableViewMovies.model initMoviesData:resultDict];
@@ -87,12 +108,13 @@
 }
 
 - (void)initView {
+    UINavigationController *navigationController = self.navigationController;
     //Setup tableView
     self.tableViewMovies = [[SLMoviesTableView alloc]init];
-    [self.view addSubview: self.tableViewMovies];
+//    [self.view addSubview: self.tableViewMovies];
     [self.tableViewMovies setHidden:YES];
     self.tableViewMovies.translatesAutoresizingMaskIntoConstraints = NO;
-    
+    [navigationController.view addSubview:self.tableViewMovies];
     
     //Setup CollectionView
     self.collectionViewMovies = [[SLMoviesCollectionView alloc]init];
@@ -107,13 +129,13 @@
     [self.spinner startAnimating];
     self.spinner.translatesAutoresizingMaskIntoConstraints = NO;
     
+    
     //Add constraint
     [NSLayoutConstraint activateConstraints:@[
-        [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-        [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
-        [self.tableViewMovies.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
-       
-        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
+        [self.tableViewMovies.topAnchor constraintEqualToAnchor:navigationController.navigationBar.bottomAnchor constant:8],
+        [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:navigationController.view.leadingAnchor constant:0],
+        [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:navigationController.view.trailingAnchor constant:0],
+        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:navigationController.view.bottomAnchor],
         
         [self.collectionViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [self.collectionViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
@@ -129,11 +151,15 @@
 - (void)didSelectCellWithId:(nonnull Result *)result {
     SLDetailMoviesViewController *detailVC = [[SLDetailMoviesViewController alloc]init];
     detailVC.result = result;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    [self.navigationController setViewControllers:@[detailVC]];
 }
 
 - (void)didPullToRefresh:(int)pageNumber {
     [self fetchMovie:pageNumber];
 }
 
+- (void)dealloc {
+    // Unsubscribe when view controller is canceled
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end

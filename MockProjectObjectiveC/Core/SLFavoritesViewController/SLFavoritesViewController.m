@@ -32,10 +32,10 @@
     // Setup tableView
     self.view.backgroundColor = [UIColor systemBackgroundColor];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.tableView.backgroundColor = [UIColor systemBackgroundColor];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.tableView.backgroundColor = [UIColor systemBackgroundColor];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SLFavoritesTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellFavoritesTableView"];
     
