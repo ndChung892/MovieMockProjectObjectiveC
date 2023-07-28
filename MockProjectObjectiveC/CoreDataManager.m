@@ -8,14 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "CoreDataManager.h"
 
-
-
 @interface CoreDataManager()
 @property (nonatomic, strong) NSManagedObjectContext *context;
 
 @property (nonatomic) NSMutableArray<Result *> *favoriteArr;
-
-
 
 @end
 
@@ -26,20 +22,21 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[CoreDataManager alloc] init];
-        // Khởi tạo và gán giá trị cho context
+        // Declare Context
         sharedInstance.context = [(AppDelegate *)[UIApplication sharedApplication].delegate persistentContainer].viewContext;
     });
     return sharedInstance;
 }
 
-- (void)createItem:(Result *)result {
+#pragma mark - Favorites Movies
+- (void)createFavorites:(Result *)result {
     Favorites *newItem = (Favorites *)[NSEntityDescription insertNewObjectForEntityForName:@"Favorites" inManagedObjectContext:self.context];
-        newItem.title = result.title;
-        newItem.rating = [result.rating floatValue];
-        newItem.releaseDate = result.releaseDate;
-        newItem.imgUrl = result.imgURL;
-        newItem.overview = result.overView;
-        newItem.iD = [result.iD integerValue];
+    newItem.title = result.title;
+    newItem.rating = [result.rating floatValue];
+    newItem.releaseDate = result.releaseDate;
+    newItem.imgUrl = result.imgURL;
+    newItem.overview = result.overView;
+    newItem.iD = [result.iD integerValue];
     NSError *error = nil;
     if (![self.context save:&error]) {
         NSLog(@"Lỗi khi lưu dữ liệu: %@", error);
@@ -47,7 +44,7 @@
     }
 }
 
-- (void)getAllItems:(void (^)(NSArray<Favorites *> *items))completion {
+- (void)getAllFavorites:(void (^)(NSArray<Favorites *> *items))completion {
     NSFetchRequest *fetchRequest = [Favorites fetchRequest];
     NSError *error = nil;
     
@@ -63,7 +60,7 @@
     }
 }
 
-- (void)removeItem:(Result *)result {
+- (void)removeFavorites:(Result *)result {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Favorites"];
     NSError *error = nil;
     NSArray *results = [self.context executeFetchRequest:fetchRequest error:&error];
@@ -80,7 +77,7 @@
     }
 }
 
-- (BOOL)interateItem:(NSNumber *) idResult {
+- (BOOL)interateFavorites:(NSNumber *) idResult {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Favorites"];
     NSError *error = nil;
     NSArray *results = [self.context executeFetchRequest:fetchRequest error:&error];
@@ -98,18 +95,121 @@
     return NO;
 }
 
-- (void)removeAllItem {
+- (void)removeAllFavorites {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Favorites"];
-        [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error;
+    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *object in fetchedObjects)
+    {
+        [self.context deleteObject:object];
+    }
+    
+    error = nil;
+    [self.context save:&error];
+}
 
-        NSError *error;
-        NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
-        for (NSManagedObject *object in fetchedObjects)
-        {
-            [self.context deleteObject:object];
+#pragma mark - Reminder
+- (void)createReminder:(Result *)result withReminderTime:(NSDate *)reminderTime {
+    Reminders *newItem = (Reminders *)[NSEntityDescription insertNewObjectForEntityForName:@"Reminders" inManagedObjectContext:self.context];
+    newItem.title = result.title;
+    newItem.rating = [result.rating floatValue];
+    newItem.releaseDate = result.releaseDate;
+    newItem.imgUrl = result.imgURL;
+    newItem.overview = result.overView;
+    newItem.iD = [result.iD integerValue];
+    newItem.reminderTime = reminderTime;
+    NSError *error = nil;
+    if (![self.context save:&error]) {
+        NSLog(@"Lỗi khi lưu dữ liệu: %@", error);
+    } else {
+    }
+}
+
+- (void)getAllReminders:(void (^)(NSArray<Reminders *> *items))completion {
+    NSFetchRequest *fetchRequest = [Reminders fetchRequest];
+    NSError *error = nil;
+    
+    NSArray<Reminders *> *fetchedItems = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    if (error) {
+        NSLog(@"Lỗi khi lấy dữ liệu: %@", error);
+        if (completion) {
+            completion(nil);
         }
+    } else {
+        completion(fetchedItems);
+    }
+}
 
-        error = nil;
-        [self.context save:&error];
+- (void)removeAllReminders {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Reminders"];
+    [fetchRequest setIncludesPropertyValues:NO];
+    
+    NSError *error;
+    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *object in fetchedObjects)
+    {
+        [self.context deleteObject:object];
+    }
+    
+    error = nil;
+    [self.context save:&error];
+}
+
+- (void)checkReminders:(NSDate *)currentTime {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reminders"];
+    NSError *error = nil;
+    NSArray *reminders = [self.context executeFetchRequest:fetchRequest error:&error];
+    NSError *saveError = nil;
+    if (![self.context save:&saveError]) {
+        NSLog(@"Lỗi khi xóa dữ liệu: %@", saveError);
+    } else {
+        for (NSManagedObject *object in reminders) {
+            NSDate *reminder = [object valueForKey:@"reminderTime"];
+            NSLog(@"%@curent reminder Time:", currentTime);
+            BOOL compareTime = [[NSCalendar currentCalendar] isDate:currentTime equalToDate:reminder toUnitGranularity:NSCalendarUnitMinute];
+            if (compareTime) {
+                [self.context deleteObject:object];
+            }
+        }
+    }
+}
+
+
+- (BOOL)interateReminders:(NSNumber *)iD {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reminders"];
+    NSError *error = nil;
+    NSArray *reminders = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    if (![self.context save:&error]) {
+        return NO;
+    } else {
+        for (NSManagedObject *object in reminders) {
+            NSNumber *iDReminders = [object valueForKey:@"iD"];
+            if ([iDReminders isEqualToNumber:iD]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (NSDate *)getReminderDate:(NSNumber *)iD {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reminders"];
+    NSError *error = nil;
+    NSArray *reminders = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    if (![self.context save:&error]) {
+    } else {
+        for (NSManagedObject *object in reminders) {
+            NSNumber *iD = [object valueForKey:@"iD"];
+            if ([iD isEqualToNumber:iD]) {
+                return [object valueForKey:@"reminderTime"];
+            }
+        }
+    }
+    return nil;
 }
 @end

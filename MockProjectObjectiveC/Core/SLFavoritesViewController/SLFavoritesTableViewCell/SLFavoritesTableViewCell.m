@@ -32,7 +32,7 @@
 - (void)starTapped:(UITapGestureRecognizer *)gesture {
     if (self.isFavorite) {
         self.imgFavorite.image = [UIImage systemImageNamed:@"star"];
-        [[CoreDataManager sharedInstance] removeItem:self.result];
+        [[CoreDataManager sharedInstance] removeFavorites:self.result];
     } else {
         self.imgFavorite.image = [UIImage systemImageNamed:@"star.fill"];
     }

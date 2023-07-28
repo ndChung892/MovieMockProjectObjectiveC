@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property Result *result;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 - (void)reloadview;
+@property (nonatomic) NSMutableArray<Result *> *resultsArr;
+@property (nonatomic) int pageNumber;
 @end
 
 NS_ASSUME_NONNULL_END

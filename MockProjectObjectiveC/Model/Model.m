@@ -38,7 +38,7 @@
 }
 
 - (BOOL)isAvailableInCoreData: (NSNumber *) iD {
-    return [[CoreDataManager sharedInstance] interateItem:iD];
+    return [[CoreDataManager sharedInstance] interateFavorites:iD];
 }
 
 - (id)initFavoritesData:(Favorites *)item {

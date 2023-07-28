@@ -20,8 +20,18 @@
 		490E49E02A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E49DE2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m */; };
 		490E49E12A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490E49DF2A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib */; };
 		491FC0D82A5FEA5A00832B77 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491FC0D72A5FEA5A00832B77 /* CoreDataManager.m */; };
+		49274E4E2A70FFD100396C98 /* SLRemindersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49274E4C2A70FFD100396C98 /* SLRemindersCollectionViewCell.m */; };
+		49274E4F2A70FFD100396C98 /* SLRemindersCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49274E4D2A70FFD100396C98 /* SLRemindersCollectionViewCell.xib */; };
+		49274E5F2A7225E100396C98 /* SLShowAllRemindersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49274E5D2A7225E100396C98 /* SLShowAllRemindersTableViewCell.m */; };
+		49274E602A7225E100396C98 /* SLShowAllRemindersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49274E5E2A7225E100396C98 /* SLShowAllRemindersTableViewCell.xib */; };
 		493953EF2A60EA1800ADED5F /* SLFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493953ED2A60EA1800ADED5F /* SLFavoritesTableViewCell.m */; };
 		493953F22A60EE7300ADED5F /* SLFavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493953EE2A60EA1800ADED5F /* SLFavoritesTableViewCell.xib */; };
+		494952E32A7258C600FE5095 /* SLShowAllRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494952E12A7258C600FE5095 /* SLShowAllRemindersViewController.m */; };
+		494952E42A7258C600FE5095 /* SLShowAllRemindersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494952E22A7258C600FE5095 /* SLShowAllRemindersViewController.xib */; };
+		494952ED2A7368AF00FE5095 /* Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 494952EC2A7368AF00FE5095 /* Sort.m */; };
+		494952F02A7368C700FE5095 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 494952EF2A7368C700FE5095 /* Filter.m */; };
+		494952F52A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 494952F32A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m */; };
+		494952F62A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494952F42A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib */; };
 		4951778A2A429D760008345B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177892A429D760008345B /* AppDelegate.m */; };
 		4951778D2A429D760008345B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951778C2A429D760008345B /* SceneDelegate.m */; };
 		495177952A429D780008345B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495177942A429D780008345B /* Assets.xcassets */; };
@@ -34,6 +44,8 @@
 		495177BE2A42A0550008345B /* SLAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177BC2A42A0550008345B /* SLAboutViewController.m */; };
 		495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495177BD2A42A0550008345B /* SLAboutViewController.xib */; };
 		497439A52A49372C0036B76C /* SLTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497439A42A49372C0036B76C /* SLTabbarController.m */; };
+		49B35FFF2A6FC29500824A38 /* SLEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B35FFD2A6FC29500824A38 /* SLEditProfileViewController.m */; };
+		49B360002A6FC29600824A38 /* SLEditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B35FFE2A6FC29500824A38 /* SLEditProfileViewController.xib */; };
 		49BCE7E02A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49BCE7DE2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld */; };
 		49C646812A49DE0C00DE53FB /* SLLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */; };
 		49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */; };
@@ -76,9 +88,29 @@
 		491FC0D32A5FD29B00832B77 /* Favorites+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Favorites+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
 		491FC0D62A5FEA3900832B77 /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		491FC0D72A5FEA5A00832B77 /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		49274E442A70FE5800396C98 /* Reminders+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reminders+CoreDataProperties.h"; sourceTree = SOURCE_ROOT; };
+		49274E452A70FE5800396C98 /* Reminders+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reminders+CoreDataClass.h"; sourceTree = SOURCE_ROOT; };
+		49274E462A70FE5800396C98 /* Reminders+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Reminders+CoreDataClass.m"; sourceTree = SOURCE_ROOT; };
+		49274E472A70FE5800396C98 /* Reminders+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Reminders+CoreDataProperties.m"; sourceTree = SOURCE_ROOT; };
+		49274E4B2A70FFD100396C98 /* SLRemindersCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLRemindersCollectionViewCell.h; sourceTree = "<group>"; };
+		49274E4C2A70FFD100396C98 /* SLRemindersCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLRemindersCollectionViewCell.m; sourceTree = "<group>"; };
+		49274E4D2A70FFD100396C98 /* SLRemindersCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLRemindersCollectionViewCell.xib; sourceTree = "<group>"; };
+		49274E5C2A7225E100396C98 /* SLShowAllRemindersTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLShowAllRemindersTableViewCell.h; sourceTree = "<group>"; };
+		49274E5D2A7225E100396C98 /* SLShowAllRemindersTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLShowAllRemindersTableViewCell.m; sourceTree = "<group>"; };
+		49274E5E2A7225E100396C98 /* SLShowAllRemindersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLShowAllRemindersTableViewCell.xib; sourceTree = "<group>"; };
 		493953EC2A60EA1800ADED5F /* SLFavoritesTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLFavoritesTableViewCell.h; sourceTree = "<group>"; };
 		493953ED2A60EA1800ADED5F /* SLFavoritesTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLFavoritesTableViewCell.m; sourceTree = "<group>"; };
 		493953EE2A60EA1800ADED5F /* SLFavoritesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLFavoritesTableViewCell.xib; sourceTree = "<group>"; };
+		494952E02A7258C600FE5095 /* SLShowAllRemindersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLShowAllRemindersViewController.h; sourceTree = "<group>"; };
+		494952E12A7258C600FE5095 /* SLShowAllRemindersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLShowAllRemindersViewController.m; sourceTree = "<group>"; };
+		494952E22A7258C600FE5095 /* SLShowAllRemindersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLShowAllRemindersViewController.xib; sourceTree = "<group>"; };
+		494952EB2A73689E00FE5095 /* Sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sort.h; sourceTree = "<group>"; };
+		494952EC2A7368AF00FE5095 /* Sort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sort.m; sourceTree = "<group>"; };
+		494952EE2A7368BB00FE5095 /* Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		494952EF2A7368C700FE5095 /* Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
+		494952F22A736C2300FE5095 /* SLFilterSeekbarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLFilterSeekbarTableViewCell.h; sourceTree = "<group>"; };
+		494952F32A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLFilterSeekbarTableViewCell.m; sourceTree = "<group>"; };
+		494952F42A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLFilterSeekbarTableViewCell.xib; sourceTree = "<group>"; };
 		495177852A429D760008345B /* MockProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495177882A429D760008345B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		495177892A429D760008345B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -100,6 +132,9 @@
 		495177BD2A42A0550008345B /* SLAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLAboutViewController.xib; sourceTree = "<group>"; };
 		497439A32A49372C0036B76C /* SLTabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTabbarController.h; sourceTree = "<group>"; };
 		497439A42A49372C0036B76C /* SLTabbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTabbarController.m; sourceTree = "<group>"; };
+		49B35FFC2A6FC29500824A38 /* SLEditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLEditProfileViewController.h; sourceTree = "<group>"; };
+		49B35FFD2A6FC29500824A38 /* SLEditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLEditProfileViewController.m; sourceTree = "<group>"; };
+		49B35FFE2A6FC29500824A38 /* SLEditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLEditProfileViewController.xib; sourceTree = "<group>"; };
 		49BCE7DF2A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLFavoritesData.xcdatamodel; sourceTree = "<group>"; };
 		49C6467E2A49DE0C00DE53FB /* SLLeftMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLLeftMenuViewController.h; sourceTree = "<group>"; };
 		49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLLeftMenuViewController.m; sourceTree = "<group>"; };
@@ -134,6 +169,9 @@
 		490CDB6C2A4970230048C15B /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
+				49274E502A7224DA00396C98 /* SLShowAllRemindersViewController */,
+				49274E4A2A70FF6400396C98 /* SLRemindersCollectionViewCell */,
+				49B35FFB2A6FC27000824A38 /* SLEditProfileViewController */,
 				49C6467E2A49DE0C00DE53FB /* SLLeftMenuViewController.h */,
 				49C6467F2A49DE0C00DE53FB /* SLLeftMenuViewController.m */,
 				49C646802A49DE0C00DE53FB /* SLLeftMenuViewController.xib */,
@@ -153,6 +191,7 @@
 		490E49C42A5402B10003FB87 /* SLDetailMoviesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				49274E3D2A70FDC000396C98 /* SLReminderCoreData */,
 				490E49DC2A5663B80003FB87 /* SLCastAndCrewCollectionViewCell */,
 				490E49C52A5403030003FB87 /* SLDetailMoviesViewController.h */,
 				490E49C62A5403030003FB87 /* SLDetailMoviesViewController.m */,
@@ -219,6 +258,48 @@
 			path = SLFavoritesTableViewCell;
 			sourceTree = "<group>";
 		};
+		49274E3D2A70FDC000396C98 /* SLReminderCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				49274E442A70FE5800396C98 /* Reminders+CoreDataProperties.h */,
+				49274E452A70FE5800396C98 /* Reminders+CoreDataClass.h */,
+				49274E462A70FE5800396C98 /* Reminders+CoreDataClass.m */,
+				49274E472A70FE5800396C98 /* Reminders+CoreDataProperties.m */,
+			);
+			path = SLReminderCoreData;
+			sourceTree = "<group>";
+		};
+		49274E4A2A70FF6400396C98 /* SLRemindersCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				49274E4B2A70FFD100396C98 /* SLRemindersCollectionViewCell.h */,
+				49274E4C2A70FFD100396C98 /* SLRemindersCollectionViewCell.m */,
+				49274E4D2A70FFD100396C98 /* SLRemindersCollectionViewCell.xib */,
+			);
+			path = SLRemindersCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		49274E502A7224DA00396C98 /* SLShowAllRemindersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49274E562A72256A00396C98 /* SLShowAllRemindersTableViewCell */,
+				494952E02A7258C600FE5095 /* SLShowAllRemindersViewController.h */,
+				494952E12A7258C600FE5095 /* SLShowAllRemindersViewController.m */,
+				494952E22A7258C600FE5095 /* SLShowAllRemindersViewController.xib */,
+			);
+			path = SLShowAllRemindersViewController;
+			sourceTree = "<group>";
+		};
+		49274E562A72256A00396C98 /* SLShowAllRemindersTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				49274E5C2A7225E100396C98 /* SLShowAllRemindersTableViewCell.h */,
+				49274E5D2A7225E100396C98 /* SLShowAllRemindersTableViewCell.m */,
+				49274E5E2A7225E100396C98 /* SLShowAllRemindersTableViewCell.xib */,
+			);
+			path = SLShowAllRemindersTableViewCell;
+			sourceTree = "<group>";
+		};
 		4929F9112A5E8F3F0026686D /* SLFavoriteData */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +309,43 @@
 				491FC0D32A5FD29B00832B77 /* Favorites+CoreDataProperties.m */,
 			);
 			path = SLFavoriteData;
+			sourceTree = "<group>";
+		};
+		494952E52A735F2400FE5095 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				494952EA2A73685300FE5095 /* SortSession */,
+				494952E92A73684900FE5095 /* FilterSession */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		494952E92A73684900FE5095 /* FilterSession */ = {
+			isa = PBXGroup;
+			children = (
+				494952EE2A7368BB00FE5095 /* Filter.h */,
+				494952EF2A7368C700FE5095 /* Filter.m */,
+			);
+			path = FilterSession;
+			sourceTree = "<group>";
+		};
+		494952EA2A73685300FE5095 /* SortSession */ = {
+			isa = PBXGroup;
+			children = (
+				494952EB2A73689E00FE5095 /* Sort.h */,
+				494952EC2A7368AF00FE5095 /* Sort.m */,
+			);
+			path = SortSession;
+			sourceTree = "<group>";
+		};
+		494952F12A736BF200FE5095 /* SLFilterSeekbarTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				494952F22A736C2300FE5095 /* SLFilterSeekbarTableViewCell.h */,
+				494952F32A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m */,
+				494952F42A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib */,
+			);
+			path = SLFilterSeekbarTableViewCell;
 			sourceTree = "<group>";
 		};
 		4951777C2A429D760008345B = {
@@ -328,6 +446,7 @@
 		495177AA2A429FD60008345B /* SLSettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				494952F12A736BF200FE5095 /* SLFilterSeekbarTableViewCell */,
 				495177AC2A42A01A0008345B /* SLSettingsViewController.h */,
 				495177AD2A42A01A0008345B /* SLSettingsViewController.m */,
 				495177AE2A42A01A0008345B /* SLSettingsViewController.xib */,
@@ -348,12 +467,23 @@
 		497E294F2A4E746B0013913D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				494952E52A735F2400FE5095 /* Setting */,
 				490E49CE2A565D1A0003FB87 /* CastAndCrew */,
 				490E49CA2A5415270003FB87 /* Result */,
 				490D3A7D2A4C3982007AF5F1 /* Model.h */,
 				490D3A7E2A4C3982007AF5F1 /* Model.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		49B35FFB2A6FC27000824A38 /* SLEditProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49B35FFC2A6FC29500824A38 /* SLEditProfileViewController.h */,
+				49B35FFD2A6FC29500824A38 /* SLEditProfileViewController.m */,
+				49B35FFE2A6FC29500824A38 /* SLEditProfileViewController.xib */,
+			);
+			path = SLEditProfileViewController;
 			sourceTree = "<group>";
 		};
 		49D5A6F12A4ABF410029A12F /* BaseViewController */ = {
@@ -493,11 +623,16 @@
 			files = (
 				493953F22A60EE7300ADED5F /* SLFavoritesTableViewCell.xib in Resources */,
 				495177982A429D780008345B /* LaunchScreen.storyboard in Resources */,
+				494952E42A7258C600FE5095 /* SLShowAllRemindersViewController.xib in Resources */,
+				49B360002A6FC29600824A38 /* SLEditProfileViewController.xib in Resources */,
 				490E49C92A5403030003FB87 /* SLDetailMoviesViewController.xib in Resources */,
 				495177B02A42A01A0008345B /* SLSettingsViewController.xib in Resources */,
 				495177952A429D780008345B /* Assets.xcassets in Resources */,
 				49C646822A49DE0C00DE53FB /* SLLeftMenuViewController.xib in Resources */,
+				494952F62A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib in Resources */,
+				49274E4F2A70FFD100396C98 /* SLRemindersCollectionViewCell.xib in Resources */,
 				490E49E12A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib in Resources */,
+				49274E602A7225E100396C98 /* SLShowAllRemindersTableViewCell.xib in Resources */,
 				490E49C32A53C7550003FB87 /* SLMoviesCollectionViewCell.xib in Resources */,
 				495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */,
 				49D5A7232A4C1E1E0029A12F /* SLMoviesTableViewCell.xib in Resources */,
@@ -554,12 +689,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				49BCE7E02A5EA0AA008DFBCF /* SLFavoritesData.xcdatamodeld in Sources */,
+				494952F52A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m in Sources */,
 				495177AF2A42A01A0008345B /* SLSettingsViewController.m in Sources */,
+				49274E4E2A70FFD100396C98 /* SLRemindersCollectionViewCell.m in Sources */,
 				491FC0D82A5FEA5A00832B77 /* CoreDataManager.m in Sources */,
 				490E49E02A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.m in Sources */,
 				495177B42A42A02D0008345B /* SLFavoritesViewController.m in Sources */,
 				490E49DB2A565DF10003FB87 /* Crew.m in Sources */,
 				493953EF2A60EA1800ADED5F /* SLFavoritesTableViewCell.m in Sources */,
+				49274E5F2A7225E100396C98 /* SLShowAllRemindersTableViewCell.m in Sources */,
+				494952F02A7368C700FE5095 /* Filter.m in Sources */,
 				490D3A822A4C3F17007AF5F1 /* Configuration.m in Sources */,
 				49D5A6F52A4ABF5B0029A12F /* SLBaseViewController.m in Sources */,
 				49D5A7162A4BEE930029A12F /* SLMoviesTableView.m in Sources */,
@@ -569,13 +708,16 @@
 				49D5A70A2A4B361E0029A12F /* NetworkManager.m in Sources */,
 				49D5A71C2A4C13070029A12F /* SLMoviesCollectionView.m in Sources */,
 				495177BE2A42A0550008345B /* SLAboutViewController.m in Sources */,
+				494952ED2A7368AF00FE5095 /* Sort.m in Sources */,
 				490D3A7F2A4C3982007AF5F1 /* Model.m in Sources */,
 				4951779B2A429D780008345B /* main.m in Sources */,
+				49B35FFF2A6FC29500824A38 /* SLEditProfileViewController.m in Sources */,
 				4951778D2A429D760008345B /* SceneDelegate.m in Sources */,
 				490E49C82A5403030003FB87 /* SLDetailMoviesViewController.m in Sources */,
 				497439A52A49372C0036B76C /* SLTabbarController.m in Sources */,
 				49C646812A49DE0C00DE53FB /* SLLeftMenuViewController.m in Sources */,
 				495177B92A42A0400008345B /* SLMoviesViewController.m in Sources */,
+				494952E32A7258C600FE5095 /* SLShowAllRemindersViewController.m in Sources */,
 				490E49C22A53C7550003FB87 /* SLMoviesCollectionViewCell.m in Sources */,
 				490E49CD2A5415440003FB87 /* Result.m in Sources */,
 				490E49D12A565D3E0003FB87 /* CastAndCrew.m in Sources */,

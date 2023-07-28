@@ -26,6 +26,7 @@
     [self setTitle:@"Favorites"];
     self.model = [[Model alloc]init];
     [self setupView];
+
 }
 
 - (void)setupView {
@@ -65,7 +66,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self.model.results removeAllObjects];
-    [[CoreDataManager sharedInstance] getAllItems:^(NSArray<Favorites *> *items) {
+    [[CoreDataManager sharedInstance] getAllFavorites:^(NSArray<Favorites *> *items) {
         if(items) {
             for(Favorites *item in items) {
                 (void)[self.model initFavoritesData:item];
@@ -112,7 +113,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[CoreDataManager sharedInstance]removeItem: self.model.results[indexPath.row]];
+    [[CoreDataManager sharedInstance]removeFavorites: self.model.results[indexPath.row]];
     [self.model.results removeObject:self.model.results[indexPath.row]];
     
     [self.tableView reloadData];
@@ -126,7 +127,7 @@
         
         UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             // Delete
-            [[CoreDataManager sharedInstance] removeItem:self.model.results[indexPath.row]];
+            [[CoreDataManager sharedInstance] removeFavorites:self.model.results[indexPath.row]];
             [self.model.results removeObjectAtIndex:indexPath.row];
             
             [self.tableView reloadData];

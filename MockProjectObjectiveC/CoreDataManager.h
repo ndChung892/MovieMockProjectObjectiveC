@@ -10,6 +10,8 @@
 #import "Result.h"
 #import "Favorites+CoreDataClass.h"
 #import "Favorites+CoreDataProperties.h"
+#import "Reminders+CoreDataClass.h"
+#import "Reminders+CoreDataProperties.h"
 
 #ifndef CoreDataManager_h
 #define CoreDataManager_h
@@ -20,9 +22,21 @@
 @interface CoreDataManager: NSObject
 + (instancetype)sharedInstance;
 
-- (void)createItem:(Result *)result;
-- (void)getAllItems:(void (^)(NSArray<Favorites *> *items))completion;
-- (void)removeItem:(Result *)result;
-- (BOOL)interateItem:(NSNumber *) idResult;
-- (void)removeAllItem;
+#pragma mark -  Favorites Movies
+- (void)createFavorites:(Result *)result;
+- (void)getAllFavorites:(void (^)(NSArray<Favorites *> *items))completion;
+- (void)removeFavorites:(Result *)result;
+- (BOOL)interateFavorites:(NSNumber *) idResult;
+- (void)removeAllFavorites;
+
+
+#pragma mark - Reminders
+- (void)createReminder:(Result *)result withReminderTime:(NSDate *)reminderTime;
+- (void)getAllReminders:(void (^)(NSArray<Reminders *> *items))completion;
+- (void)removeAllReminders;
+//- (void)removeReminders:(NSDate *)reminderTime withTitle:(NSString *)title;
+- (BOOL)interateReminders:(NSNumber *)iD;
+- (NSDate *)getReminderDate:(NSNumber *)iD;
+- (void)checkReminders:(NSDate *)currentTime;
+
 @end

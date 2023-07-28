@@ -11,6 +11,7 @@
 #import "SLDetailMoviesViewController.h"
 #import "Configuration.h"
 #import "NetworkManager.h"
+#import <SWRevealViewController/SWRevealViewController.h>
 
 #pragma mark - SLMoviesViewController
 @interface SLMoviesViewController () <SLMoviesTableViewViewDelegate, SLMoviesCollectionViewDelegate>
@@ -57,10 +58,9 @@
     }
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    self.tableViewMovies.pageNumber = 1;
     [self fetchMovie:1];
 }
 
@@ -79,16 +79,20 @@
     [self.collectionViewMovies.model.results removeAllObjects];
     [[NetworkManager sharedInstance] fetchMovieAPI:pageNumber withPath:self.path withCompletion:^(NSDictionary *response) {
         NSArray *resultsArray = response[@"results"];
+        if(pageNumber == 1) {
+            [self.tableViewMovies.resultsArr removeAllObjects];
+        }
         for(NSDictionary *resultDict in resultsArray) {
             (void)[self.tableViewMovies.model initMoviesData:resultDict];
             (void)[self.collectionViewMovies.model initMoviesData:resultDict];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{;
+        dispatch_async(dispatch_get_main_queue(), ^{
             [self.spinner stopAnimating];
             [self.tableViewMovies setHidden:NO];
             [self.tableViewMovies reloadview];
             [self.collectionViewMovies reloadView];
         });
+        
     }];
 }
 
@@ -97,24 +101,22 @@
     if (!self.tableViewMovies.isHidden) {
         // If current view is UITableView, transition to UICollectionView
         [self.collectionViewMovies setHidden:false];
-        [self.tableViewMovies setHidden:true];
+        [self.tableViewMovies setHidden:YES];
         self.navigationItem.rightBarButtonItem.image = [UIImage systemImageNamed:@"square.grid.3x2.fill"];
     } else {
         // If current view is UICollectionView, transition to UITableView
-        [self.collectionViewMovies setHidden:true];
-        [self.tableViewMovies setHidden:false];
+        [self.collectionViewMovies setHidden:YES];
+        [self.tableViewMovies setHidden:NO];
         self.navigationItem.rightBarButtonItem.image = [UIImage systemImageNamed:@"list.bullet"];
     }
 }
 
 - (void)initView {
-    UINavigationController *navigationController = self.navigationController;
     //Setup tableView
     self.tableViewMovies = [[SLMoviesTableView alloc]init];
-//    [self.view addSubview: self.tableViewMovies];
     [self.tableViewMovies setHidden:YES];
     self.tableViewMovies.translatesAutoresizingMaskIntoConstraints = NO;
-    [navigationController.view addSubview:self.tableViewMovies];
+    [self.view addSubview:self.tableViewMovies];
     
     //Setup CollectionView
     self.collectionViewMovies = [[SLMoviesCollectionView alloc]init];
@@ -132,10 +134,10 @@
     
     //Add constraint
     [NSLayoutConstraint activateConstraints:@[
-        [self.tableViewMovies.topAnchor constraintEqualToAnchor:navigationController.navigationBar.bottomAnchor constant:8],
-        [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:navigationController.view.leadingAnchor constant:0],
-        [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:navigationController.view.trailingAnchor constant:0],
-        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:navigationController.view.bottomAnchor],
+        [self.tableViewMovies.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
+        [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:0],
+        [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0],
+        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
         
         [self.collectionViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [self.collectionViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
@@ -149,9 +151,11 @@
 }
 
 - (void)didSelectCellWithId:(nonnull Result *)result {
-    SLDetailMoviesViewController *detailVC = [[SLDetailMoviesViewController alloc]init];
+    SLDetailMoviesViewController *detailVC = [[SLDetailMoviesViewController alloc]initWithNibName:@"SLDetailMoviesViewController" bundle:nil];
+    [self.revealViewController setFrontViewPosition:FrontViewPositionLeftSide animated:YES];
     detailVC.result = result;
-    [self.navigationController setViewControllers:@[detailVC]];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
 }
 
 - (void)didPullToRefresh:(int)pageNumber {

@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "SLBaseViewController.h"
 #import "SLMoviesTableView.h"
+#import "CoreDataManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

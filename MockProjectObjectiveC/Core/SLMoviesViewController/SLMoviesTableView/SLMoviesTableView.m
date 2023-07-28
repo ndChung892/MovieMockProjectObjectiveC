@@ -19,8 +19,8 @@
 
 @property (nonatomic) BOOL isFavorite;
 @property (nonatomic) SLMoviesViewController *moviesVC;
-@property (nonatomic) NSMutableArray<Result *> *resultsArr;
-@property (nonatomic) int pageNumber;
+
+
 @end
 
 @implementation SLMoviesTableView
@@ -43,7 +43,7 @@
 }
 
 - (void)reloadview {
-    [self.resultsArr removeAllObjects];
+    
     [self.resultsArr addObjectsFromArray:self.model.results];
     [self.tableView reloadData];
     [self.tableView.infiniteScrollingView stopAnimating];
@@ -101,6 +101,7 @@
     // Configure the cell with result
     cell.result = self.resultsArr[indexPath.row];
     [cell configTableViewCell];
+    
     return cell;
 }
 

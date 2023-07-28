@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SLBaseViewController.h"
+#import "SLLeftMenuViewController.h"
+#import "Filter.h"
+#import "Sort.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

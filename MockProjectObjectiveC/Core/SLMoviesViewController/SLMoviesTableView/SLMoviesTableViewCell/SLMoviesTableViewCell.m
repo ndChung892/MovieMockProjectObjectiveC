@@ -36,20 +36,21 @@
     [self.imgFavorite addGestureRecognizer:tapGesture];
     self.imgFavorite.userInteractionEnabled = YES;
     self.result = [[Result alloc]init];
-    
+    self.isFavorite = self.result.isFavorite;
     }
 
 - (void)starTapped:(UITapGestureRecognizer *)gesture {
     self.isFavorite = !self.isFavorite;
     if (self.isFavorite) {
         self.imgFavorite.image = [UIImage systemImageNamed:@"star.fill"];
-        if(![[CoreDataManager sharedInstance] interateItem:self.result.iD]){
-            [[CoreDataManager sharedInstance] createItem:self.result];
+        if(![[CoreDataManager sharedInstance] interateFavorites:self.result.iD]){
+            [[CoreDataManager sharedInstance] createFavorites:self.result];
         }
     } else {
         self.imgFavorite.image = [UIImage systemImageNamed:@"star"];
-        [[CoreDataManager sharedInstance] removeItem:self.result];
+        [[CoreDataManager sharedInstance] removeFavorites:self.result];
     }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

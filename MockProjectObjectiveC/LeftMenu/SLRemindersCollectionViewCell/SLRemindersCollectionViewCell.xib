@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reminderCell" id="gTV-IL-0wX" customClass="SLRemindersCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="47"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="299" height="47"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deq-bQ-TW9">
+                        <rect key="frame" x="80" y="10" width="219" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxN-5K-obJ">
+                        <rect key="frame" x="80" y="38" width="219" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <constraints>
+                <constraint firstItem="deq-bQ-TW9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="AO0-ac-1us"/>
+                <constraint firstAttribute="trailing" secondItem="deq-bQ-TW9" secondAttribute="trailing" id="B8n-XG-OKF"/>
+                <constraint firstAttribute="trailing" secondItem="MxN-5K-obJ" secondAttribute="trailing" id="HIl-hA-leS"/>
+                <constraint firstItem="MxN-5K-obJ" firstAttribute="leading" secondItem="deq-bQ-TW9" secondAttribute="leading" id="er6-EX-A3c"/>
+                <constraint firstItem="deq-bQ-TW9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="80" id="wzO-Hz-sv5"/>
+                <constraint firstItem="MxN-5K-obJ" firstAttribute="top" secondItem="deq-bQ-TW9" secondAttribute="bottom" constant="10" id="ygd-YR-wHX"/>
+            </constraints>
+            <size key="customSize" width="299" height="47"/>
+            <connections>
+                <outlet property="lblInfoMovie" destination="deq-bQ-TW9" id="LK5-X1-3rx"/>
+                <outlet property="lblReminderTime" destination="MxN-5K-obJ" id="jOs-jG-bWw"/>
+                <outlet property="leadingCell" destination="wzO-Hz-sv5" id="RSa-sB-nCP"/>
+            </connections>
+            <point key="canvasLocation" x="315.26717557251908" y="-9.5070422535211279"/>
+        </collectionViewCell>
+    </objects>
+</document>

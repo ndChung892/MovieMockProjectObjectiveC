@@ -7,22 +7,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Result.h"
+#import "AppDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol SLDetailMoviesViewControllerDelegate <NSObject>
-
-- (void)didFetchAPIResponse:(NSDictionary *) response;
 
 
-@end
-
-
-@interface SLDetailMoviesViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, SLDetailMoviesViewControllerDelegate>
+@interface SLDetailMoviesViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) Result *result;
 @property (nonatomic) BOOL isFavorite;
-@property (nonatomic, weak) id <SLDetailMoviesViewControllerDelegate> delegate;
-
 @end
 
 NS_ASSUME_NONNULL_END
