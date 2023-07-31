@@ -27,6 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reloadview;
 @property (nonatomic) NSMutableArray<Result *> *resultsArr;
 @property (nonatomic) int pageNumber;
+
+@property (nonatomic) NSDate *releaseYear;
+@property (nonatomic) float ratingValue;
+@property (nonatomic) NSString *sortSelected;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

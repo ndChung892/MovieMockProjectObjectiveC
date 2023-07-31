@@ -32,19 +32,57 @@
         self.result = [[Result alloc]init];
         self.moviesVC = [[SLMoviesViewController alloc]init];
         self.resultsArr = [[NSMutableArray alloc]init];
+        
+        [self setBackgroundColor:[UIColor systemBackgroundColor]];
         // Setup tableView
         [self setupTableView];
         [self addSubview:self.tableView];
         [self setupConstraints];
         self.pageNumber = 1;
         [self setupPullToRefresh];
+        self.ratingValue = 0.0;
     }
     return self;
 }
 
 - (void)reloadview {
-    
-    [self.resultsArr addObjectsFromArray:self.model.results];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    // Filter Array
+    for (Result *result in self.model.results) {
+        NSDate *releaseDate = [dateFormatter dateFromString:result.releaseDate];
+
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *yearComponent = [calendar components:NSCalendarUnitYear fromDate:releaseDate];
+        NSInteger objectYear = [yearComponent year];
+
+        NSDateComponents *selectedDateComponent = [calendar components:NSCalendarUnitYear fromDate:self.releaseYear];
+            NSInteger specifiedYear = [selectedDateComponent year];
+        
+        NSNumber *ratingNumber = result.rating;
+        float rating = [ratingNumber floatValue];
+        
+        if (objectYear >= specifiedYear) {
+            if (rating >= self.ratingValue) {
+                [self.resultsArr addObject:result];
+            }
+        }
+    }
+
+    // If SelectSort
+    if ([self.sortSelected isEqualToString:@"Release Date"]) {
+        [self.resultsArr sortUsingComparator:^NSComparisonResult(Result *result1, Result *result2) {
+            NSNumber *rating1 = result1.rating;
+            NSNumber *rating2 = result2.rating;
+            return [rating1 compare:rating2];
+        }];
+    } else if ([self.sortSelected isEqualToString:@"Rating"]) {
+        [self.resultsArr sortUsingComparator:^NSComparisonResult(Result *result1, Result *result2) {
+            NSDate *date1 = [dateFormatter dateFromString:result1.releaseDate];
+            NSDate *date2 = [dateFormatter dateFromString:result2.releaseDate];
+            return [date1 compare:date2];
+        }];
+    }
     [self.tableView reloadData];
     [self.tableView.infiniteScrollingView stopAnimating];
 }

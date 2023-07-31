@@ -32,6 +32,8 @@
 		494952F02A7368C700FE5095 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 494952EF2A7368C700FE5095 /* Filter.m */; };
 		494952F52A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 494952F32A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m */; };
 		494952F62A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494952F42A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib */; };
+		494952FB2A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 494952F92A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.m */; };
+		494952FC2A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494952FA2A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.xib */; };
 		4951778A2A429D760008345B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 495177892A429D760008345B /* AppDelegate.m */; };
 		4951778D2A429D760008345B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4951778C2A429D760008345B /* SceneDelegate.m */; };
 		495177952A429D780008345B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495177942A429D780008345B /* Assets.xcassets */; };
@@ -111,6 +113,9 @@
 		494952F22A736C2300FE5095 /* SLFilterSeekbarTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLFilterSeekbarTableViewCell.h; sourceTree = "<group>"; };
 		494952F32A736C2300FE5095 /* SLFilterSeekbarTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLFilterSeekbarTableViewCell.m; sourceTree = "<group>"; };
 		494952F42A736C2300FE5095 /* SLFilterSeekbarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLFilterSeekbarTableViewCell.xib; sourceTree = "<group>"; };
+		494952F82A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLFilterReleaseDateTableViewCell.h; sourceTree = "<group>"; };
+		494952F92A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLFilterReleaseDateTableViewCell.m; sourceTree = "<group>"; };
+		494952FA2A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLFilterReleaseDateTableViewCell.xib; sourceTree = "<group>"; };
 		495177852A429D760008345B /* MockProjectObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockProjectObjectiveC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495177882A429D760008345B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		495177892A429D760008345B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -348,6 +353,16 @@
 			path = SLFilterSeekbarTableViewCell;
 			sourceTree = "<group>";
 		};
+		494952F72A762B4F00FE5095 /* SLFilterReleaseDateTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				494952F82A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.h */,
+				494952F92A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.m */,
+				494952FA2A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.xib */,
+			);
+			path = SLFilterReleaseDateTableViewCell;
+			sourceTree = "<group>";
+		};
 		4951777C2A429D760008345B = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +461,7 @@
 		495177AA2A429FD60008345B /* SLSettingsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				494952F72A762B4F00FE5095 /* SLFilterReleaseDateTableViewCell */,
 				494952F12A736BF200FE5095 /* SLFilterSeekbarTableViewCell */,
 				495177AC2A42A01A0008345B /* SLSettingsViewController.h */,
 				495177AD2A42A01A0008345B /* SLSettingsViewController.m */,
@@ -633,6 +649,7 @@
 				49274E4F2A70FFD100396C98 /* SLRemindersCollectionViewCell.xib in Resources */,
 				490E49E12A5663DF0003FB87 /* SLCastAndCrewCollectionViewCell.xib in Resources */,
 				49274E602A7225E100396C98 /* SLShowAllRemindersTableViewCell.xib in Resources */,
+				494952FC2A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.xib in Resources */,
 				490E49C32A53C7550003FB87 /* SLMoviesCollectionViewCell.xib in Resources */,
 				495177BF2A42A0550008345B /* SLAboutViewController.xib in Resources */,
 				49D5A7232A4C1E1E0029A12F /* SLMoviesTableViewCell.xib in Resources */,
@@ -712,6 +729,7 @@
 				490D3A7F2A4C3982007AF5F1 /* Model.m in Sources */,
 				4951779B2A429D780008345B /* main.m in Sources */,
 				49B35FFF2A6FC29500824A38 /* SLEditProfileViewController.m in Sources */,
+				494952FB2A762B7700FE5095 /* SLFilterReleaseDateTableViewCell.m in Sources */,
 				4951778D2A429D760008345B /* SceneDelegate.m in Sources */,
 				490E49C82A5403030003FB87 /* SLDetailMoviesViewController.m in Sources */,
 				497439A52A49372C0036B76C /* SLTabbarController.m in Sources */,

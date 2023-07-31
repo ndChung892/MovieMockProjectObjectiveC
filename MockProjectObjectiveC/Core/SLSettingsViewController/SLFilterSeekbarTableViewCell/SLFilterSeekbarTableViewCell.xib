@@ -1,21 +1,74 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SLFilterSeekbarTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterOptionCell" rowHeight="86" id="KGk-i7-Jjw" customClass="SLFilterSeekbarTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies With Rate From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abp-dg-Tz9">
+                        <rect key="frame" x="20" y="10" width="181" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="181" id="876-HT-jhD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyI-6Q-Nyy">
+                        <rect key="frame" x="261" y="10" width="39" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="IBt-HQ-npy">
+                        <rect key="frame" x="46" y="46" width="228" height="34"/>
+                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Los-9l-xky">
+                        <rect key="frame" x="282" y="51" width="18" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xx-go-qVo">
+                        <rect key="frame" x="20" y="51" width="18" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3xx-go-qVo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="JP2-Wl-B20"/>
+                    <constraint firstItem="Los-9l-xky" firstAttribute="top" secondItem="dyI-6Q-Nyy" secondAttribute="bottom" constant="20" id="JXk-ke-ZcI"/>
+                    <constraint firstItem="Los-9l-xky" firstAttribute="leading" secondItem="IBt-HQ-npy" secondAttribute="trailing" constant="10" id="Jfg-Xh-jpu"/>
+                    <constraint firstItem="3xx-go-qVo" firstAttribute="top" secondItem="Abp-dg-Tz9" secondAttribute="bottom" constant="20" id="KV3-xb-zui"/>
+                    <constraint firstItem="dyI-6Q-Nyy" firstAttribute="leading" secondItem="Abp-dg-Tz9" secondAttribute="trailing" constant="60" id="MTA-D5-GE0"/>
+                    <constraint firstItem="Abp-dg-Tz9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="NWy-a5-rxW"/>
+                    <constraint firstItem="IBt-HQ-npy" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="R8A-iN-MBc"/>
+                    <constraint firstItem="IBt-HQ-npy" firstAttribute="top" secondItem="Abp-dg-Tz9" secondAttribute="bottom" constant="15" id="Xzx-HT-Q59"/>
+                    <constraint firstAttribute="trailing" secondItem="Los-9l-xky" secondAttribute="trailing" constant="20" id="cOX-Ej-iz3"/>
+                    <constraint firstItem="Abp-dg-Tz9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="crN-Sj-epN"/>
+                    <constraint firstItem="IBt-HQ-npy" firstAttribute="leading" secondItem="3xx-go-qVo" secondAttribute="trailing" constant="10" id="gMK-hX-llk"/>
+                    <constraint firstItem="dyI-6Q-Nyy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="lBg-GC-798"/>
+                    <constraint firstAttribute="trailing" secondItem="dyI-6Q-Nyy" secondAttribute="trailing" constant="20" id="o7g-U6-0FL"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="seekBar" destination="IBt-HQ-npy" id="kKj-78-1kR"/>
+                <outlet property="valueLabel" destination="dyI-6Q-Nyy" id="14S-8T-qe0"/>
+            </connections>
+            <point key="canvasLocation" x="131.29770992366412" y="3.5211267605633805"/>
         </tableViewCell>
     </objects>
 </document>

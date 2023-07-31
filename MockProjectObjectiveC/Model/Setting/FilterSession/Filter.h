@@ -18,7 +18,10 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL isSelected;
 @property (nonatomic, assign) BOOL isSeekbarOption;
+
 @property (nonatomic, assign) float seekbarValue;
 @property (nonatomic, strong) NSString *seekbarValueString;
 
+@property (nonatomic, assign) BOOL isReleaseYearOption;
+@property (nonatomic, assign) NSDate *releaseYear;
 @end

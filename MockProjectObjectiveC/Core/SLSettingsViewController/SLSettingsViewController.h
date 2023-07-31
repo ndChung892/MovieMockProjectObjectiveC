@@ -10,6 +10,7 @@
 #import "SLLeftMenuViewController.h"
 #import "Filter.h"
 #import "Sort.h"
+#import "SLFilterReleaseDateTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

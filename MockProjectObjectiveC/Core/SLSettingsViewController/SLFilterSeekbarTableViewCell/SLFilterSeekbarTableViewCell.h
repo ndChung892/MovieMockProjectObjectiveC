@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SLFilterSeekbarTableViewCell : UITableViewCell
 
-- (void)configureCellWithFilterOption:(Filter *)filterOption;
-
 @end
 
 NS_ASSUME_NONNULL_END

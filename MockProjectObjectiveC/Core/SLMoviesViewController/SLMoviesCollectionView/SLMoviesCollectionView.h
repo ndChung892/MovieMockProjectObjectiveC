@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property Result *result;
 @property (nonatomic, weak) id<SLMoviesCollectionViewDelegate> delegate;
 - (void)reloadView;
+
+@property (nonatomic) NSDate *releaseYear;
+@property (nonatomic) float ratingValue;
+@property (nonatomic) BOOL isSortByRating;
 @end
 
 NS_ASSUME_NONNULL_END

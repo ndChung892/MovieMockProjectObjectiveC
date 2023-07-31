@@ -20,7 +20,6 @@
 @property (nonatomic, strong) UIBarButtonItem *switchButton;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) NSString *path;
-
 @end
 
 @implementation SLMoviesViewController 
@@ -33,29 +32,55 @@
     [self fetchMovie:1];
     
     [self setupRightButtonNavigation];
-    [self.view setBackgroundColor:[UIColor systemBackgroundColor]];
     [self.spinner startAnimating];
     self.path = @"popular";
     [self.tableViewMovies setDelegate:self];
     [self.collectionViewMovies setDelegate:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSelectedOptionNotification:) name:@"SelectedOptionNotification" object:nil];
+    [self addObserverNotificationCenter];
     
 }
 
-- (void)handleSelectedOptionNotification:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    NSString *selectedOption = userInfo[@"selectedOption"];
+- (void)addObserverNotificationCenter {
+    // Option Filter
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSelectedFilterNotification:) name:@"SettingDidSelectFilterOption" object:nil];
+    // Option Rating
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handSelectedSortNotification:)name:@"SettingDidSelectSortOptionNotification" object:nil];
     
-    // Xử lý dữ liệu theo nhu cầu của bạn
-    if ([selectedOption isEqualToString:@"Popular Movies"]) {
-        self.path = @"popular";
-    } else if ([selectedOption isEqualToString:@"Top Rated Movies"]) {
-        self.path = @"top_rated";
-    } else if ([selectedOption isEqualToString:@"Upcomming Movies"]) {
-        self.path = @"upcoming";
-    } else if ([selectedOption isEqualToString:@"NowPlaying Movies"]) {
-        self.path = @"now_playing";
+    // Option Release Date
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleSelectedReleaseDateNotification:) name: @"SettingDidSelectReleaseDateFilter" object:nil];
+    // Option Rating Value
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSliderValueChanged:) name:@"SettingCellSeekBarValueNotification" object:nil];
+}
+
+-(void)handleSliderValueChanged:(NSNotification *)notification {
+    NSNumber *sliderValueNumber = notification.userInfo[@"sliderValue"];
+//    self.sliderValue = [sliderValueNumber floatValue];
+    NSLog(@"sliderValue ib Movie ViewController: %.1f", [sliderValueNumber floatValue]);
+    self.tableViewMovies.ratingValue = [sliderValueNumber floatValue];
+    self.collectionViewMovies.ratingValue = [sliderValueNumber floatValue];
+}
+
+- (void)handSelectedSortNotification:(NSNotification *)notificaiton {
+    NSString *sortSelected = notificaiton.userInfo[@"SelectedSortOption"];
+    if ([sortSelected isEqualToString:@"Release Date"]) {
+        self.tableViewMovies.sortSelected = sortSelected;
+        self.collectionViewMovies.isSortByRating = NO;
+    } else if ([sortSelected isEqualToString:@"Rating"]) {
+        self.tableViewMovies.sortSelected = sortSelected;
+        self.collectionViewMovies.isSortByRating = YES;
     }
+}
+
+- (void)handleSelectedReleaseDateNotification:(NSNotification *)notification {
+    NSDate *releaseYear = notification.userInfo[@"releaseDate"];
+    self.tableViewMovies.releaseYear = releaseYear;
+    self.collectionViewMovies.releaseYear = releaseYear;
+}
+
+- (void)handleSelectedFilterNotification:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *selectedOption = userInfo[@"optionValue"];
+    self.path = selectedOption;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -137,7 +162,7 @@
         [self.tableViewMovies.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
         [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:0],
         [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0],
-        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
         
         [self.collectionViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [self.collectionViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
@@ -163,7 +188,6 @@
 }
 
 - (void)dealloc {
-    // Unsubscribe when view controller is canceled
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -6,43 +6,38 @@
 //
 
 #import "SLFilterSeekbarTableViewCell.h"
+@interface SLFilterSeekbarTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UISlider *seekBar;
+
+@end
 
 @implementation SLFilterSeekbarTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    self.seekBar.minimumValue = 0.0;
+    self.seekBar.maximumValue = 10.0;
+    self.seekBar.value = 5.0;
+    [self.seekBar addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    self.valueLabel.text = @"5.0";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
-- (void)configureCellWithFilterOption:(Filter *)filterOption {
-    self.textLabel.text = filterOption.title;
-    
-    if (filterOption.isSeekbarOption) {
-        // Nếu là cell chứa seekbar thì hiển thị seekbar và giá trị
-        UISlider *seekbar = [[UISlider alloc] initWithFrame:CGRectMake(120, 10, 150, 20)];
-        [seekbar addTarget:self action:@selector(seekbarValueChanged:) forControlEvents:UIControlEventValueChanged];
-        seekbar.value = filterOption.seekbarValue;
-        [self.contentView addSubview:seekbar];
-        
-        UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(280, 10, 50, 20)];
-        valueLabel.text = filterOption.seekbarValueString;
-        [self.contentView addSubview:valueLabel];
-    } else {
-        // Nếu là cell thông thường thì hiển thị dấu tích nếu đã chọn
-        self.accessoryType = filterOption.isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    }
+- (void)sliderValueChanged:(UISlider *)sender {
+    self.valueLabel.text = [NSString stringWithFormat:@"%.1f", sender.value];
+    NSNumber *sliderValueNumber = @(sender.value);
+    NSDictionary *userInfo = @{@"sliderValue": sliderValueNumber};
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"SettingCellSeekBarValueNotification" object:nil userInfo:userInfo];
 }
 
-- (void)seekbarValueChanged:(UISlider *)sender {
-    // Xử lý giá trị của seekbar khi thay đổi
-    // (thay đổi giá trị của FilterOption và cập nhật seekbarValueString)
+- (void)prepareForReuse {
+    [super prepareForReuse];
 }
-
 
 @end
