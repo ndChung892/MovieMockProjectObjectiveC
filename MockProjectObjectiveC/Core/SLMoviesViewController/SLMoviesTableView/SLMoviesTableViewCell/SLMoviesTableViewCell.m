@@ -76,7 +76,7 @@
     self.titleMovielbl.text = self.result.title;
     self.overviewTextView.text = self.result.overView;
     self.releaseDatelbl.text = [NSString stringWithFormat:@"%@%@",@"Release Date: ", self.result.releaseDate];
-    self.ratinglbl.text = [NSString stringWithFormat:@"%@%@", @"Rating: ", [self.result.rating stringValue]];
+    self.ratinglbl.text = [NSString stringWithFormat:@"%@%.1f", @"Rating: ", [self.result.rating floatValue]];
     [self.imgMovie
      sd_setImageWithURL:[NSURL
                          URLWithString:[NSString

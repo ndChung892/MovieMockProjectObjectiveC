@@ -48,7 +48,7 @@
     NSFetchRequest *fetchRequest = [Favorites fetchRequest];
     NSError *error = nil;
     
-    NSArray<Favorites *> *fetchedItems = [self.context executeFetchRequest:fetchRequest error:&error];
+    NSArray *fetchedItems = [self.context executeFetchRequest:fetchRequest error:&error];
     
     if (error) {
         NSLog(@"Lỗi khi lấy dữ liệu: %@", error);
@@ -87,12 +87,26 @@
     } else {
         for (NSManagedObject *object in results) {
             NSNumber *iD = [object valueForKey:@"iD"];
-            if(idResult == iD) {
+            if([iD compare:idResult] == NSOrderedSame) {
                 return YES;
             }
         }
     }
     return NO;
+}
+
+- (void)getIDFavorites {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Favorites"];
+    NSError *error = nil;
+    NSArray *results = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    if (![self.context save:&error]) {
+    } else {
+        for (NSManagedObject *object in results) {
+            NSNumber *iD = [object valueForKey:@"iD"];
+            NSLog(@"Favorite ID: %@", iD);
+        }
+    }
 }
 
 - (void)removeAllFavorites {
@@ -211,5 +225,19 @@
         }
     }
     return nil;
+}
+
+- (BOOL)isExistReminder {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reminders"];
+    NSError *error = nil;
+    NSInteger count = [self.context countForFetchRequest:fetchRequest error:&error];
+    if (![self.context save:&error]) {
+        return NO;
+    } else {
+        if(count != 0) {
+            return YES;
+        }
+    }
+    return NO;
 }
 @end

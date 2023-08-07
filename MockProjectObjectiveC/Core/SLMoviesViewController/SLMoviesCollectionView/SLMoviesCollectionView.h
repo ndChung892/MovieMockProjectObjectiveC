@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property Model *model;
 @property Result *result;
 @property (nonatomic, weak) id<SLMoviesCollectionViewDelegate> delegate;
+
+@property (nonatomic) NSMutableArray *resultArr;
 - (void)reloadView;
 
 @property (nonatomic) NSDate *releaseYear;

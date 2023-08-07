@@ -15,11 +15,11 @@
 + (instancetype)sharedInstance;
 - (void)fetchMovieAPI:(int) pageNumber
              withPath:(NSString *) path
-      withCompletion:(void (^)(NSDictionary *response))completion;
+       withCompletion:(void (^)(NSDictionary *response))completion;
 - (void)fetchDetailMovieAPI:(NSNumber *)iD
-            withCompletion:(void (^)(NSDictionary *response))completion;
+             withCompletion:(void (^)(NSDictionary *response))completion;
 - (void)fetchCastAndCrew:(NSNumber *)iD
-         withCompletion:(void (^)(NSDictionary *response))completion;
+          withCompletion:(void (^)(NSDictionary *response))completion;
 
 @end
 

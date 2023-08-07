@@ -25,9 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.tintColor = [UIColor whiteColor];
-    self.tabBar.barTintColor = [UIColor grayColor];
+    self.tabBar.barTintColor = [UIColor blueColor];
     self.tabBar.backgroundColor = [UIColor blueColor];
-//    [self.view setBackgroundColor:[UIColor whiteColor]];
     [self configTabbarController];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowAllClicked:) name:@"transitionToSetting" object:nil];
 }
@@ -47,7 +46,7 @@
     
     UINavigationController *navMovie = [[UINavigationController alloc] initWithRootViewController:movieVC];
     UINavigationController *navFavorites = [[UINavigationController alloc] initWithRootViewController:favoritesVC];
-     self. navSetting = [[UINavigationController alloc] initWithRootViewController:settingVC];
+     self.navSetting = [[UINavigationController alloc] initWithRootViewController:settingVC];
     UINavigationController *navAbout = [[UINavigationController alloc] initWithRootViewController:aboutVC];
     
     [self configViewController:navMovie hasTitle:@"Movies" withIcon:@"house.fill"];
@@ -58,9 +57,10 @@
     NSArray *controllers = @[navMovie, navFavorites, self.navSetting, navAbout];
     
     for (id nav in controllers) {
-        [[nav navigationBar] setBackgroundColor:[UIColor blueColor]];
-        [[nav navigationBar] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-        [[nav navigationBar] setTintColor:[UIColor whiteColor]];
+        [[nav navigationBar]setBackgroundColor:[UIColor blueColor]];
+        [[nav navigationBar]setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+        [[nav navigationBar]setTintColor:[UIColor whiteColor]];
+        [[nav navigationBar]setBarTintColor:[UIColor blueColor]];
     }
     
     [self setViewControllers: @[navMovie, navFavorites, self.navSetting, navAbout]];

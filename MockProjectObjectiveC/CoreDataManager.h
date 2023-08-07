@@ -28,7 +28,7 @@
 - (void)removeFavorites:(Result *)result;
 - (BOOL)interateFavorites:(NSNumber *) idResult;
 - (void)removeAllFavorites;
-
+- (void)getIDFavorites;
 
 #pragma mark - Reminders
 - (void)createReminder:(Result *)result withReminderTime:(NSDate *)reminderTime;
@@ -38,5 +38,6 @@
 - (BOOL)interateReminders:(NSNumber *)iD;
 - (NSDate *)getReminderDate:(NSNumber *)iD;
 - (void)checkReminders:(NSDate *)currentTime;
+- (BOOL)isExistReminder;
 
 @end

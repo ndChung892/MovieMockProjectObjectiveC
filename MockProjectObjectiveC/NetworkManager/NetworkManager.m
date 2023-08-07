@@ -29,7 +29,7 @@
 #pragma mark - Fetch Popular movie
 - (void)fetchMovieAPI:(int) pageNumber
              withPath:(NSString *) path
-      withCompletion:(void (^)(NSDictionary *response))completion {
+       withCompletion:(void (^)(NSDictionary *response))completion {
     NSString *url = [NSString stringWithFormat:@"%@%@", baseURL, path];
     NSNumber *page = [NSNumber numberWithInt:pageNumber];
     
@@ -54,7 +54,7 @@
 
 #pragma mark - Fetch Detail of movie
 - (void)fetchDetailMovieAPI:(NSNumber *)iD
-            withCompletion:(void (^)(NSDictionary *response))completion {
+             withCompletion:(void (^)(NSDictionary *response))completion {
     NSString *urlDetail = [NSString stringWithFormat:@"%@%@", baseURL, iD];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:urlDetail
@@ -71,7 +71,8 @@
 
 #pragma mark - Fetch cast and crew
 - (void)fetchCastAndCrew:(NSNumber *)iD
-            withCompletion:(void (^)(NSDictionary *response))completion {
+        
+          withCompletion:(void (^)(NSDictionary *response))completion {
     NSString *urlDetail = [NSString stringWithFormat:@"%@%@/credits", baseURL, iD];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:urlDetail

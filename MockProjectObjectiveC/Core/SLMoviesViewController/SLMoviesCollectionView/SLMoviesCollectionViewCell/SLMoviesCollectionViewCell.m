@@ -23,7 +23,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-//    [self.imgCollectionView.heightAnchor constraintEqualToAnchor:self.imgCollectionView.widthAnchor].active = YES;
     CGRect bounds = [UIScreen.mainScreen bounds];
     CGFloat width = (bounds.size.width)/2;
     

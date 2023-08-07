@@ -13,6 +13,6 @@
 
 @interface Crew : NSObject
 
-@property (nonatomic, strong) NSString *profilePath;
+@property (nonatomic, copy) NSString *profilePath;
 
 @end

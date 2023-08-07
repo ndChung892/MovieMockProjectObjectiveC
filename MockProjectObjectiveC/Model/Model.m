@@ -23,7 +23,7 @@
 
 - (id)initMoviesData:(NSDictionary *)resultDic {
     self = [super init];
-    Result *result = [[Result alloc]init];
+    Result *result = [[Result alloc] init];
     if (self) {
         result.iD = resultDic[@"id"];
         result.title = resultDic[@"title"];
@@ -44,7 +44,7 @@
 - (id)initFavoritesData:(Favorites *)item {
     self = [super init];
     if (self) {
-        Result *result = [[Result alloc]init];
+        Result *result = [[Result alloc] init];
         result.title = item.title;
         result.overView = item.overview;
         result.iD = [NSNumber numberWithInt:(int)item.iD];

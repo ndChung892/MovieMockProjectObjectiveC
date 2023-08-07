@@ -17,6 +17,7 @@
 #import "Favorites+CoreDataProperties.h"
 #import "CoreDataManager.h"
 
+
 @interface SLDetailMoviesViewController () 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewCastAndCrew;
 @property (weak, nonatomic) IBOutlet UIImageView *imgMovie;
@@ -42,7 +43,7 @@
     self.castAndCrewArr = [[NSArray alloc] init];
     
     [self setupPickerView];
-    [self initTappedFavorite];
+    
     self.lblReminder.hidden = YES;
     
     // Setup layout for collectionView
@@ -56,8 +57,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSDate *currentDate = [NSDate date];
+    [self initTappedFavorite];
     NSLog(@"currentDate: %@", currentDate);
-    [[CoreDataManager sharedInstance]checkReminders:currentDate];
+    [[CoreDataManager sharedInstance] checkReminders:currentDate];
     if ([[CoreDataManager sharedInstance] interateReminders:self.result.iD]){
         self.reminderButton.enabled = NO;
         self.lblReminder.hidden = NO;
@@ -145,6 +147,8 @@
 
 #pragma mark - Tapped favorite
 - (void)initTappedFavorite {
+    [[CoreDataManager sharedInstance] getIDFavorites];
+    NSLog(@"hahah%@", self.result.iD);
     self.isFavorite = [[CoreDataManager sharedInstance] interateFavorites:self.result.iD];
     if(self.isFavorite) {
         self.favoriteButton.image = [UIImage systemImageNamed:@"star.fill"];
@@ -159,12 +163,12 @@
 - (void)imageTapped:(UITapGestureRecognizer *)sender {
     if (!self.isFavorite) {
         self.favoriteButton.image = [UIImage systemImageNamed:@"star.fill"];
-        [[CoreDataManager sharedInstance] createFavorites:self.result];
+        [[CoreDataManager sharedInstance]createFavorites:self.result];
         self.isFavorite = YES;
     } else {
         self.favoriteButton.image = [UIImage systemImageNamed:@"star"];
         self.isFavorite = NO;
-        [[CoreDataManager sharedInstance] removeFavorites:self.result];
+        [[CoreDataManager sharedInstance]removeFavorites:self.result];
     }
 }
 
@@ -173,7 +177,7 @@
     self.title = self.result.title;
     [self.imgMovie sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", imageURL, self.result.imgURL]]];
     self.overviewTextView.text = self.result.overView;
-    self.ratinglbl.text = [self.result.rating stringValue];
+    self.ratinglbl.text = [NSString stringWithFormat:@"%.1f", [self.result.rating floatValue]];
     self.releaseDatelbl.text = self.result.releaseDate;
 }
 

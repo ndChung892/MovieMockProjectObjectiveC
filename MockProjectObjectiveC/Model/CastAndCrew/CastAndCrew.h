@@ -17,6 +17,6 @@
 
 @interface CastAndCrew : NSObject
 
-@property (nonatomic, strong) NSString *profilePath;
+@property (nonatomic, copy) NSString *profilePath;
 
 @end

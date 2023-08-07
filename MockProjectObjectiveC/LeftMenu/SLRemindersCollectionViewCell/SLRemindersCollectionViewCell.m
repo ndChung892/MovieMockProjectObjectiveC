@@ -32,6 +32,7 @@
 
 - (void)configCell:(NSString *)info withReminderTime:(NSString *) reminderTime {
     self.lblInfoMovie.text = info;
+    
     self.lblReminderTime.text = reminderTime;
 }
 

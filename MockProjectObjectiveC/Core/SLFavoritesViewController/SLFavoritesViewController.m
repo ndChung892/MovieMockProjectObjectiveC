@@ -11,6 +11,7 @@
 #import "SLFavoritesTableViewCell.h"
 #import "Favorites+CoreDataClass.h"
 #import "Favorites+CoreDataProperties.h"
+#import "SLDetailMoviesViewController.h"
 
 #pragma mark - SLFavoritesViewController
 @interface SLFavoritesViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
@@ -41,25 +42,24 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"SLFavoritesTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellFavoritesTableView"];
     
     // Setup searchTextField
-    UINavigationController *navigationController = self.navigationController;
-    UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(navigationController.navigationBar.frame), CGRectGetWidth(self.view.frame), 40)];
+    UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), CGRectGetWidth(self.view.frame), 40)];
     searchTextField.placeholder = @"Search";
     searchTextField.borderStyle = UITextBorderStyleRoundedRect;
     searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     searchTextField.delegate = self;
-    [navigationController.view addSubview:searchTextField];
-    [navigationController.view addSubview:self.tableView];
+    [self.view addSubview:searchTextField];
+    [self.view addSubview:self.tableView];
     searchTextField.translatesAutoresizingMaskIntoConstraints = NO;
     
     // Layout constraint
     [NSLayoutConstraint activateConstraints:@[
-        [searchTextField.topAnchor constraintEqualToAnchor:navigationController.navigationBar.bottomAnchor constant:8],
-        [searchTextField.leadingAnchor constraintEqualToAnchor:navigationController.view.leadingAnchor constant:0],
-        [searchTextField.trailingAnchor constraintEqualToAnchor:navigationController.view.trailingAnchor constant:0],
+        [searchTextField.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:8],
+        [searchTextField.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:0],
+        [searchTextField.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0],
         [self.tableView.topAnchor constraintEqualToAnchor:searchTextField.bottomAnchor],
-        [self.tableView.leadingAnchor constraintEqualToAnchor:navigationController.view.leadingAnchor],
-        [self.tableView.trailingAnchor constraintEqualToAnchor:navigationController.view.trailingAnchor],
-        [self.tableView.bottomAnchor constraintEqualToAnchor:navigationController.view.bottomAnchor],
+        [self.tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
     ]];
 }
 
@@ -90,7 +90,9 @@
     [self.tableView reloadData];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (BOOL)textField:(UITextField *)textField
+shouldChangeCharactersInRange:(NSRange)range
+replacementString:(NSString *)string {
     NSString *searchText = [textField.text stringByReplacingCharactersInRange:range withString:string];
         if (searchText.length == 0) {
             self.model.results = [self.originalData mutableCopy];
@@ -108,18 +110,21 @@
 }
 
 #pragma mark - TableView Delegate
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewCellEditingStyleDelete;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath {
     [[CoreDataManager sharedInstance]removeFavorites: self.model.results[indexPath.row]];
     [self.model.results removeObject:self.model.results[indexPath.row]];
-    
     [self.tableView reloadData];
 }
 
-- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView
+trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Create deleteAction
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Del" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         // Confirm Delete
@@ -148,7 +153,8 @@
 }
 
 #pragma mark - TableView Datasource
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLFavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFavoritesTableView" forIndexPath:indexPath];
     cell.result = self.model.results[indexPath.row];
     cell.isFavorite = YES;
@@ -156,9 +162,17 @@
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     return self.model.results.count;
 }
 
-
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SLDetailMoviesViewController *detailVC = [[SLDetailMoviesViewController alloc]initWithNibName:@"SLDetailMoviesViewController" bundle:nil];
+    detailVC.result = self.model.results[indexPath.row];
+    NSLog(@"ID: %@",detailVC.result.iD);
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+}
 @end

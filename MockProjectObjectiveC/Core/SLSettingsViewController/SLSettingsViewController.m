@@ -40,7 +40,7 @@
     [self setTitle:@"Setting"];
     [self setupTableView];
     [self setupPickerView];
-    
+    [self.view setBackgroundColor:[UIColor systemBackgroundColor]];
     [self initData];
     self.selectedDate = [self defaultReleaseYear:2000];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSliderValueChanged:) name:@"SettingCellSeekBarValueNotification" object:nil];
@@ -100,7 +100,7 @@
     
     // Sort
     Sort *releaseDateSort = [[Sort alloc] init];
-    self.sortOptions = [[NSMutableArray alloc]init];
+    self.sortOptions = [[NSMutableArray alloc] init];
     releaseDateSort.title = @"Release Date";
     releaseDateSort.isSelected = YES;
     [self.sortOptions addObject:releaseDateSort];
@@ -111,23 +111,29 @@
 }
 
 - (void)setupTableView {
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.tableView];
     [NSLayoutConstraint activateConstraints:@[
-        [self.tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.tableView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
         [self.tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
         [self.tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-        [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
     ]];
     // Register Cell
-    [self.tableView registerNib:[UINib nibWithNibName:@"SLFilterSeekbarTableViewCell" bundle:nil] forCellReuseIdentifier:@"FilterOptionCell"];
+    [self.tableView registerNib:[UINib
+                                 nibWithNibName:@"SLFilterSeekbarTableViewCell"
+                                 bundle:nil]forCellReuseIdentifier:@"FilterOptionCell"];
     
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"NormalCell"];
+    [self.tableView
+     registerClass:UITableViewCell.class
+     forCellReuseIdentifier:@"NormalCell"];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"SLFilterReleaseDateTableViewCell" bundle:nil] forCellReuseIdentifier:@"ReleaseYearCell"];
+    [self.tableView registerNib:[UINib
+                                 nibWithNibName:@"SLFilterReleaseDateTableViewCell"
+                                 bundle:nil]forCellReuseIdentifier:@"ReleaseYearCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -159,7 +165,8 @@
 }
 
 #pragma mark - TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         Filter *selectedOption = self.filterOptions[indexPath.row];
         if (!selectedOption.isReleaseYearOption && !selectedOption.isSeekbarOption){
@@ -224,13 +231,14 @@
             optionValue = selectedOption.title;
         }
         NSDictionary *userInfo = @{@"SelectedSortOption": optionValue};
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"SettingDidSelectSortOptionNotification" object:nil userInfo:userInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SettingDidSelectSortOptionNotification" object:nil userInfo:userInfo];
     }
 }
 
 #pragma mark - TableView DataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return self.filterOptions.count;
     } else {
@@ -242,7 +250,8 @@
     return 2;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return @"Filter";
     } else {
@@ -250,7 +259,8 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         Filter *option = self.filterOptions[indexPath.row];
         if (option.isSeekbarOption) {
@@ -285,15 +295,20 @@
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component {
     return self.yearsArray.count;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component {
     return self.yearsArray[row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
     
     // Set display year by the previous year
     NSInteger indexOfDefaultYear = [self.yearsArray indexOfObject:[NSString stringWithFormat:@"%ld", (long)self.selectedDate]];
@@ -305,7 +320,7 @@
 #pragma mark - Show YearPicker
 - (void)showYearPicker:(NSIndexPath *)indexPath {
     // Text field to display Picker View
-    UITextField *textField = [[UITextField alloc] init];
+    UITextField *textField = [[UITextField alloc]init];
     textField.inputView = self.yearPicker;
     [textField becomeFirstResponder];
     
@@ -315,12 +330,12 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSInteger selectedYearIndex = [self.yearPicker selectedRowInComponent:0];
             NSString *selectedYearString = self.yearsArray[selectedYearIndex];
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
             [dateFormatter setDateFormat:@"yyyy"];
             self.selectedDate = [dateFormatter dateFromString:selectedYearString];
         
         // Update display data
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationNone];
         NSDictionary *userInfo = @{@"releaseDate": self.selectedDate};
         // Post Notification for Release Date
         [[NSNotificationCenter defaultCenter]postNotificationName:@"SettingDidSelectReleaseDateFilter" object:nil userInfo:userInfo];
@@ -330,7 +345,8 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         Filter *option = self.filterOptions[indexPath.row];
         if (option.isSeekbarOption) {

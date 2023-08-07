@@ -28,11 +28,15 @@
     self.isMale = YES;
     
     // Get Data from UserDefaults
-    self.imgProfile.image = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults]objectForKey:@"SelectedImage"]] ;
-    self.textFieldName.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"name"];
-    self.textFieldEmail.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"email"];
-    self.textFieldDoB.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"dob"];
-    self.gender = [[NSUserDefaults standardUserDefaults]objectForKey:@"gender"];
+    self.imgProfile.image = [UIImage
+                             imageWithData:[[NSUserDefaults
+                                             standardUserDefaults]
+                                            objectForKey:@"SelectedImage"]];
+   
+    self.textFieldName.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    self.textFieldEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"email"];
+    self.textFieldDoB.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"dob"];
+    self.gender = [[NSUserDefaults standardUserDefaults] objectForKey:@"gender"];
     
     if([self.gender  isEqual: @"Male"]) {
         self.isMale = YES;
@@ -44,15 +48,17 @@
 - (void)setupView {
     // Setup Image Profile
     self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.height/2;
+    self.imgProfile.layer.borderWidth = 2.0;
+    self.imgProfile.layer.borderColor = [[UIColor blackColor]CGColor];
     self.imgProfile.clipsToBounds = YES;
     UITapGestureRecognizer *imgProfileTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
     [self.imgProfile addGestureRecognizer:imgProfileTap];
     self.imgProfile.userInteractionEnabled = YES;
     
     // Setup TextField DOB
-    UITapGestureRecognizer *doBTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textFieldTapped:)];
+    UITapGestureRecognizer *doBTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textFieldTapped:)];
     [self.view addGestureRecognizer:doBTap];
-    UIDatePicker *dobPicker = [[UIDatePicker alloc]init];
+    UIDatePicker *dobPicker = [[UIDatePicker alloc] init];
     dobPicker.datePickerMode = UIDatePickerModeDate;
     dobPicker.preferredDatePickerStyle = UIDatePickerStyleWheels;
     [dobPicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
@@ -60,8 +66,8 @@
     self.textFieldDoB.inputView = dobPicker;
     
     // Setup gender option
-    UITapGestureRecognizer *maleTapp = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maleTapped:)];
-    UITapGestureRecognizer *femaleTapp = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(femaleTapped:)];
+    UITapGestureRecognizer *maleTapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maleTapped:)];
+    UITapGestureRecognizer *femaleTapp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(femaleTapped:)];
     
     [self.imgButtonMale addGestureRecognizer:maleTapp];
     [self.imgButtonFemale addGestureRecognizer:femaleTapp];
@@ -97,10 +103,9 @@
 }
 
 - (void)dateChanged:(UIDatePicker *) datePicker {
-    NSDateFormatter *dateFormater = [[NSDateFormatter alloc]init];
-    [dateFormater setDateFormat:@"MM/dd/yyyy"];
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"dd/MM/yyyy"];
     self.textFieldDoB.text = [dateFormater stringFromDate:datePicker.date];
-//    [self.view endEditing:YES];
 }
 
 #pragma mark - Change Image Profile
@@ -108,19 +113,31 @@
     UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
     pickerController.delegate = self;
     
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheet = [UIAlertController
+                                      alertControllerWithTitle:nil
+                                      message:nil
+                                      preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cameraAction = [UIAlertAction
+                                   actionWithTitle:@"Camera"
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction * _Nonnull action) {
         pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:pickerController animated:YES completion:nil];
     }];
     
-    UIAlertAction *libraryAction = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *libraryAction = [UIAlertAction
+                                    actionWithTitle:@"Photo Library"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * _Nonnull action) {
         pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:pickerController animated:YES completion:nil];
     }];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"Cancel"
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
     
     [actionSheet addAction:cameraAction];
     [actionSheet addAction:libraryAction];

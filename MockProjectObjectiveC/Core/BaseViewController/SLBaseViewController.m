@@ -26,7 +26,7 @@
                                   action:@selector(revealToggle:)];
     
     self.navigationItem.leftBarButtonItem = menuButon;
-    self.revealViewController.rearViewRevealWidth = (int)[[UIScreen mainScreen]bounds].size.width / 1.3;
+    self.revealViewController.rearViewRevealWidth = (int)[[UIScreen mainScreen] bounds].size.width / 1.3;
     self.revealViewController.rearViewRevealOverdraw = 0;
     self.revealViewController.rearViewRevealDisplacement = 0;
     

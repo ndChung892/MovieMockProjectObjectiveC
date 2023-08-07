@@ -15,11 +15,11 @@
 @interface Result : NSObject
 
 @property (nonatomic, strong) NSNumber *iD;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *overView;
-@property (nonatomic, strong) NSString *releaseDate;
-@property (nonatomic, strong) NSNumber *rating;
-@property (nonatomic, strong) NSString *imgURL;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *overView;
+@property (nonatomic, copy) NSString *releaseDate;
+@property (nonatomic, copy) NSNumber *rating;
+@property (nonatomic, copy) NSString *imgURL;
 @property (nonatomic, assign) BOOL isFavorite;
 
 @end

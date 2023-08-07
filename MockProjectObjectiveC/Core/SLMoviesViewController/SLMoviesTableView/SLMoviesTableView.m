@@ -70,13 +70,13 @@
     }
 
     // If SelectSort
-    if ([self.sortSelected isEqualToString:@"Release Date"]) {
+    if ([self.sortSelected isEqualToString:@"Rating"]) {
         [self.resultsArr sortUsingComparator:^NSComparisonResult(Result *result1, Result *result2) {
             NSNumber *rating1 = result1.rating;
             NSNumber *rating2 = result2.rating;
             return [rating1 compare:rating2];
         }];
-    } else if ([self.sortSelected isEqualToString:@"Rating"]) {
+    } else if ([self.sortSelected isEqualToString:@"Release Date"]) {
         [self.resultsArr sortUsingComparator:^NSComparisonResult(Result *result1, Result *result2) {
             NSDate *date1 = [dateFormatter dateFromString:result1.releaseDate];
             NSDate *date2 = [dateFormatter dateFromString:result2.releaseDate];
@@ -85,6 +85,7 @@
     }
     [self.tableView reloadData];
     [self.tableView.infiniteScrollingView stopAnimating];
+    [self.tableView.pullToRefreshView stopAnimating];
 }
 
 #pragma mark - Pull to refresh
@@ -92,7 +93,8 @@
     __weak typeof(self) weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
         // Call API when pull down
-        [weakSelf.tableView.pullToRefreshView stopAnimating];
+        weakSelf.pageNumber = 1;
+        [weakSelf.delegate didPullToRefresh:weakSelf.pageNumber];
     }];
     
     [self.tableView addInfiniteScrollingWithActionHandler:^{
@@ -105,7 +107,8 @@
 
 #pragma mark - tableView
 - (void)setupTableView {
-    self.tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:self.bounds];
+
     // Add the UITableView to the CustomTableView
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -123,18 +126,20 @@
         // Add constraints to position and size the UITableView
         [self.tableView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
         [self.tableView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.tableView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.tableView.topAnchor constraintEqualToAnchor:self.safeAreaLayoutGuide.topAnchor],
         [self.tableView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
     ]];
 }
 
 #pragma mark - UITableViewDataSource Methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in your table
     return self.resultsArr.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLMoviesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellMoviesTableView" forIndexPath:indexPath];
     // Configure the cell with result
     cell.result = self.resultsArr[indexPath.row];
@@ -144,11 +149,13 @@
 }
 
 #pragma mark - UITableViewDelegate Methods
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Get movie id and pass to viewcontroller
     [self.delegate didSelectCellWithId:self.resultsArr[indexPath.row]];
 }

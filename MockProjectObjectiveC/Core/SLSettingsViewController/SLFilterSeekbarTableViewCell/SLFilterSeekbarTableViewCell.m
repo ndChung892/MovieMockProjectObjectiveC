@@ -33,7 +33,7 @@
     self.valueLabel.text = [NSString stringWithFormat:@"%.1f", sender.value];
     NSNumber *sliderValueNumber = @(sender.value);
     NSDictionary *userInfo = @{@"sliderValue": sliderValueNumber};
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"SettingCellSeekBarValueNotification" object:nil userInfo:userInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SettingCellSeekBarValueNotification" object:nil userInfo:userInfo];
 }
 
 - (void)prepareForReuse {

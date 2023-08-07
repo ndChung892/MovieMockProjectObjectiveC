@@ -19,7 +19,7 @@
 @property (nonatomic, strong) SLMoviesCollectionView *collectionViewMovies;
 @property (nonatomic, strong) UIBarButtonItem *switchButton;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
-@property (nonatomic, strong) NSString *path;
+@property (nonatomic, copy) NSString *path;
 @end
 
 @implementation SLMoviesViewController 
@@ -30,14 +30,13 @@
     
     [self initView];
     [self fetchMovie:1];
-    
+    [self.view setBackgroundColor:[UIColor systemBackgroundColor]];
     [self setupRightButtonNavigation];
     [self.spinner startAnimating];
     self.path = @"popular";
     [self.tableViewMovies setDelegate:self];
     [self.collectionViewMovies setDelegate:self];
     [self addObserverNotificationCenter];
-    
 }
 
 - (void)addObserverNotificationCenter {
@@ -52,9 +51,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSliderValueChanged:) name:@"SettingCellSeekBarValueNotification" object:nil];
 }
 
+#pragma mark - Handle Notification Center
 -(void)handleSliderValueChanged:(NSNotification *)notification {
     NSNumber *sliderValueNumber = notification.userInfo[@"sliderValue"];
-//    self.sliderValue = [sliderValueNumber floatValue];
     NSLog(@"sliderValue ib Movie ViewController: %.1f", [sliderValueNumber floatValue]);
     self.tableViewMovies.ratingValue = [sliderValueNumber floatValue];
     self.collectionViewMovies.ratingValue = [sliderValueNumber floatValue];
@@ -85,8 +84,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    self.tableViewMovies.pageNumber = 1;
-    [self fetchMovie:1];
+//    self.tableViewMovies.pageNumber = 1;
+//    [self fetchMovie:1];
 }
 
 - (void)setupRightButtonNavigation {
@@ -106,6 +105,7 @@
         NSArray *resultsArray = response[@"results"];
         if(pageNumber == 1) {
             [self.tableViewMovies.resultsArr removeAllObjects];
+            [self.collectionViewMovies.resultArr removeAllObjects];
         }
         for(NSDictionary *resultDict in resultsArray) {
             (void)[self.tableViewMovies.model initMoviesData:resultDict];
@@ -160,8 +160,8 @@
     //Add constraint
     [NSLayoutConstraint activateConstraints:@[
         [self.tableViewMovies.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
-        [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:0],
-        [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:0],
+        [self.tableViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.tableViewMovies.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
         [self.tableViewMovies.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
         
         [self.collectionViewMovies.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
