@@ -177,10 +177,9 @@
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dd/MM/yyyy HH:mm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4h-zU-ai2">
-                    <rect key="frame" x="10" y="370.33333333333331" width="200" height="20.333333333333314"/>
+                    <rect key="frame" x="10" y="370.33333333333331" width="363" height="20.333333333333314"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20.329999999999998" id="T1N-Id-Bcz"/>
-                        <constraint firstAttribute="width" constant="200" id="ieV-Yo-vc5"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" systemColor="systemRedColor"/>
@@ -213,6 +212,7 @@
                 <constraint firstItem="yai-FD-wmx" firstAttribute="leading" secondItem="aAP-aR-0cl" secondAttribute="trailing" constant="10" id="tPU-p2-LUe"/>
                 <constraint firstItem="Di2-aq-Ia0" firstAttribute="top" secondItem="9AF-Wl-Kkf" secondAttribute="top" id="v5e-IW-DUb"/>
                 <constraint firstItem="iJf-DR-nSM" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="yB6-qw-X7h"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="U4h-zU-ai2" secondAttribute="trailing" constant="20" id="yhS-NL-Dyi"/>
             </constraints>
             <point key="canvasLocation" x="119.84732824427481" y="-11.267605633802818"/>
         </view>

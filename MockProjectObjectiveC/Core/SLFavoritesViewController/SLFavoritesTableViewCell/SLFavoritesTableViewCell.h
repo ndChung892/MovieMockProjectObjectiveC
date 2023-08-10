@@ -13,9 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SLFavoritesTableViewCell : UITableViewCell
-@property (nonatomic) BOOL isFavorite;
-@property (nonatomic) Result *result;
-- (void)configCell;
+- (void)configCell:(Result *)result;
 @end
 
 NS_ASSUME_NONNULL_END

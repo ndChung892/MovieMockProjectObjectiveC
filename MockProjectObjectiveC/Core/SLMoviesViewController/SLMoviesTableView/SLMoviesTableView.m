@@ -29,10 +29,7 @@
     if (self) {
         // Handle get data from api
         self.model = [[Model alloc]init];
-        self.result = [[Result alloc]init];
-        self.moviesVC = [[SLMoviesViewController alloc]init];
         self.resultsArr = [[NSMutableArray alloc]init];
-        
         [self setBackgroundColor:[UIColor systemBackgroundColor]];
         // Setup tableView
         [self setupTableView];
@@ -68,7 +65,6 @@
             }
         }
     }
-
     // If SelectSort
     if ([self.sortSelected isEqualToString:@"Rating"]) {
         [self.resultsArr sortUsingComparator:^NSComparisonResult(Result *result1, Result *result2) {
@@ -142,6 +138,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLMoviesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellMoviesTableView" forIndexPath:indexPath];
     // Configure the cell with result
+    cell.delegate = self;
     cell.result = self.resultsArr[indexPath.row];
     [cell configTableViewCell];
     
@@ -160,4 +157,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate didSelectCellWithId:self.resultsArr[indexPath.row]];
 }
 
+- (void)favoriteClickHandler:(BOOL)isFavorite withResult:(Result *)result{
+    [self.delegate favoriteClickHandler:isFavorite withResult:result];
+}
 @end

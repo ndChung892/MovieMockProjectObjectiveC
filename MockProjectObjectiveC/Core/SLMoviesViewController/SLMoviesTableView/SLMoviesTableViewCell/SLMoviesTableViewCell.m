@@ -43,23 +43,19 @@
     self.isFavorite = !self.isFavorite;
     if (self.isFavorite) {
         self.imgFavorite.image = [UIImage systemImageNamed:@"star.fill"];
-        if(![[CoreDataManager sharedInstance] interateFavorites:self.result.iD]){
-            [[CoreDataManager sharedInstance] createFavorites:self.result];
-        }
     } else {
         self.imgFavorite.image = [UIImage systemImageNamed:@"star"];
-        [[CoreDataManager sharedInstance] removeFavorites:self.result];
     }
-    
+    [self.delegate favoriteClickHandler:self.isFavorite withResult:self.result];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:false animated:animated];
+    [super setSelected:NO animated:animated];
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    [super setHighlighted:false animated:animated];
-    
+    [super setHighlighted:NO animated:animated];
+   
 }
 
 - (void)prepareForReuse {

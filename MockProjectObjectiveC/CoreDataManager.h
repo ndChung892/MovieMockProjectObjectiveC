@@ -34,10 +34,11 @@
 - (void)createReminder:(Result *)result withReminderTime:(NSDate *)reminderTime;
 - (void)getAllReminders:(void (^)(NSArray<Reminders *> *items))completion;
 - (void)removeAllReminders;
-//- (void)removeReminders:(NSDate *)reminderTime withTitle:(NSString *)title;
+- (void)removeReminder:(NSNumber *)resultId;
 - (BOOL)interateReminders:(NSNumber *)iD;
 - (NSDate *)getReminderDate:(NSNumber *)iD;
 - (void)checkReminders:(NSDate *)currentTime;
 - (BOOL)isExistReminder;
+- (void)updateReminderDate:(NSNumber *)resultId withDate:(NSDate *)date;
 
 @end

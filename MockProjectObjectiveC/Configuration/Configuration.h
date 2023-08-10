@@ -13,10 +13,10 @@
 
 
 @interface Configuration : NSObject
-
-extern NSString *const baseURL;
-extern NSString *const imageURL;
-extern NSDictionary *parameters;
-extern NSString *const aboutURL;
+#pragma mark - api URL
+FOUNDATION_EXPORT NSString *const baseURL;
+FOUNDATION_EXPORT NSString *const imageURL;
+FOUNDATION_EXPORT NSDictionary *parameters;
+FOUNDATION_EXPORT NSString *const aboutURL;
 
 @end

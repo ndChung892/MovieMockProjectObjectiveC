@@ -9,10 +9,11 @@
 #import "SLShowAllRemindersViewController.h"
 #import "SWRevealViewController.h"
 #import "SLFilterSeekbarTableViewCell.h"
+#import "NotificationConstant.h"
 
 #pragma mark - SLSettingViewController
 
-@interface SLSettingsViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface SLSettingsViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, SLFilterSeekbarTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray<Filter *> *filterOptions;
 @property (nonatomic, strong) Filter *selectedFilterOption;
@@ -43,7 +44,7 @@
     [self.view setBackgroundColor:[UIColor systemBackgroundColor]];
     [self initData];
     self.selectedDate = [self defaultReleaseYear:2000];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSliderValueChanged:) name:@"SettingCellSeekBarValueNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSliderValueChanged:) name:NOTIFICATION_SETTING_SEEKBAR_VALUE_UPDATE object:nil];
 }
 
 -(void)handleSliderValueChanged:(NSNotification *)notification {
@@ -205,9 +206,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             } else if (selectedOption == self.filterOptions[3]) {
                 optionValue = @"now_playing";
             }
-            NSDictionary *userInfo = @{@"optionValue": optionValue};
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"SettingDidSelectFilterOption" object:nil userInfo:userInfo];
-            NSLog(@"Filter Option: %@", optionValue);
+            NSDictionary *userInfo = @{@"selectedFilterOption": optionValue};
+            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_SETTING_DID_SELECT_FILTER_OPTION object:nil userInfo:userInfo];
         } else if (selectedOption.isReleaseYearOption) {
             [self showYearPicker:indexPath];
         } else if (selectedOption.isSeekbarOption) {
@@ -230,8 +230,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         } else if (selectedOption == self.sortOptions[1]) {
             optionValue = selectedOption.title;
         }
-        NSDictionary *userInfo = @{@"SelectedSortOption": optionValue};
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SettingDidSelectSortOptionNotification" object:nil userInfo:userInfo];
+        NSDictionary *userInfo = @{@"selectedSortOption": optionValue};
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SETTING_DID_SELECT_SORT_OPTION object:nil userInfo:userInfo];
     }
 }
 
@@ -265,6 +265,7 @@ titleForHeaderInSection:(NSInteger)section {
         Filter *option = self.filterOptions[indexPath.row];
         if (option.isSeekbarOption) {
             SLFilterSeekbarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FilterOptionCell" forIndexPath:indexPath];
+            cell.delegate = self;
             return cell;
         } else if (option.isReleaseYearOption) {
             SLFilterReleaseDateTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReleaseYearCell" forIndexPath:indexPath];
@@ -338,7 +339,7 @@ numberOfRowsInComponent:(NSInteger)component {
         [self.tableView reloadRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationNone];
         NSDictionary *userInfo = @{@"releaseDate": self.selectedDate};
         // Post Notification for Release Date
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"SettingDidSelectReleaseDateFilter" object:nil userInfo:userInfo];
+        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_SETTING_RELEASAE_DATE_UPDATE object:nil userInfo:userInfo];
     }]];
     
     [alertController.view addSubview:textField];
@@ -354,6 +355,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
         }
     }
     return UITableViewAutomaticDimension;
+}
+
+- (void)sliderValueChange:(float)sliderValue {
+    NSNumber *sliderValueNumber = @(sliderValue);
+    NSDictionary *userInfo = @{@"sliderValue": sliderValueNumber};
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SETTING_SEEKBAR_VALUE_UPDATE object:nil userInfo:userInfo];
 }
 
 - (void)dealloc {

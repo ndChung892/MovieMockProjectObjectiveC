@@ -135,6 +135,7 @@
 		495177BB2A42A0550008345B /* SLAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLAboutViewController.h; sourceTree = "<group>"; };
 		495177BC2A42A0550008345B /* SLAboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAboutViewController.m; sourceTree = "<group>"; };
 		495177BD2A42A0550008345B /* SLAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SLAboutViewController.xib; sourceTree = "<group>"; };
+		496A7B172A8343B700E532FC /* NotificationConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationConstant.h; sourceTree = "<group>"; };
 		497439A32A49372C0036B76C /* SLTabbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLTabbarController.h; sourceTree = "<group>"; };
 		497439A42A49372C0036B76C /* SLTabbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLTabbarController.m; sourceTree = "<group>"; };
 		49B35FFC2A6FC29500824A38 /* SLEditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLEditProfileViewController.h; sourceTree = "<group>"; };
@@ -187,6 +188,7 @@
 		490D3A7A2A4C3808007AF5F1 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				496A7B162A83438200E532FC /* NotificationConstant */,
 				490D3A802A4C3F07007AF5F1 /* Configuration.h */,
 				490D3A812A4C3F17007AF5F1 /* Configuration.m */,
 			);
@@ -478,6 +480,14 @@
 				495177BD2A42A0550008345B /* SLAboutViewController.xib */,
 			);
 			path = SLAboutViewController;
+			sourceTree = "<group>";
+		};
+		496A7B162A83438200E532FC /* NotificationConstant */ = {
+			isa = PBXGroup;
+			children = (
+				496A7B172A8343B700E532FC /* NotificationConstant.h */,
+			);
+			path = NotificationConstant;
 			sourceTree = "<group>";
 		};
 		497E294F2A4E746B0013913D /* Model */ = {

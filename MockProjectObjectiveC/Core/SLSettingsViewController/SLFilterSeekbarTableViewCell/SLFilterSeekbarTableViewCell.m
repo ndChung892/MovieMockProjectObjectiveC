@@ -6,6 +6,8 @@
 //
 
 #import "SLFilterSeekbarTableViewCell.h"
+#import "NotificationConstant.h"
+
 @interface SLFilterSeekbarTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
@@ -17,7 +19,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
     self.seekBar.minimumValue = 0.0;
     self.seekBar.maximumValue = 10.0;
     self.seekBar.value = 5.0;
@@ -31,9 +32,7 @@
 
 - (void)sliderValueChanged:(UISlider *)sender {
     self.valueLabel.text = [NSString stringWithFormat:@"%.1f", sender.value];
-    NSNumber *sliderValueNumber = @(sender.value);
-    NSDictionary *userInfo = @{@"sliderValue": sliderValueNumber};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SettingCellSeekBarValueNotification" object:nil userInfo:userInfo];
+    [self.delegate sliderValueChange:sender.value];
 }
 
 - (void)prepareForReuse {

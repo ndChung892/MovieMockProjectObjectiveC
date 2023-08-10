@@ -10,6 +10,7 @@
 #import "SLSettingsViewController.h"
 #import "SLShowAllRemindersViewController.h"
 #import <SWRevealViewController/SWRevealViewController.h>
+#import "NotificationConstant.h"
 
 #pragma mark - SLLeftMenuViewController
 @interface SLLeftMenuViewController ()
@@ -98,8 +99,7 @@
 }
 
 - (IBAction)showAllButton:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"transitionToSetting" object:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showAllBtn" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LEFTMENU_WILL_SHOW_ALL_REMINDER object:nil];
     [self.revealViewController revealToggleAnimated:YES];
 }
 

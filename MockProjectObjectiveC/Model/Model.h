@@ -24,5 +24,5 @@
 
 - (id)initMoviesData:(NSDictionary *)resultDic;
 - (id)initFavoritesData:(Favorites *)item;
-
+- (id)initResult:(Result *)result;
 @end

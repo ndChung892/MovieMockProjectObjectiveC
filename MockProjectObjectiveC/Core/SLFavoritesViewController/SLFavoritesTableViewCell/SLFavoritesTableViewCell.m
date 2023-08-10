@@ -22,21 +22,6 @@
     [super awakeFromNib];
     // Initialization code
     self.overviewTextView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.result = [[Result alloc]init];
-    self.overviewTextView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(starTapped:)];
-    [self.imgFavorite addGestureRecognizer:tapGesture];
-    self.imgFavorite.userInteractionEnabled = YES;
-}
-
-- (void)starTapped:(UITapGestureRecognizer *)gesture {
-    if (self.isFavorite) {
-        self.imgFavorite.image = [UIImage systemImageNamed:@"star"];
-        [[CoreDataManager sharedInstance] removeFavorites:self.result];
-    } else {
-        self.imgFavorite.image = [UIImage systemImageNamed:@"star.fill"];
-    }
-    self.isFavorite = !self.isFavorite;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -59,15 +44,15 @@
     self.imgFavorite.image = [UIImage imageNamed:@""];
 }
 
-- (void)configCell {
-    self.titlelbl.text = self.result.title;
-    self.overviewTextView.text = self.result.overView;
-    self.releaseDatelbl.text = [NSString stringWithFormat:@"%@%@",@"Release Date: ", self.result.releaseDate];
-    self.ratinglbl.text = [NSString stringWithFormat:@"%@%@", @"Rating: ", [self.result.rating stringValue]];
+- (void)configCell:(Result *)result{
+    self.titlelbl.text = result.title;
+    self.overviewTextView.text = result.overView;
+    self.releaseDatelbl.text = [NSString stringWithFormat:@"%@%@",@"Release Date: ", result.releaseDate];
+    self.ratinglbl.text = [NSString stringWithFormat:@"%@%@", @"Rating: ", [result.rating stringValue]];
     [self.imgMovies
      sd_setImageWithURL:[NSURL
                          URLWithString:[NSString
-                                        stringWithFormat:@"%@%@", imageURL, self.result.imgURL]]];
-    self.imgFavorite.image = self.isFavorite ? [UIImage systemImageNamed:@"star.fill"] : [UIImage systemImageNamed:@"star"];
+                                        stringWithFormat:@"%@%@", imageURL, result.imgURL]]];
+    self.imgFavorite.image = [UIImage systemImageNamed:@"star.fill"];
 }
 @end

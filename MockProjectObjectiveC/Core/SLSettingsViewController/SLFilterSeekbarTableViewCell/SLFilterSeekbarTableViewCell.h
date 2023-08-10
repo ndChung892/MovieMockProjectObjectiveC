@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SLFilterSeekbarTableViewCellDelegate <NSObject>
+
+- (void)sliderValueChange:(float)sliderValue;
+
+@end
+
 @interface SLFilterSeekbarTableViewCell : UITableViewCell
+
+@property (nonatomic, weak) id<SLFilterSeekbarTableViewCellDelegate> delegate;
 
 @end
 

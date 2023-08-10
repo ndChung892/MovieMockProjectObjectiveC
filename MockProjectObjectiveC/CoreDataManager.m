@@ -227,6 +227,40 @@
     return nil;
 }
 
+- (void)removeReminder:(NSNumber *)resultId {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reminders"];
+    NSError *error = nil;
+    NSArray *results = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *object in results) {
+        NSNumber *iD = [object valueForKey:@"iD"];
+        if ([resultId isEqualToNumber:iD]) {
+            [self.context deleteObject:object];
+        }
+    }
+    NSError *saveError = nil;
+    if (![self.context save:&saveError]) {
+        NSLog(@"Lỗi khi xóa dữ liệu: %@", saveError);
+    }
+}
+
+- (void)updateReminderDate:(NSNumber *)resultId withDate:(NSDate *)date {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reminders"];
+    NSError *error = nil;
+    NSArray *results = [self.context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *object in results) {
+        NSNumber *iD = [object valueForKey:@"iD"];
+        if ([resultId isEqualToNumber:iD]) {
+            [object setValue:date forKey:@"reminderTime"];
+        }
+    }
+    NSError *saveError = nil;
+    if (![self.context save:&saveError]) {
+        NSLog(@"Lỗi khi lưu thay đổi: %@", saveError);
+    }
+    
+}
+
 - (BOOL)isExistReminder {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reminders"];
     NSError *error = nil;

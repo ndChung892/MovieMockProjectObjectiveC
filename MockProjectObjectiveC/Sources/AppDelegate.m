@@ -7,6 +7,9 @@
 
 #import "AppDelegate.h"
 #import "SLDetailMoviesViewController.h"
+#import <SWRevealViewController/SWRevealViewController.h>
+#import "SWRevealViewController.h"
+#import "NotificationConstant.h"
 
 @interface AppDelegate ()
 
@@ -32,6 +35,9 @@
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DETAIL_MOVIE_DID_REMIND object:nil userInfo:response.notification.request.content.userInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DETAIL_MOVIE_WILL_DISPLAY object:nil];
     completionHandler();
 }
 

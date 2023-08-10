@@ -12,12 +12,15 @@
 #import "Favorites+CoreDataClass.h"
 #import "Favorites+CoreDataProperties.h"
 #import "SLDetailMoviesViewController.h"
+#import "NotificationConstant.h"
 
 #pragma mark - SLFavoritesViewController
-@interface SLFavoritesViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface SLFavoritesViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SLDetailMoviesViewControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic) Model *model;
 @property (nonatomic, strong) NSArray *originalData;
+
+@property (nonatomic, strong) SLDetailMoviesViewController *detailVC;
 @end
 
 @implementation SLFavoritesViewController
@@ -65,6 +68,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
+    self.detailVC = [[SLDetailMoviesViewController alloc]initWithNibName:@"SLDetailMoviesViewController" bundle:nil];
+    self.detailVC.delegate = self;
     [self.model.results removeAllObjects];
     [[CoreDataManager sharedInstance] getAllFavorites:^(NSArray<Favorites *> *items) {
         if(items) {
@@ -115,17 +121,11 @@ replacementString:(NSString *)string {
     return UITableViewCellEditingStyleDelete;
 }
 
-- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[CoreDataManager sharedInstance]removeFavorites: self.model.results[indexPath.row]];
-    [self.model.results removeObject:self.model.results[indexPath.row]];
-    [self.tableView reloadData];
-}
 
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView
 trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Create deleteAction
+    Result *resultDeleted = self.model.results[indexPath.row];
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Del" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         // Confirm Delete
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"Confirm to Delete" preferredStyle:UIAlertControllerStyleAlert];
@@ -134,6 +134,8 @@ trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
             // Delete
             [[CoreDataManager sharedInstance] removeFavorites:self.model.results[indexPath.row]];
             [self.model.results removeObjectAtIndex:indexPath.row];
+            NSDictionary *userInfo = @{@"id": resultDeleted.iD};
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_FAVORTIE_DID_CHANGE object:nil userInfo:userInfo];
             
             [self.tableView reloadData];
         }];
@@ -156,9 +158,7 @@ trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLFavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFavoritesTableView" forIndexPath:indexPath];
-    cell.result = self.model.results[indexPath.row];
-    cell.isFavorite = YES;
-    [cell configCell];
+    [cell configCell:self.model.results[indexPath.row]];
     return cell;
 }
 
@@ -167,12 +167,18 @@ trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
     return self.model.results.count;
 }
 
+- (void)favoriteDidChange:(BOOL)isFavorite withResult:(Result *)result {
+    NSDictionary *userInfo = @{
+        @"id":result.iD,
+        @"isFavorite": [NSNumber numberWithBool:isFavorite]
+    };
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"haha" object:nil userInfo:userInfo];
+}
+
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SLDetailMoviesViewController *detailVC = [[SLDetailMoviesViewController alloc]initWithNibName:@"SLDetailMoviesViewController" bundle:nil];
-    detailVC.result = self.model.results[indexPath.row];
-    NSLog(@"ID: %@",detailVC.result.iD);
-    [self.navigationController pushViewController:detailVC animated:YES];
+    self.detailVC.result = self.model.results[indexPath.row];
+    [self.navigationController pushViewController:self.detailVC animated:YES];
     
 }
 @end

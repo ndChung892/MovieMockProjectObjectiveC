@@ -32,7 +32,6 @@
 
 }
 
-
 - (void)prepareForReuse {
     [super prepareForReuse];
     [self.imgCollectionView setImage:[UIImage imageNamed:@""]];

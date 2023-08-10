@@ -57,4 +57,11 @@
     return self;
 }
 
+- (id)initResult:(Result *)result {
+    self = [super init];
+    if(self) {
+        [self.results addObject:result];
+    }
+    return self;
+}
 @end

@@ -16,6 +16,7 @@
 #import "Favorites+CoreDataClass.h"
 #import "Favorites+CoreDataProperties.h"
 #import "CoreDataManager.h"
+#import "NotificationConstant.h"
 
 
 @interface SLDetailMoviesViewController () 
@@ -52,19 +53,34 @@
     
     // Notification center
     [self.collectionViewCastAndCrew registerNib:[UINib nibWithNibName:@"SLCastAndCrewCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"castAndCrewCell"];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"chevron.backward"] style:UIBarButtonItemStylePlain target:self action:@selector(hadleBackButton:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleClickedNotification:) name:NOTIFICATION_DETAIL_MOVIE_DID_REMIND object:nil];
+}
+
+- (void)handleClickedNotification:(NSNotification *)notification {
+    NSDate *currentDate = [NSDate date];
+    [[CoreDataManager sharedInstance] checkReminders:currentDate];
+    self.reminderButton.enabled = YES;
+    self.lblReminder.hidden = YES;
+}
+
+- (void)hadleBackButton:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSDate *currentDate = [NSDate date];
     [self initTappedFavorite];
-    NSLog(@"currentDate: %@", currentDate);
     [[CoreDataManager sharedInstance] checkReminders:currentDate];
     if ([[CoreDataManager sharedInstance] interateReminders:self.result.iD]){
         self.reminderButton.enabled = NO;
         self.lblReminder.hidden = NO;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm"];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 
         self.lblReminder.text =[dateFormatter stringFromDate:[[CoreDataManager sharedInstance] getReminderDate:self.result.iD]];
     }
@@ -75,6 +91,14 @@
     self.stackViewPickerView.backgroundColor = [UIColor whiteColor];
     [self.datePicker setDatePickerMode: UIDatePickerModeDateAndTime];
     [self.datePicker setPreferredDatePickerStyle:UIDatePickerStyleWheels];
+    NSTimeInterval oneYearTime = 365 * 24 * 60 * 60;
+    NSDate *todayDate = [[NSDate date]dateByAddingTimeInterval:60];
+    
+    NSDate *oneYearFromToday = [todayDate
+                                dateByAddingTimeInterval:oneYearTime];
+    
+    self.datePicker.minimumDate = todayDate;
+    self.datePicker.maximumDate = oneYearFromToday;
 }
 
 - (IBAction)reminderButton:(id)sender {
@@ -83,14 +107,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
                 // Notification permission is accepted
-                NSTimeInterval oneYearTime = 365 * 24 * 60 * 60;
-                NSDate *todayDate = [[NSDate date]dateByAddingTimeInterval:60];
-                
-                NSDate *oneYearFromToday = [todayDate
-                                            dateByAddingTimeInterval:oneYearTime];
-                
-                self.datePicker.minimumDate = todayDate;
-                self.datePicker.maximumDate = oneYearFromToday;
                 self.stackViewPickerView.hidden = NO;
             } else {
                 // Notification access is not defined
@@ -122,14 +138,40 @@
     content.body = @"It's time to watch the movies";
     content.sound = [UNNotificationSound defaultSound];
     content.categoryIdentifier = @"detailCategory";
+    content.userInfo = @{
+        @"id": self.result.iD,
+        @"title": self.result.title,
+        @"releaseDate": self.result.releaseDate,
+        @"rating": self.result.rating,
+        @"overview": self.result.overView,
+        @"imgURL": self.result.imgURL,
+    };
     
-    NSDateComponents *triggerDateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute
-                                                                              fromDate:date];
+    NSDateComponents *triggerDateComponents = [[NSCalendar currentCalendar]
+                                               components:
+                                               NSCalendarUnitYear |
+                                               NSCalendarUnitMonth |
+                                               NSCalendarUnitDay |
+                                               NSCalendarUnitHour |
+                                               NSCalendarUnitMinute
+                                               fromDate:date];
     
-    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:triggerDateComponents repeats:NO];
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger
+                                              triggerWithDateMatchingComponents:triggerDateComponents
+                                              repeats:NO];
     
-    NSString *requestIdentifier = [NSString stringWithFormat:@"movieReminder-%f", [date timeIntervalSince1970]];
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:requestIdentifier content:content trigger:trigger];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *dateformated = [dateFormatter stringFromDate:date];
+    NSString *requestIdentifier = [NSString
+                                   stringWithFormat:@"movieReminder - %@",
+                                   self.result.iD];
+    NSLog(@"requestIdentifier in Detail: %@", requestIdentifier);
+    UNNotificationRequest *request = [UNNotificationRequest
+                                      requestWithIdentifier:requestIdentifier
+                                      content:content
+                                      trigger:trigger];
     
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
@@ -148,7 +190,6 @@
 #pragma mark - Tapped favorite
 - (void)initTappedFavorite {
     [[CoreDataManager sharedInstance] getIDFavorites];
-    NSLog(@"hahah%@", self.result.iD);
     self.isFavorite = [[CoreDataManager sharedInstance] interateFavorites:self.result.iD];
     if(self.isFavorite) {
         self.favoriteButton.image = [UIImage systemImageNamed:@"star.fill"];
@@ -170,6 +211,8 @@
         self.isFavorite = NO;
         [[CoreDataManager sharedInstance]removeFavorites:self.result];
     }
+    
+    [self.delegate favoriteDidChange:self.isFavorite withResult:self.result];
 }
 
 #pragma mark - Detail movie
